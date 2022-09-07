@@ -1,0 +1,13 @@
+.sale {
+  background-color: var(--sale-color);
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light-color-text);
+  font-size: 30px;
+  line-height: 39px;
+}
+

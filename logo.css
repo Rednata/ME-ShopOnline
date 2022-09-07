@@ -1,0 +1,11 @@
+.logo {
+  font-family: OpenSans;
+  color: var(--dark-color-text);
+  font-weight: 700;
+  font-size: 30px;
+  /* border: 1px solid green; */
+}
+
+.logo_color {
+  color: var(--accent-color-text);
+}

@@ -1,0 +1,47 @@
+.banner {
+  margin-bottom: 60px;
+}
+
+.banner__box {
+  background-image: url("./assets/banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 23px;  
+}
+
+.banner__title {
+  font-size: 70px;
+  line-height: 91px;
+  padding: 145px 112px;
+  margin-bottom: 100px;
+}
+
+.banner__time {
+  text-align: center;
+}
+
+.time__title {
+  font-size: 16px;
+  line-height: 21px; 
+  margin-bottom: 5px;
+}
+
+.time__duration {
+  display: inline-flex;
+  justify-content: space-between;
+  text-align: center;
+  width: 473px;
+  margin-bottom: 40px;
+}
+
+.time__digital {
+  font-size: 60px;
+  line-height: 78px;
+}
+
+.time__alpha {
+  font-size: 32px;
+  line-height: 42px;
+  padding-left: 6px;
+}
+

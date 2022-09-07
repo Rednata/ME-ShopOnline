@@ -1,0 +1,14 @@
+.header {
+  padding-top: 30px;
+}
+
+.header__container {
+  margin-bottom: 90px;
+}
+
+.header__box {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  align-items: center;
+  gap: 99px;
+}

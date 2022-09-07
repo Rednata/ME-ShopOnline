@@ -1,0 +1,108 @@
+.item {
+  position: relative;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.item__img {
+object-fit: cover;
+width: 100%;
+height: 100%;
+border-radius: 20px;  
+}
+
+.item_area {
+  grid-area: span 2 / span 2;
+}
+
+.item_column {
+  grid-column: span 2;
+}
+
+.item_row {
+  grid-row: span 2;
+}
+
+.item_area-big {
+  grid-area: span 2 / span 4;
+}
+
+.item__content,
+.sale_right,
+.sale_left {
+  position: absolute;
+}
+
+.item__content {
+  bottom: 0;
+}
+
+.sale_right {
+  bottom: 0;
+  right: 0;
+}
+
+.sale_left {
+  top: 0;
+  left: 0;
+}
+
+.item__content_book {
+  margin: 20px;
+}
+
+.item__content_span30 {
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.item__content_time {
+  font-size: 30px;
+  margin-left: 14px;
+  margin-bottom: 122px;
+}
+
+.sale_right {
+  margin: 20px;
+}
+
+.item__content_shoes {
+  background-color: var(--present-color);  
+  background-repeat: 20px;
+  border-radius: 20px;
+  font-weight: 400;
+  margin: 20px;
+  padding: 24px 26px;
+}
+
+.item_content-span40 {
+  font-weight: 700;
+  font-size: 56px;
+}
+
+.item__content_presents {
+  margin: 30px;
+}
+
+.sale_left {
+  margin: 20px;
+}
+
+.item__content_december {
+  margin: 40px 30px;
+}
+
+.item__content_new-year {
+  background-color: var(--light-color-text);
+  border-radius: 20px;
+  text-transform: uppercase;
+  color: #f91155;
+  padding: 30px 40px;
+  margin: 50px;
+}
+
+.item__content_chemicals {
+  font-size: 30px;
+  margin: 20px 20px;
+}
