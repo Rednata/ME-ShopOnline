@@ -68,7 +68,7 @@ border-radius: 20px;
 }
 
 .item__content_shoes {
-  background-color: var(--present-color);  
+  background-color: var(--item-color);  
   background-repeat: 20px;
   border-radius: 20px;
   font-weight: 400;
