@@ -97,6 +97,9 @@
 }
 
 @media(max-width:480px) {
+  .banner {
+    margin-bottom: 20px;
+  }
   .banner__box {   
     background-image: url("./assets/banner320.jpg");
     padding-top: 50px;

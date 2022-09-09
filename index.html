@@ -14,10 +14,10 @@
   <header class="header">
     <div class="container header__container">      
         <div class="header__box">
-          <a class="logo" href="#">
+          <a class="logo header__logo" href="#">
             Shop<span class="logo_color">Online</span> 
           </a>      
-          <nav class="header__nav nav">
+          <!-- <nav class="header__nav nav"> -->
           <button class="menu">
             <img class="menu__img" src="./assets/sort.svg" alt="бургер-меню">
             Меню</button>
@@ -31,24 +31,26 @@
             </button>
           </form>
   
-          <ul class="nav__list">
-            <li class="nav__item">            
-              <button class="nav__btn">
-                <img class="nav__icon" src="./assets/person.svg" alt="">
-                Профиль</button>
+          <ul class="header__icon">
+            <li class="icon">            
+              <button class="icon__btn">
+                <img class="icon__img" src="./assets/person.svg" alt="">
+                <span class="icon__hidden">Профиль</span> </button>
             </li>  
-  
-            <li class="nav__item">            
-              <button class="nav__btn">
-                <img class="nav__icon" src="./assets/shopping_cart.svg" alt="">
-                Корзина</button>
+
+            <li class="icon">            
+              <button class="icon__btn">
+                <img class="icon__img" src="./assets/shopping_cart.svg" alt="">
+                <span class="icon__hidden">Корзина</span> 
+                </button>
             </li>  
-  
-            <li class="nav__item">            
-              <button class="nav__btn">
-                <img class="nav__icon" src="./assets/favorite.svg" alt="">
-                Избранное</button>
-            </li>   
+
+            <li class="icon">            
+              <button class="icon__btn">
+                <img class="icon__img" src="./assets/favorite.svg" alt="">
+                <span class="icon__hidden">Избранное</span> 
+                </button>
+            </li>                            
           </ul>
         </nav>
         </div>
@@ -76,20 +78,19 @@
     </div>
   </section>
 
-
   <section class="goods">
     <h2 class="visually-hidden">Карточки с товаром</h2>
     <div class="container">
       <ul class="goods__list">
 
-        <li class="goods__item item">
+        <li class="item item_book">
           <a href="#" class="item__link">
               <img class="item__img" src="./assets/Rectangle101.png" alt="очки и чашка кофе рядом с раскрытой книгой" >
             <p class="item__content item__content_book">Книга - <span class="item__content_span30">лучший подарок</span></p>
           </a>          
         </li>
 
-        <li class="goods__item item">
+        <li class="item item_time">
           <a href="#" class="item__link">
             <img class="item__img" src="./assets/Rectangle102.png" alt="циферблат" >
             <p class="item__content item__content_time">Время скидок!</p>
@@ -97,21 +98,21 @@
           </a>          
         </li>
 
-        <li class="goods__item item item_area">
+        <li class="item item_shoes">
           <a href="#" class="item__link">
             <img class="item__img" src="./assets/Rectangle99.png" alt="разноцветные кроссовки" >
             <div class="item__content item__content_shoes">Вторая пара кроссовок <span class="item__content_span40">в подарок!</span></div>          
           </a>          
         </li>
 
-        <li class="goods__item item item_column">
+        <li class="item item_ideas">
           <a href="#" class="item__link">
             <img class="item__img" src="./assets/Rectangle100.png" alt="ярко упакованные подарки" >
-            <p class="item__content item__content_presents">Идеи новогодних подарков</p>
+            <p class="item__content item__content_ideas">Идеи новогодних подарков</p>
           </a>          
         </li>
         
-        <li class="goods__item item item_column">
+        <li class="item item_red">
           <a href="#" class="item__link">
             <img class="item__img" src="./assets/Rectangle104.png" alt="ярко-красный кроссовок" >
             <div class="sale sale_left">
@@ -120,7 +121,7 @@
           </a>          
         </li>
 
-        <li class="goods__item item item_column item_december">
+        <li class="item item_december">
           <a href="#" class="item__link">
             <img class="item__img" src="./assets/Rectangle103.png" alt="ноутбук" >
             <p class="item__content item__content_december">Выгодно в декабре!</p>            
@@ -128,21 +129,21 @@
           </a>          
         </li>
 
-        <li class="goods__item item item_area-big">
+        <li class="item item_new-year">
           <a href="#" class="item__link">
             <img class="item__img" src="./assets/Rectangle105.png" alt="золотисто-синяя надпись '2022' с подарочной коробкой" >
             <p class="item__content item__content_new-year">Новогодние украшения</p>      
           </a>
         </li>
 
-        <li class="goods__item item  item_row">
+        <li class="item item_dress">
           <a href="#" class="item__link">
             <img class="item__img" src="./assets/Rectangle106.png" alt="девушка в красном платье" >
             <div class="sale sale_right">-55%</div>
           </a>
         </li>
 
-        <li class="goods__item item">
+        <li class="item item_chemicals">
           <a href="#" class="item__link">
             <img class="item__img" src="./assets/Rectangle107.png" alt="рука в хозяйственной перчатке с пульверизатором" >
             <p class="item__content item__content_chemicals">На бытовую химию</p>
@@ -150,7 +151,7 @@
           </a>
         </li>
 
-        <li class="goods__item item">
+        <li class="item item_balls">
           <a href="#" class="item__link">
             <img class="item__img" src="./assets/Rectangle108.png" alt="елочные игрушки красные и золотистые шары">
           </a>          
@@ -159,11 +160,6 @@
       </ul>
     </div>   
   </section>    
-
-    
-
-
-
-  
+ 
 </body>
 </html>
