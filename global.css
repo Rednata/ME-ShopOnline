@@ -84,3 +84,39 @@ body {
   color: var(--light-color-text);
   font-size: 40px;
 }
+
+@media(max-width:1500px) {
+    body {
+        font-size: 30px;
+    }
+    .container {     
+        padding: 0 42px;        
+    }
+}
+
+@media(max-width:1000px) {
+    body {
+        font-size: 16px;
+    }
+    .container {     
+        padding: 0 34px;        
+    }
+}
+
+@media(max-width:1000px) {
+    body {
+        font-size: 16px;
+    }
+    .container {     
+        padding: 0 34px;        
+    }
+}
+
+@media(max-width:700px) {
+    body {
+        font-size: 12px;
+    }
+    .container {     
+        padding: 0 20px;        
+    }
+}

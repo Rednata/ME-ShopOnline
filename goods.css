@@ -1,6 +1,38 @@
+.goods {
+  margin-bottom: 90px;
+}
 .goods__list {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 60px;
-  padding-bottom: 90px;
+  /* font-size: 10px; */
+  /* font-size: 2.1vw; */
 }  
+
+@media(max-width:1700px) {
+  .goods__list{
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    grid-auto-flow: dense;
+  }  
+  .item_december {
+    grid-row: 4 / 5;
+    
+  }
+}  
+
+@media(max-width:1000px) {
+  .goods__list{
+    grid-template-columns: 1fr 1fr 1.25fr 1.25fr;
+    gap: 20px;
+  }    
+}  
+
+@media(max-width:700px) {
+  .goods__list{
+    grid-template-columns: repeat(2, 1fr);    
+  }    
+  .goods {
+    margin-bottom: 43px;
+  }
+}

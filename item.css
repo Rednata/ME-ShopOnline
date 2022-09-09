@@ -2,7 +2,7 @@
   position: relative;
   border-radius: 20px;
   font-weight: 700;
-  font-size: 40px;
+  /* font-size: 2.1vw; */
 }
 
 .item__img {
@@ -55,10 +55,12 @@ border-radius: 20px;
 .item__content_span30 {
   font-weight: 400;
   font-size: 30px;
+  /* font-size: 1.58vw; */
 }
 
 .item__content_time {
   font-size: 30px;
+  /* font-size: 1.58vw; */
   margin-left: 14px;
   margin-bottom: 122px;
 }
@@ -69,16 +71,17 @@ border-radius: 20px;
 
 .item__content_shoes {
   background-color: var(--item-color);  
-  background-repeat: 20px;
   border-radius: 20px;
   font-weight: 400;
   margin: 20px;
   padding: 24px 26px;
 }
 
-.item_content-span40 {
+.item__content_span40 {
+
   font-weight: 700;
   font-size: 56px;
+  /* font-size: 2.94vw; */
 }
 
 .item__content_presents {
@@ -104,5 +107,106 @@ border-radius: 20px;
 
 .item__content_chemicals {
   font-size: 30px;
+  /* font-size: 1.58vw; */
   margin: 20px 20px;
+}
+
+@media(max-width:1710px) {
+  .item__content_shoes {
+    width: 92%;
+    margin-left: 0;
+    margin-right: 0;
+    right: 50%;
+    transform: translateX(50%);
+  }
+  .item__content_span40 {
+    display: block;
+  }
+}
+
+@media(max-width:1500px) {
+  .item__content_span30 {
+    font-size: 24px;
+  }
+  .item__content_time {
+    font-size: 24px;        
+    margin-bottom: 117px;
+  }
+  .item__content_span40 {
+    font-weight: 700;
+}
+  .item__content_chemicals {
+  font-size: 20px;
+}
+}
+
+@media(max-width:1000px) {
+  .item__content{
+    font-size: 16px;
+  }  
+  .item__content_book {
+    font-size: 20px;
+  } 
+  .item__content_span40 {
+    font-size: 26px;
+}
+.item__content_chemicals {
+  font-size: 16px;
+}
+}
+
+@media(max-width:700px) {
+  .item_column {
+    grid-column: 1 / span 2;
+  }
+  .item_area {
+    grid-column: 1 / span 2;  
+  }
+  .item_area-big {
+    grid-column: 1 / span 2; 
+  }
+  .item__content_span40 {
+    display: inline;
+  }
+
+  .item__content{
+    font-size: 12px;
+  }  
+
+  .item__content_book{
+    font-size: 16px;
+  }  
+  .item__content_shoes {
+    border-radius: 8px;
+    padding: 7px 20px ;
+  }
+  .item__content_span30 {
+    font-size: 12px;
+  }
+  .item__content_time {
+    margin-bottom: 86px;
+  }
+
+  .item__content_span40 {
+    font-size: 16px;
+}
+.item__content_chemicals {
+  font-size: 12px;
+}
+.sale_right, 
+.sale_left {
+  margin: 5px;
+}
+.item__content_chemicals { 
+  margin: 10px;
+}
+.item__content_new-year {  
+  border-radius: 6px;
+  padding: 7px 40px;
+  
+  width: 92%;
+  margin: 0 0 10px;
+  right: 50%;
+  transform: translateX(50%);
+}
 }
