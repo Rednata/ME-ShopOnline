@@ -2,7 +2,6 @@
   position: relative;
   border-radius: 20px;
   font-weight: 700;
-  /* font-size: 2.1vw; */
 }
 
 .item__img {
@@ -55,12 +54,10 @@ border-radius: 20px;
 .item__content_span30 {
   font-weight: 400;
   font-size: 30px;
-  /* font-size: 1.58vw; */
 }
 
 .item__content_time {
-  font-size: 30px;
-  /* font-size: 1.58vw; */
+  font-size: 30px;  
   margin-left: 14px;
   margin-bottom: 122px;
 }
@@ -81,7 +78,6 @@ border-radius: 20px;
 
   font-weight: 700;
   font-size: 56px;
-  /* font-size: 2.94vw; */
 }
 
 .item__content_presents {
@@ -107,7 +103,6 @@ border-radius: 20px;
 
 .item__content_chemicals {
   font-size: 30px;
-  /* font-size: 1.58vw; */
   margin: 20px 20px;
 }
 
@@ -168,7 +163,33 @@ border-radius: 20px;
   .item__content_span40 {
     display: inline;
   }
+  .item__content_shoes {
+    border-radius: 8px;
+    padding: 7px 20px ;
+  }
+  .item__content_time {
+    margin-bottom: 86px;
+  }
+.sale_right, 
+.sale_left {
+  margin: 5px;
+}
+.item__content_chemicals { 
+  margin: 10px;
+}
+.item__content_new-year {  
+  border-radius: 6px;
+  padding: 7px 40px;
+  
+  width: 92%;
+  margin: 0 0 10px;
+  right: 50%;
+  transform: translateX(50%);
+}
+}
 
+
+@media(max-width:480px) {
   .item__content{
     font-size: 12px;
   }  
@@ -202,8 +223,7 @@ border-radius: 20px;
 }
 .item__content_new-year {  
   border-radius: 6px;
-  padding: 7px 40px;
-  
+  padding: 7px 40px;  
   width: 92%;
   margin: 0 0 10px;
   right: 50%;
