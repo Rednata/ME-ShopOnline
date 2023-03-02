@@ -1,0 +1,62 @@
+.benefit {
+  color: var(--dark-color-text);
+  margin-bottom: 140px;
+}
+
+.benefit__title {
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+.benefit__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px
+}
+
+.card-img__wrapper {
+  position: relative;  
+  margin-bottom: 20px;
+  border-radius: 14px;
+}
+
+.card__img {
+  display: block;
+  border-radius: 14px;
+}
+
+.card__sale {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background-color: var(--sale-color);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--light-color-text);
+}
+
+.card__price  {
+  margin-bottom: 15px;
+}
+.card__end-price {
+  font-weight: 700;
+  font-size: 28px;
+  margin-right: 28px;
+}
+
+.card__start-price { 
+  font-size: 20px;
+  text-decoration: line-through;
+
+}
+
+.card__title {  
+  font-size: 22px;
+}
+
