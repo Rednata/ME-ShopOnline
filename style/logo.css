@@ -1,8 +1,15 @@
 .logo {
-  font-family: OpenSans;
-  color: var(--dark-color-text);
+  font-family: OpenSans;  
   font-weight: 700;
   font-size: 30px;
+}
+
+.logo_dark {
+  color: var(--dark-color-text);
+}
+
+.logo_light {
+  color: var(--light-color-text);
 }
 
 .logo_color {
