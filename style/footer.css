@@ -1,0 +1,111 @@
+.footer {
+  background-color: var(--dark-color-text);
+  color: var(--light-color-text);
+}
+
+.footer__container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.footer__wrapper {
+  display: flex;
+}
+
+.footer__logo {
+  margin-right: 118px;
+}
+
+.nav {
+  margin-bottom: 50px;
+}
+
+.nav__list {
+  display: inline-flex;
+  /* grid-template-columns: 480px 307px 307px ; */
+  gap: 100px;
+}
+
+.nav__item {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.nav__title {
+  margin-bottom: 40px;
+}
+
+.sublist{
+  max-width: 480px;
+  display: flex;  
+  flex-wrap: wrap;
+  column-gap: 30px;
+  row-gap: 15px;
+  justify-content: space-between;  
+}
+
+.sublist__item {
+  font-weight: 400;
+  font-size: 22px; 
+  line-height: 33px; 
+  min-width: 220px;
+}
+
+.sublist_buyer, 
+.sublist_contacts {
+  flex-direction: column;
+}
+
+.sublist_buyer {
+  margin-right: 127px;
+}
+
+.sublist__icons {
+  display: flex;
+  gap: 20px;
+}
+
+.sublist-contacts__link {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.sublist__icon-link {
+  display: block;
+  width: 26px;
+  height: 26px;
+  background-repeat: no-repeat;
+}
+
+
+.sublist__icon-link_wsp {
+  background-image: url("../assets/icons/ant-design_whats-app-outlined.svg");
+}
+.sublist__icon-link_inst {
+  background-image: url("../assets/icons/bi_instagram.svg");
+}
+.sublist__icon-link_yout {
+  background-image: url("../assets/icons/ant-design_youtube-outlined.svg");
+}
+.sublist__icon-link_fb {
+  background-image: url("../assets/icons/feather_facebook.svg");
+}
+.sublist__icon-link_tgr {
+  background-image: url("../assets/icons/la_telegram-plane.svg");
+}
+
+.footer__bottom {
+  display: flex;
+  font-weight: 700;
+  font-size: 16px;
+  justify-content: space-between;
+}
+
+.footer__author {
+  margin-right: 240px;
+}
+
+.footer__author-name {
+  margin-bottom: 10px;  
+}
+

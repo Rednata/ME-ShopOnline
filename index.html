@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preload" href="./fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="./fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="./fonts/open-sans-v34-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <script src="./script/script.js" type="module"></script>
+  <link rel="preload" href="assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/open-sans-v34-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="script/script.js" type="module"></script>
   <link rel="stylesheet" href="index.css">
   <title>ShopOnline</title>
 </head>
@@ -15,146 +15,416 @@
   <header class="header">
     <div class="container header__container">      
         <div class="header__box">
-          <a class="logo header__logo" href="#">
+          <a class="logo logo_dark header__logo" href="#">
             Shop<span class="logo_color">Online</span> 
           </a>      
-          <!-- <nav class="header__nav nav"> -->
-          <button class="menu">
-            <img class="menu__img" src="./assets/sort.svg" alt="бургер-меню">
+          <button class="menu" aria-haspopup="menu">
+            <img class="menu__img" src="assets/icons/sort.svg" alt="">
             Меню</button>
   
           <form class="search" action="#" method="post">
             <label class="search__label">
               <input class="search__input" type="search" placeholder="Я ищу">            
+              <button class="search__btn">
+                <img  class="search__img" src="assets/icons/search.svg" alt="поисковая лупа">
+              </button>
             </label>
-            <button class="search__btn">
-              <img  class="search__img" src="./assets/search.svg" alt="лупа">
-            </button>
+
           </form>
   
-          <ul class="header__icon">
+          <ul class="header__icons">
             <li class="icon">            
-              <button class="icon__btn">
-                <img class="icon__img" src="./assets/person.svg" alt="">
-                <span class="icon__hidden">Профиль</span> </button>
+              <button class="icon__btn" aria-label="Профиль">
+                <span class="header-icon__img header-icon__img_profile"></span>
+                <span class="icon__hidden">Профиль</span> 
+              </button>
             </li>  
 
             <li class="icon">            
-              <button class="icon__btn">
-                <img class="icon__img" src="./assets/shopping_cart.svg" alt="">
+              <button class="icon__btn" aria-label="Корзина">
+                <span class="header-icon__img header-icon__img_cart"></span>
                 <span class="icon__hidden">Корзина</span> 
-                </button>
+              </button>              
             </li>  
 
             <li class="icon">            
-              <button class="icon__btn">
-                <img class="icon__img" src="./assets/favorite.svg" alt="">
+              <button class="icon__btn" aria-label="Избранное">
+                <span class="header-icon__img header-icon__img_favorite"></span>
                 <span class="icon__hidden">Избранное</span> 
-                </button>
+              </button>                    
             </li>                            
           </ul>
-        </nav>
         </div>
         
     </div>
   </header>
 
-  <section class="banner">
-    <div class="container">
-      <div class="banner__box">
-        <h2 class="banner__title">
-          -50% на все ноутбуки
-        </h2>
-
-        <div class="banner__time time" data-timer-deadline="2022-11-23 15:08">
+  <main>
+    <section class="banner">
+      <div class="container">
+        <div class="banner__box">
+          <h2 class="banner__title">
+            -50% на все ноутбуки
+          </h2>
+  
+          <div class="banner__time time" data-timer-deadline="2022-11-23 15:08">
+          </div>
+  
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
+  
+    <section class="goods">
+      <h2 class="visually-hidden">Карточки с товаром</h2>
+      <div class="container">
+        <ul class="goods__list">
+  
+          <li class="item item_book">
+            <a href="#" class="item__link">
+                <img class="item__img" src="assets/images/Rectangle101.png" alt="очки и чашка кофе рядом с раскрытой книгой" >
+              <p class="item__content item__content_book">Книга - <span class="item__content_span30">лучший подарок</span></p>
+            </a>          
+          </li>
+  
+          <li class="item item_time">
+            <a href="#" class="item__link">
+              <img class="item__img" src="assets/images/Rectangle102.png" alt="циферблат" >
+              <p class="item__content item__content_time">Время скидок!</p>
+              <div class="sale sale_right">-25%</div>
+            </a>          
+          </li>
+  
+          <li class="item item_shoes">
+            <a href="#" class="item__link">
+              <img class="item__img" src="assets/images/Rectangle99.png" alt="разноцветные кроссовки" >
+              <div class="item__content item__content_shoes">Вторая пара кроссовок <span class="item__content_span40">в подарок!</span></div>          
+            </a>          
+          </li>
+  
+          <li class="item item_ideas">
+            <a href="#" class="item__link">
+              <img class="item__img" src="assets/images/Rectangle100.png" alt="ярко упакованные подарки" >
+              <p class="item__content item__content_ideas">Идеи новогодних подарков</p>
+            </a>          
+          </li>
+          
+          <li class="item item_red">
+            <a href="#" class="item__link">
+              <img class="item__img" src="assets/images/Rectangle104.png" alt="ярко-красный кроссовок" >
+              <div class="sale sale_left">
+                -40%
+              </div>
+            </a>          
+          </li>
+  
+          <li class="item item_december">
+            <a href="#" class="item__link">
+              <img class="item__img" src="assets/images/Rectangle103.png" alt="ноутбук" >
+              <p class="item__content item__content_december">Выгодно в декабре!</p>            
+              <div class="sale sale_right">-15%</div>
+            </a>          
+          </li>
+  
+          <li class="item item_new-year">
+            <a href="#" class="item__link">
+              <img class="item__img" src="assets/images/Rectangle105.png" alt="золотисто-синяя надпись '2022' с подарочной коробкой" >
+              <p class="item__content item__content_new-year">Новогодние украшения</p>      
+            </a>
+          </li>
+  
+          <li class="item item_dress">
+            <a href="#" class="item__link">
+              <img class="item__img" src="assets/images/Rectangle106.png" alt="девушка в красном платье" >
+              <div class="sale sale_right">-55%</div>
+            </a>
+          </li>
+  
+          <li class="item item_chemicals">
+            <a href="#" class="item__link">
+              <img class="item__img" src="assets/images/Rectangle107.png" alt="рука в хозяйственной перчатке с пульверизатором" >
+              <p class="item__content item__content_chemicals">На бытовую химию</p>
+              <div class="sale sale_left">-25%</div>            
+            </a>
+          </li>
+  
+          <li class="item item_balls">
+            <a href="#" class="item__link">
+              <img class="item__img" src="assets/images/Rectangle108.png" alt="елочные игрушки: красные и золотистые шары">
+            </a>          
+          </li>
+          
+        </ul>
+      </div>   
+    </section>   
+    
+    <section class="benefit">
+      <div class="container">
+        <h2 class="benefit__title">Это выгодно!</h2>
+        <ul class="benefit__list">
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <img class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет">
+                <span class="card__sale" aria-label="Скидка">-50%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__end-price">1299 ₽</span>
+                <span class="card__start-price">2598 ₽</span>
+              </div>
+              <p class="card__title">Пара футболок</p>
+            </a>          
+          </li>
+    
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <img class="card__img" src="assets/images/photo2.jpg" alt="кроссовок бело-оранжевого цвета">
+                <span class="card__sale" aria-label="Скидка">-40%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__end-price">2099₽</span>
+                <span class="card__start-price">5938 ₽</span>
+              </div>
+              <p class="card__title">Кроссовки</p>
+            </a>                    
+          </li>
+  
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <img class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме">
+                <span class="card__sale" aria-label="Скидка">-10%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__end-price">3902 ₽</span>
+                <span class="card__start-price">4490 ₽</span>
+              </div>
+              <p class="card__title">Постельное белье</p>
+            </a>                    
+          </li>        
+  
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <img class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета">
+                <span class="card__sale" aria-label="Скидка">-30%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__end-price">2999 ₽</span>
+                <span class="card__start-price">6030 ₽</span>
+              </div>
+              <p class="card__title">Фен</p>
+              </a>
+          </li>        
+  
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <img class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме">
+                <span class="card__sale" aria-label="Скидка">-10%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__end-price">3902 ₽</span>
+                <span class="card__start-price">4490 ₽</span>
+              </div>
+              <p class="card__title">Постельное белье</p>
+            </a>                    
+          </li>
+              
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <img class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета">
+                <span class="card__sale" aria-label="Скидка">-30%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__end-price">2999 ₽</span>
+                <span class="card__start-price">6030 ₽</span>
+              </div>
+              <p class="card__title">Фен</p>
+            </a>
+          </li>        
+  
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <img class="card__img" src="assets/images/photo5.jpg" alt="вязаные варежки светло-коричневого цвета с ушками и деликатной мордочкой">
+                <span class="card__sale" aria-label="Скидка">-30%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__end-price">540 ₽</span>
+                <span class="card__start-price">890 ₽</span>
+              </div>
+              <p class="card__title">Варежки-мишки</p>
+            </a>                    
+          </li>
+    
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <img class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет">
+                <span class="card__sale" aria-label="Скидка">-50%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__end-price">1299 ₽</span>
+                <span class="card__start-price">2598 ₽</span>
+              </div>
+              <p class="card__title">Пара футболок</p>
+            </a>          
+          </li>     
+        </ul>
+      </div>
+      
+    </section>
+  </main>
 
-  <section class="goods">
-    <h2 class="visually-hidden">Карточки с товаром</h2>
-    <div class="container">
-      <ul class="goods__list">
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__wrapper">
+        <a class="logo logo_light footer__logo" href="#">
+          Shop<span class="logo_color">Online</span> 
+        </a> 
+  
+        <nav class="nav">
+          <ul class="nav__list">
+  
+            <li class="nav__item">
+              <p class="nav__title">Каталог</p>
+  
+              <ul class="nav__sublist sublist">
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Смартфоны
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Бытовая химия
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Ноутбуки
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Книги и журналы
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Ювелирные изделия
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Домашний текстиль
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Одежда
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Электроника
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Бытовая техника
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Косметика
+                  </a>                
+                </li>
+              </ul>            
+            </li>
+  
+            <li class="nav__item">
+              <p class="nav__title">Покупателям</p>            
+              <ul class="nav__sublist sublist sublist_buyer">
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Оплата заказа
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Условия доставки
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Условия возврата заказа
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Блог
+                  </a>                
+                </li>
+  
+              </ul>
+            </li>
+  
+            <li class="nav__item">
+              <p class="nav__title">Контакты</p>  
+              
+              <ul class="nav__sublist sublist sublist_contacts">
+                <li class="sublist__item">
+                  <a href="tel:+79378392361" class="sublist-contacts__link">
+                    Тел: +7 937 839 23-61
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="e-mail" class="sublist-contacts__link">
+                    Email: OnlineShop@gmail.com
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <ul class="sublist__icons">
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_wsp" href="#" aria-label="Whatsapp"></a>
+                    </li>
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_inst" href="#" aria-label="Instagram"></a>
+                    </li>
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_yout" href="#" aria-label="Youtube"></a>
+                    </li>
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_fb" href="#" aria-label="Facebook"></a>
+                    </li>
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_tgr" href="#" aria-label="Telegram"></a>
+                    </li>
+  
+                  </ul>
+  
+              </ul>
+  
+            </li>
+          </ul>
+        </nav>
+      </div>      
 
-        <li class="item item_book">
-          <a href="#" class="item__link">
-              <img class="item__img" src="./assets/Rectangle101.png" alt="очки и чашка кофе рядом с раскрытой книгой" >
-            <p class="item__content item__content_book">Книга - <span class="item__content_span30">лучший подарок</span></p>
-          </a>          
-        </li>
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          © OnlineShop, 2021
+        </p>
+        <div class="footer__author">
+          <p class="footer__author-name">Design by Anastasia Ilina</p>
+          <p class="footer__author-contact">Tg: @Mrshmallowww</p>
+        </div>
+      </div>
+    </div>    
 
-        <li class="item item_time">
-          <a href="#" class="item__link">
-            <img class="item__img" src="./assets/Rectangle102.png" alt="циферблат" >
-            <p class="item__content item__content_time">Время скидок!</p>
-            <div class="sale sale_right">-25%</div>
-          </a>          
-        </li>
-
-        <li class="item item_shoes">
-          <a href="#" class="item__link">
-            <img class="item__img" src="./assets/Rectangle99.png" alt="разноцветные кроссовки" >
-            <div class="item__content item__content_shoes">Вторая пара кроссовок <span class="item__content_span40">в подарок!</span></div>          
-          </a>          
-        </li>
-
-        <li class="item item_ideas">
-          <a href="#" class="item__link">
-            <img class="item__img" src="./assets/Rectangle100.png" alt="ярко упакованные подарки" >
-            <p class="item__content item__content_ideas">Идеи новогодних подарков</p>
-          </a>          
-        </li>
-        
-        <li class="item item_red">
-          <a href="#" class="item__link">
-            <img class="item__img" src="./assets/Rectangle104.png" alt="ярко-красный кроссовок" >
-            <div class="sale sale_left">
-              -40%
-            </div>
-          </a>          
-        </li>
-
-        <li class="item item_december">
-          <a href="#" class="item__link">
-            <img class="item__img" src="./assets/Rectangle103.png" alt="ноутбук" >
-            <p class="item__content item__content_december">Выгодно в декабре!</p>            
-            <div class="sale sale_right">-15%</div>
-          </a>          
-        </li>
-
-        <li class="item item_new-year">
-          <a href="#" class="item__link">
-            <img class="item__img" src="./assets/Rectangle105.png" alt="золотисто-синяя надпись '2022' с подарочной коробкой" >
-            <p class="item__content item__content_new-year">Новогодние украшения</p>      
-          </a>
-        </li>
-
-        <li class="item item_dress">
-          <a href="#" class="item__link">
-            <img class="item__img" src="./assets/Rectangle106.png" alt="девушка в красном платье" >
-            <div class="sale sale_right">-55%</div>
-          </a>
-        </li>
-
-        <li class="item item_chemicals">
-          <a href="#" class="item__link">
-            <img class="item__img" src="./assets/Rectangle107.png" alt="рука в хозяйственной перчатке с пульверизатором" >
-            <p class="item__content item__content_chemicals">На бытовую химию</p>
-            <div class="sale sale_left">-25%</div>            
-          </a>
-        </li>
-
-        <li class="item item_balls">
-          <a href="#" class="item__link">
-            <img class="item__img" src="./assets/Rectangle108.png" alt="елочные игрушки красные и золотистые шары">
-          </a>          
-        </li>
-        
-      </ul>
-    </div>   
-  </section>    
+  </footer>
  
 </body>
 </html>
