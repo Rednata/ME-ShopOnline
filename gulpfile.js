@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import browserSync from 'browser-sync';
 // import cssImport from 'gulp-cssimport';
 import gulpCssimport from 'gulp-cssimport';
+import concat from 'gulp-concat';
 import del from 'del';
 
 
@@ -21,7 +22,13 @@ export const css = () => gulp
     .pipe(browserSync.stream());
 
 export const js = () => gulp
-    .src('src/script/script.js')
+    .src([
+      'src/script/modules/createElements.js',
+      'src/script/modules/functionTimer.js',
+      'src/script/modules/getNames.js',
+      'src/script/script.js',
+    ])
+    .pipe(concat('index.js'))
     .pipe(gulp.dest('dist/script'))
     .pipe(browserSync.stream());
 
