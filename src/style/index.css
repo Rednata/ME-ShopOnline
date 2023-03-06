@@ -11,3 +11,10 @@
 @import "benefit.css";
 @import "footer.css";
 
+/* @import "./style/normalize.css"; */
+/* @import "./style/global.css"; */
+/* @import "./style/fonts.css"; */
+/* @import "./style/var.css"; */
+@import "info.css";
+@import "blog.css";
+@import "article.css";

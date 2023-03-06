@@ -26,9 +26,35 @@ export const js = () => gulp
       'src/script/modules/createElements.js',
       'src/script/modules/functionTimer.js',
       'src/script/modules/getNames.js',
+      'src/script/modules/fetch.js',
+      'src/script/modules/createElementsBlog.js',
+      'src/script/modules/paginationFunc.js',
+      'src/script/modules/1.js',
+
       'src/script/script.js',
     ])
     .pipe(concat('index.js'))
+    .pipe(gulp.dest('dist/script'))
+    .pipe(browserSync.stream());
+
+export const jsBlog = () => gulp
+    .src([
+      'src/script/modules/fetch.js',
+      'src/script/modules/createElementsBlog.js',
+      'src/script/modules/paginationFunc.js',
+      'src/script/indexBlog.js',
+    ])
+    .pipe(concat('indexBlog.js'))
+    .pipe(gulp.dest('dist/script'))
+    .pipe(browserSync.stream());
+
+export const jsArticle = () => gulp
+    .src([
+      'src/script/modules/fetch.js',
+      'src/script/modules/createElementsBlog.js',
+      'src/script/indexArticle.js',
+    ])
+    .pipe(concat('indexArticle.js'))
     .pipe(gulp.dest('dist/script'))
     .pipe(browserSync.stream());
 
@@ -58,6 +84,8 @@ export const server = () => {
   gulp.watch('./src/**/*.html', html);
   gulp.watch('./src/style/**/*.css', css);
   gulp.watch('./src/script/**/*.js', js);
+  gulp.watch('./src/script/**/*.js', jsBlog);
+  gulp.watch('./src/script/**/*.js', jsArticle);
   gulp.watch([
     './src/assets/images/**/*',
     './src/assets/icons/**/*',
@@ -67,7 +95,7 @@ export const server = () => {
 export const clear = () => del('dist/**/*', {forse: true});
 //  запуск
 
-export const base = gulp.parallel(html, css, js, copy);
+export const base = gulp.parallel(html, css, js, jsBlog, jsArticle, copy);
 
 export const build = gulp.series(clear, base);
 
