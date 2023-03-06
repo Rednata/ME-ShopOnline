@@ -22,7 +22,7 @@ const loadArticle = async() => {
   const response = await fetch(`https://gorest.co.in/public-api/posts/${queryParams}`);
 
   const articleData = await response.json();
-  console.log(articleData);
+
   createArticlePage(articleData.data);
 };
 
@@ -30,8 +30,7 @@ const loadAuthor = async(userID) => {
   const response = await fetch(`https://gorest.co.in/public-api/users/${userID}`);
 
   const author = await response.json();
-  console.log('author: ', author);
-
+  
   createFooter(author);
 };
 

@@ -93,7 +93,21 @@ const createBlogPage = (postList, currentPage) => {
   const blog = createUl();
   blog.append(...renderPost(postList.data));
   section.append(blog);
-  headerPage.after(section);
+
+  const breadcrumb = document.createElement('div');
+  breadcrumb.classList.add('bread', 'container');
+  breadcrumb.insertAdjacentHTML('afterbegin',
+      `<ul class="nav-breadcrumb">
+          <li class="nav-breadcrumb__li">
+            <a class="nav-breadcrumb__main" href="index.html">Главная</a>
+          </li>
+          <li class="nav-breadcrumb__li">
+            <a class="goBlog" href="blog.html">Блог</a>
+          </li>           
+        </ul>
+      `);
+
+  headerPage.after(breadcrumb, section);
 
   const paginationWrap = createPaginationWrap();
   const pagination = createPaginationNumber(paginationWrap, currentPage);
@@ -109,22 +123,21 @@ const articleWrap = document.createElement('div');
 articleWrap.className = 'articleWrap';
 
 const createHeader = (title) => {
-  const header = document.createElement('header');
-  header.classList.add('header-article');
-  header.insertAdjacentHTML('afterbegin',
-      `
-        <ul class="nav-article">
-          <li class="nav-article__li">
-            <a class="nav-article__main">Главная</a>
+  const breadcrumb = document.createElement('div');
+  breadcrumb.classList.add('bread', 'container');
+  breadcrumb.insertAdjacentHTML('afterbegin',
+      `<ul class="nav-breadcrumb">
+          <li class="nav-breadcrumb__li">
+            <a class="nav-breadcrumb__main" href="index.html">Главная</a>
           </li>
-          <li class="nav-article__li">
-            <a class="goBlog" href="">Блог</a>
+          <li class="nav-breadcrumb__li">
+            <a class="goBlog" href="blog.html">Блог</a>
           </li>
-          <li class="nav-article__title">${title}
+          <li class="nav-breadcrumb__li nav-breadcrumb__title">${title}
           </li>      
-        </ul>  
+        </ul>
       `);
-  return header;
+  return breadcrumb;
 };
 
 const createMain = (title, body) => {
@@ -152,13 +165,12 @@ const createAside = () => {
 };
 
 const createFooter = (author) => {
-  console.log('author: ', author);
   const nameAuthor = author.data.name || '';
   const footer = document.createElement('footer');
   footer.classList.add('footer-article');
   footer.insertAdjacentHTML('afterbegin',
       `
-        <a class="footer-article__back" href="">К списку статей</a>
+        <a class="footer-article__back" href="blog.html">К списку статей</a>
           <div class="footer-article__about">
           <div class="footer-article__author">
             ${nameAuthor}

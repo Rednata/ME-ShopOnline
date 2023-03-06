@@ -16,10 +16,7 @@ const changePageNumber = (paginationWrap, startPage, currentPage, arrowDirect) =
 
 const onClickArrow = (queryParams) => {
   const paginationWrap = document.querySelector('.pagination');
-  console.log('paginationWrap: ', paginationWrap);
-  
   const pagination = document.querySelector('.pagination-group');
-  console.log('pagination: ', pagination);
 
   paginationWrap.addEventListener('click', (e) => {
     

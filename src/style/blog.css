@@ -84,6 +84,7 @@
   gap: 6px;
   width: 120px;
   overflow: hidden;
+  font-size: 16px;
 }
 
 .pagination__page {
