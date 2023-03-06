@@ -51,4 +51,4 @@ const getNameSeconds = (seconds) => {
   }
 };
 
-export {getNameDays, getNameHours, getNameMinutes, getNameSeconds};
+// export {getNameDays, getNameHours, getNameMinutes, getNameSeconds};
