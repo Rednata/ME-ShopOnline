@@ -1,4 +1,4 @@
-// import { createPaginationNumber } from './createElements.js';
+import { createPaginationNumber } from './createElementsBlog.js';
 
 const getStartPage = (pagination) => +pagination.firstElementChild.dataset.number; 
 
@@ -35,4 +35,4 @@ const onClickArrow = (queryParams) => {
   });
 };
 
-// export {onClickArrow};
+export {onClickArrow};

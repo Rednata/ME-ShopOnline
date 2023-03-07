@@ -1,8 +1,8 @@
-// import {
-//   getNameDays,
-//   getNameHours,
-//   getNameMinutes,
-//   getNameSeconds } from './getNames.js';
+import {
+  getNameDays,
+  getNameHours,
+  getNameMinutes,
+  getNameSeconds } from './getNames.js';
 
 const getDeadline = (timeDuration) =>
   new Date(timeDuration.dataset.timerDeadline).getTime();
@@ -70,4 +70,4 @@ const timerStart = (deadline) => {
   }, 1000);
 };
 
-// export { getDeadline, timerStart };
+export { getDeadline, timerStart };
