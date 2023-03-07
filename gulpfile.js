@@ -2,9 +2,44 @@ import gulp from 'gulp';
 import browserSync from 'browser-sync';
 // import cssImport from 'gulp-cssimport';
 import gulpCssimport from 'gulp-cssimport';
-import concat from 'gulp-concat';
 import del from 'del';
+import webpackStream from 'webpack-stream';
+// import webpack from 'webpack';
 
+//  =====================================
+//  dev = true -> режим development
+//  dev = false -> режим production
+
+const dev = false;
+
+const webpackConf = {
+  mode: dev ? 'development' : 'production',
+  devtool: dev ? 'source-map' : false,
+  entry: {
+    index: './src/script/index.js',
+    blog: './src/script/blog.js',
+    article: './src/script/article.js',
+  },
+  output: {
+    filename: '[name].js',
+  },
+  module: {
+    rules: [],
+  },
+};
+
+if (!dev) {
+  webpackConf.module.rules.push({
+    test: /\.m?js$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+      },
+    },
+  });
+}
 
 //  задачи
 
@@ -21,40 +56,22 @@ export const css = () => gulp
     .pipe(gulp.dest('dist/style'))
     .pipe(browserSync.stream());
 
+
 export const js = () => gulp
-    .src([
-      'src/script/modules/createElements.js',
-      'src/script/modules/functionTimer.js',
-      'src/script/modules/getNames.js',
-      'src/script/modules/fetch.js',
-      'src/script/modules/createElementsBlog.js',
-      'src/script/modules/paginationFunc.js',
-      'src/script/modules/1.js',
-
-      'src/script/script.js',
-    ])
-    .pipe(concat('index.js'))
+    .src('./src/script/index.js')
+    .pipe(webpackStream(webpackConf))
     .pipe(gulp.dest('dist/script'))
     .pipe(browserSync.stream());
 
-export const jsBlog = () => gulp
-    .src([
-      'src/script/modules/fetch.js',
-      'src/script/modules/createElementsBlog.js',
-      'src/script/modules/paginationFunc.js',
-      'src/script/indexBlog.js',
-    ])
-    .pipe(concat('indexBlog.js'))
+export const blog = () => gulp
+    .src('./src/script/blog.js')
+    .pipe(webpackStream(webpackConf))
     .pipe(gulp.dest('dist/script'))
     .pipe(browserSync.stream());
 
-export const jsArticle = () => gulp
-    .src([
-      'src/script/modules/fetch.js',
-      'src/script/modules/createElementsBlog.js',
-      'src/script/indexArticle.js',
-    ])
-    .pipe(concat('indexArticle.js'))
+export const article = () => gulp
+    .src('./src/script/article.js')
+    .pipe(webpackStream(webpackConf))
     .pipe(gulp.dest('dist/script'))
     .pipe(browserSync.stream());
 
@@ -84,8 +101,8 @@ export const server = () => {
   gulp.watch('./src/**/*.html', html);
   gulp.watch('./src/style/**/*.css', css);
   gulp.watch('./src/script/**/*.js', js);
-  gulp.watch('./src/script/**/*.js', jsBlog);
-  gulp.watch('./src/script/**/*.js', jsArticle);
+  gulp.watch('./src/script/**/*.js', blog);
+  gulp.watch('./src/script/**/*.js', article);
   gulp.watch([
     './src/assets/images/**/*',
     './src/assets/icons/**/*',
@@ -93,9 +110,10 @@ export const server = () => {
 };
 
 export const clear = () => del('dist/**/*', {forse: true});
+
 //  запуск
 
-export const base = gulp.parallel(html, css, js, jsBlog, jsArticle, copy);
+export const base = gulp.parallel(html, css, js, blog, article, copy);
 
 export const build = gulp.series(clear, base);
 

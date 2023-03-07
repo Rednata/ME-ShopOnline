@@ -1,4 +1,4 @@
-// import { loadArticle } from './modules/fetch.js';
+import { loadArticle } from './modules/fetch.js';
 
 
 const init = () => {

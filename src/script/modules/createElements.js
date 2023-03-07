@@ -1,4 +1,5 @@
 const getTimeInner = (timeDuration) => {
+  console.log('++++');
   timeDuration.insertAdjacentHTML('afterbegin',
       ` <p class="time__title">
       До конца акции:
@@ -25,4 +26,4 @@ const getTimeInner = (timeDuration) => {
 };
 
 
-// export {getTimeInner};
+export {getTimeInner};
