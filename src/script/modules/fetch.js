@@ -1,5 +1,5 @@
-// import { createBlogPage, createArticlePage, createFooter } from './createElements.js';
-// import {onClickArrow } from './paginationFunc.js';
+import { createBlogPage, createArticlePage, createFooter } from './createElementsBlog.js';
+import {onClickArrow } from './paginationFunc.js';
 
 const loadPosts = async (currentPage) => {
   // document.body.innerHTML = '';
@@ -37,4 +37,4 @@ const loadAuthor = async(userID) => {
 
 
 
-// export {loadPosts, loadArticle, loadAuthor};
+export {loadPosts, loadArticle, loadAuthor};

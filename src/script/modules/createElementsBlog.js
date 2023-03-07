@@ -1,4 +1,4 @@
-// import { loadAuthor } from './fetch.js';
+import { loadAuthor } from './fetch.js';
 // ===================== BLOG ==========================
 
 const headerPage = document.querySelector('.header');
@@ -210,4 +210,4 @@ const createArticlePage = (articleData) => {
   headerPage.after(header, articleWrap);
 };
 
-// export {createBlogPage, createArticlePage, createPaginationNumber, createFooter};
+export {createBlogPage, createArticlePage, createPaginationNumber, createFooter};
