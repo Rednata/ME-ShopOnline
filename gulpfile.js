@@ -2,15 +2,22 @@ import gulp from 'gulp';
 import browserSync from 'browser-sync';
 // import cssImport from 'gulp-cssimport';
 import gulpCssimport from 'gulp-cssimport';
-import del from 'del';
+import sassPkg from 'sass';
+import gulpSass from 'gulp-sass';
+import sourcemap from 'gulp-sourcemaps';
 import webpackStream from 'webpack-stream';
+import del from 'del';
+
 // import webpack from 'webpack';
 
 //  =====================================
 //  dev = true -> режим development
 //  dev = false -> режим production
 
-const dev = false;
+const dev = true;
+const prepros = true;
+
+const sass = gulpSass(sassPkg);
 
 const webpackConf = {
   mode: dev ? 'development' : 'production',
@@ -48,13 +55,33 @@ export const html = () => gulp
     .pipe(gulp.dest('dist'))
     .pipe(browserSync.stream());
 
-export const css = () => gulp
-    .src('src/style/index.css')
-    .pipe(gulpCssimport({
-      extensions: ['css'],
-    }))
-    .pipe(gulp.dest('dist/style'))
-    .pipe(browserSync.stream());
+export const style = () => {
+  if (prepros) {
+    return gulp
+        .src('src/scss/**/*.scss')
+        .pipe(sourcemap.init())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(sourcemap.write('.'))
+        .pipe(gulp.dest('dist/style'))
+        .pipe(browserSync.stream());
+  }
+  return gulp
+      // .src('src/css/**/*.css')   если несколько css-Файлов
+      .src('src/css/index.css') // если все мпортируется в один Css-файл
+      .pipe(gulpCssimport({
+        extentions: ['css']
+      }))
+      .pipe(gulp.dest('dist/style'))
+      .pipe(browserSync.stream());
+};
+
+// export const css = () => gulp
+//     .src('src/style/index.css')
+//     .pipe(gulpCssimport({
+//       extensions: ['css'],
+//     }))
+//     .pipe(gulp.dest('dist/style'))
+//     .pipe(browserSync.stream());
 
 
 export const js = () => gulp
@@ -99,7 +126,7 @@ export const server = () => {
   });
 
   gulp.watch('./src/**/*.html', html);
-  gulp.watch('./src/style/**/*.css', css);
+  gulp.watch(prepros ? './src/scss/**/*.scss' : './src/css/**/*.css', style);
   gulp.watch('./src/script/**/*.js', js);
   gulp.watch('./src/script/**/*.js', blog);
   gulp.watch('./src/script/**/*.js', article);
@@ -113,7 +140,7 @@ export const clear = () => del('dist/**/*', {forse: true});
 
 //  запуск
 
-export const base = gulp.parallel(html, css, js, blog, article, copy);
+export const base = gulp.parallel(html, style, js, blog, article, copy);
 
 export const build = gulp.series(clear, base);
 
