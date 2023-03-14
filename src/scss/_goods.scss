@@ -1,6 +1,9 @@
 .goods {
   margin-bottom: 100px;
 
+  @media(max-width: 650px) {      
+    margin-bottom: 80px;
+  } 
   @media(max-width: 480px) {      
     margin-bottom: 43px;
   } 

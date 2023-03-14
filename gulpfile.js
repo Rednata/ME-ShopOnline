@@ -14,7 +14,7 @@ import del from 'del';
 //  dev = true -> режим development
 //  dev = false -> режим production
 
-const dev = true;
+const dev = false;
 const prepros = true;
 
 const sass = gulpSass(sassPkg);

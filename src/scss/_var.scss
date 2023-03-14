@@ -12,3 +12,9 @@ $add-color: #8f8f8f;
     display: swap;
   }  
 }
+
+@mixin size1600 {
+  @media(max-width: 1600px) {
+    @content;
+  }
+}

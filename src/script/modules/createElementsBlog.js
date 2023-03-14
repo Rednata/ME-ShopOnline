@@ -32,17 +32,21 @@ const createPost = ({title, id}) => {
           <a class="blog-item__link" href="article.html?id=${id}" target="_blank">
             <h2 class="blog-item__title">${title}</h2>
           </a>
-          <p class="blog-item__date">22 октября 2021, 12:45</p>
-          <div class="blog-item__info info">
+
+          <div class="info">
+          <span class="info__date">22 октября 2021, 12:45</span>
+          <div class="info-wrap">
             <div class="info__view">
               <span class="info__img info__img_view"></span>
-              <p class="view__count">1.2K</p>              
+              <p class="info__count">1.2K</p>              
             </div>
             <div class="info__comments">
               <span class="info__img info__img_comments"></span>
-              <p class="comments__count">0</p>              
+              <p class="info__count">0</p>              
             </div>
           </div>
+          </div>          
+
         </div>  
       `);
   return li;
@@ -175,22 +179,25 @@ const createFooter = (author) => {
           <div class="footer-article__author">
             ${nameAuthor}
           </div>
-          <div class="footer-article__date">
-            22 октября 2021, 12:45          
-          </div>
-          <div class="info footer-article__info">
+
+          <div class="info info_article">
+          <span class="info__date">22 октября 2021, 12:45</span>
+          <div class="info-wrap">
             <div class="info__view">
-            <span class="info__img info__img_view"></span>
-            <p class="info__view_count">1.2K</p>              
+              <span class="info__img info__img_view"></span>
+              <p class="info__count">1.2K</p>              
+            </div>
+            <div class="info__comments">
+              <span class="info__img info__img_comments"></span>
+              <p class="info__count">0</p>              
+            </div>
           </div>
-          <div class="info__comments">
-            <span class="info__img info__img_comments"></span>
-            <p class="info__comments_count">0</p>              
-          </div>
-          </div>
+          </div> 
+          
         </div>
       `);
-  articleWrap.append(footer);
+  const main = document.querySelector('.main');
+  main.append(footer);
   return footer;
 };
 
