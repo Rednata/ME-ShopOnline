@@ -6,15 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preload" href="./assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./assets/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>  
-  <!-- <script src="script/blog.js" type="module"></script> -->
   <script src="script/blog.js" type="module"></script>
-  <link rel="stylesheet" href="style/index.css">
-  <!-- <link rel="stylesheet" href="./index.css"> -->
+  <link rel="stylesheet" href="style/index.css">  
   <title>Blog</title>
 </head>
 <body>
-  <header class="header">
-    <div class="container header__container">      
+  <header class="header header__blog">
+    <div class="container">      
         <div class="header__box">
           <a class="logo logo_dark header__logo" href="index.html">
             Shop<span class="logo_color">Online</span> 
@@ -62,26 +60,26 @@
 
   <footer class="footer">
     <div class="container footer__container">
-      <div class="footer__wrapper">
-        <a class="logo logo_light footer__logo" href="index.html">
-          Shop<span class="logo_color">Online</span> 
-        </a> 
-  
+      <div class="footer__wrapper">        
+        <div class="logo logo_light footer__logo">
+          <a class="logo__link" href="index.html">
+            Shop<span class="logo_color">Online</span> 
+          </a>      
+        </div>                 
+
         <nav class="nav">
           <ul class="nav__list">
   
-            <li class="nav__item">
-              <p class="nav__title">Каталог</p>
+            <li class="nav__item nav__item_catalog">
+              <p class="nav__title">Каталог
+                <button class="nav__btn"></button>
+              </p>
+
   
-              <ul class="nav__sublist sublist">
+              <ul class="sublist sublist_catalog">
                 <li class="sublist__item">
                   <a href="#" class="sublist__link">
                     Смартфоны
-                  </a>                
-                </li>
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Бытовая химия
                   </a>                
                 </li>
                 <li class="sublist__item">
@@ -91,17 +89,7 @@
                 </li>
                 <li class="sublist__item">
                   <a href="#" class="sublist__link">
-                    Книги и журналы
-                  </a>                
-                </li>
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
                     Ювелирные изделия
-                  </a>                
-                </li>
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Домашний текстиль
                   </a>                
                 </li>
                 <li class="sublist__item">
@@ -111,14 +99,33 @@
                 </li>
                 <li class="sublist__item">
                   <a href="#" class="sublist__link">
-                    Электроника
+                    Бытовая техника
                   </a>                
                 </li>
                 <li class="sublist__item">
                   <a href="#" class="sublist__link">
-                    Бытовая техника
+                    Бытовая химия
                   </a>                
                 </li>
+
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Книги и журналы
+                  </a>                
+                </li>
+
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Домашний текстиль
+                  </a>                
+                </li>
+
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Электроника
+                  </a>                
+                </li>
+    
                 <li class="sublist__item">
                   <a href="#" class="sublist__link">
                     Косметика
@@ -127,9 +134,11 @@
               </ul>            
             </li>
   
-            <li class="nav__item">
-              <p class="nav__title">Покупателям</p>            
-              <ul class="nav__sublist sublist sublist_buyer">
+            <li class="nav__item nav__item_buyer">
+              <p class="nav__title">Покупателям
+                <button class="nav__btn"></button>
+              </p>            
+              <ul class="sublist sublist_buyer">
                 <li class="sublist__item">
                   <a href="#" class="sublist__link">
                     Оплата заказа
@@ -154,21 +163,21 @@
               </ul>
             </li>
   
-            <li class="nav__item">
+            <li class="nav__item nav__item_contacts">
               <p class="nav__title">Контакты</p>  
               
-              <ul class="nav__sublist sublist sublist_contacts">
-                <li class="sublist__item">
+              <ul class="sublist sublist_contacts">
+                <li class="sublist-contacts__item">
                   <a href="tel:+79378392361" class="sublist-contacts__link">
                     Тел: +7 937 839 23-61
                   </a>                
                 </li>
-                <li class="sublist__item">
+                <li class="sublist-contacts__item">
                   <a href="e-mail" class="sublist-contacts__link">
                     Email: OnlineShop@gmail.com
                   </a>                
                 </li>
-                <li class="sublist__item">
+                <li class="sublist-contacts__item">
                   <ul class="sublist__icons">
                     <li class="sublist__icon">
                       <a class="sublist__icon-link sublist__icon-link_wsp" href="#" aria-label="Whatsapp"></a>

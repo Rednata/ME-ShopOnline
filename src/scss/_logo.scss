@@ -1,0 +1,28 @@
+.logo {
+  font-family: OpenSans;  
+  font-weight: 700;
+  font-size: 30px;
+  @media(max-width: 850px) {
+    font-size: 24px;
+  }
+  @media(max-width:600px) {  
+    font-size: 20px;    
+  }
+
+  &_dark {
+    color: $dark-color-text;
+  }
+
+  &_light {
+    color: $light-color-text;
+  }
+
+  &_color {
+    color: $accent-color-text;
+  }
+}
+
+
+
+
+
