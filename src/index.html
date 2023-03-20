@@ -8,7 +8,19 @@
   <link rel="preload" href="assets/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/open-sans-v34-latin-700.woff2" as="font" type="font/woff2" crossorigin>
   <script src="script/index.js" type="module"></script>
-  <link rel="stylesheet" href="style/index.css">
+  <!-- <link rel="stylesheet" href="style/index.css"> -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const createLink = url => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = url;
+        document.head.append(link)
+      }
+      createLink('style/index.css');
+    })
+  </script>
   <title>ShopOnline</title>
 </head>
 <body>
@@ -193,7 +205,7 @@
               <picture>
                 <source srcset="assets/images/Rectangle101.avif" type="image/avif">
                 <source srcset="assets/images/Rectangle101.webp" type="image/webp">
-                <img class="item__img" src="assets/images/Rectangle101.png" alt="очки и чашка кофе рядом с раскрытой книгой" >
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle101.png" alt="очки и чашка кофе рядом с раскрытой книгой" width="245" height="240">
               </picture>              
               <p class="item__content item__content_book">Книга - <span class="item__content_span30">лучший подарок</span></p>
             </a>          
@@ -204,7 +216,7 @@
             <picture>
               <source srcset="assets/images/Rectangle102.avif" type="image/avif">
               <source srcset="assets/images/Rectangle102.webp" type="image/webp">
-              <img class="item__img" src="assets/images/Rectangle102.png" alt="циферблат" >
+              <img loading="lazy" class="item__img" src="assets/images/Rectangle102.png" alt="циферблат" width="245" height="240">
             </picture>
               
               <p class="item__content item__content_time">Время скидок!</p>
@@ -217,7 +229,7 @@
               <picture>
                 <source srcset="assets/images/Rectangle99.avif" type="image/avif">
                 <source srcset="assets/images/Rectangle99.webp" type="image/webp">
-                <img class="item__img" src="assets/images/Rectangle99.png" alt="разноцветные кроссовки" >
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle99.png" alt="разноцветные кроссовки" width="550" height="540">
               </picture>              
               <div class="item__content item__content_shoes">Вторая пара кроссовок <span class="item__content_span40">в подарок!</span></div>          
             </a>          
@@ -228,7 +240,7 @@
               <picture>
                 <source srcset="assets/images/Rectangle100.avif" type="image/avif">
                 <source srcset="assets/images/Rectangle100.webp" type="image/webp">
-                <img class="item__img" src="assets/images/Rectangle100.png" alt="ярко упакованные подарки" >
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle100.png" alt="ярко упакованные подарки" width="550" height="240">
               </picture> 
               
               <p class="item__content item__content_ideas">Идеи новогодних подарков</p>
@@ -240,7 +252,7 @@
               <picture>
                 <source srcset="assets/images/Rectangle104.avif" type="image/avif">
                 <source srcset="assets/images/Rectangle104.webp" type="image/webp">
-                <img class="item__img" src="assets/images/Rectangle104.png" alt="ярко-красный кроссовок" >
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle104.png" alt="ярко-красный кроссовок" width="550" height="240">
               </picture> 
               
               <div class="sale sale_left">
@@ -254,7 +266,7 @@
               <picture>
                 <source srcset="assets/images/Rectangle103.avif" type="image/avif">
                 <source srcset="assets/images/Rectangle103.webp" type="image/webp">
-                <img class="item__img" src="assets/images/Rectangle103.png" alt="ноутбук" >
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle103.png" alt="ноутбук" width="550" height="240">
               </picture> 
               
               <p class="item__content item__content_december">Выгодно в декабре!</p>            
@@ -267,7 +279,7 @@
               <picture>
                 <source srcset="assets/images/Rectangle105.avif" type="image/avif">
                 <source srcset="assets/images/Rectangle105.webp" type="image/webp">
-                <img class="item__img" src="assets/images/Rectangle105.png" alt="золотисто-синяя надпись '2022' с подарочной коробкой" >
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle105.png" alt="золотисто-синяя надпись '2022' с подарочной коробкой" width="1160" height="540">
               </picture> 
               
               <p class="item__content item__content_new-year">Новогодние украшения</p>      
@@ -279,7 +291,7 @@
               <picture>
                 <source srcset="assets/images/Rectangle106.avif" type="image/avif">
                 <source srcset="assets/images/Rectangle106.webp" type="image/webp">
-                <img class="item__img" src="assets/images/Rectangle106.png" alt="девушка в красном платье" >
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle106.png" alt="девушка в красном платье" width="245" height="540">
               </picture> 
               
               <div class="sale sale_right">-55%</div>
@@ -291,7 +303,7 @@
               <picture>
                 <source srcset="assets/images/Rectangle107.avif" type="image/avif">
                 <source srcset="assets/images/Rectangle107.webp" type="image/webp">
-                <img class="item__img" src="assets/images/Rectangle107.png" alt="рука в хозяйственной перчатке с пульверизатором" >
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle107.png" alt="рука в хозяйственной перчатке с пульверизатором" width="245" height="240">
               </picture>               
               <p class="item__content item__content_chemicals">На бытовую химию</p>
               <div class="sale sale_left">-25%</div>            
@@ -301,9 +313,9 @@
           <li class="item item_balls">
             <a href="#" class="item__link">
               <picture>
-                <source srcset="assets/images/Rectangle107.avif" type="image/avif">
-                <source srcset="assets/images/Rectangle107.webp" type="image/webp">
-                <img class="item__img" src="assets/images/Rectangle108.png" alt="елочные игрушки: красные и золотистые шары">
+                <source srcset="assets/images/Rectangle108.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle108.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle108.png" alt="елочные игрушки: красные и золотистые шары" width="245" height="240">
               </picture>             
               
             </a>          
@@ -327,7 +339,7 @@
                   
                   <source srcset="assets/images/photo1.avif" type="image/avif">
                   <source srcset="assets/images/photo1.webp" type="image/webp">
-                  <img class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет">
+                  <img loading="lazy" class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет" width="420" height="295">
                 </picture>                
                 <span class="card__sale" aria-label="Скидка">-50%</span>
               </div>
@@ -349,7 +361,7 @@
                     
                     <source srcset="assets/images/photo2.avif" type="image/avif">
                     <source srcset="assets/images/photo2.webp" type="image/webp">
-                    <img class="card__img" src="assets/images/photo2.jpg" alt="кроссовок бело-оранжевого цвета">                                    
+                    <img loading="lazy" class="card__img" src="assets/images/photo2.jpg" alt="кроссовок бело-оранжевого цвета" width="420" height="295">                                    
                 </picture>                   
                 <span class="card__sale" aria-label="Скидка">-40%</span>
               </div>
@@ -371,7 +383,7 @@
                   
                   <source srcset="assets/images/photo3.avif" type="image/avif">
                   <source srcset="assets/images/photo3.webp" type="image/webp">
-                  <img class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме">
+                  <img loading="lazy" class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме" width="420" height="295">
                 </picture>               
               
                 <span class="card__sale" aria-label="Скидка">-10%</span>
@@ -394,7 +406,7 @@
                   
                   <source srcset="assets/images/photo4.avif" type="image/avif">
                   <source srcset="assets/images/photo4.webp" type="image/webp">
-                  <img class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета">
+                  <img loading="lazy" class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета" width="420" height="295">
                 </picture>               
                 
                 <span class="card__sale" aria-label="Скидка">-30%</span>
@@ -417,7 +429,7 @@
                   
                   <source srcset="assets/images/photo3.avif" type="image/avif">
                   <source srcset="assets/images/photo3.webp" type="image/webp">
-                  <img class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме">
+                  <img loading="lazy" class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме" width="420" height="295">
                 </picture>
                 
                 <span class="card__sale" aria-label="Скидка">-10%</span>
@@ -440,7 +452,7 @@
                   
                   <source srcset="assets/images/photo4.avif" type="image/avif">
                   <source srcset="assets/images/photo4.webp" type="image/webp">
-                  <img class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета">
+                  <img loading="lazy" class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета" width="420" height="295">
                 </picture>
                 
                 <span class="card__sale" aria-label="Скидка">-30%</span>
@@ -463,7 +475,7 @@
                   
                   <source srcset="assets/images/photo5.avif" type="image/avif">
                   <source srcset="assets/images/photo5.webp" type="image/webp">
-                  <img class="card__img" src="assets/images/photo5.jpg" alt="вязаные варежки светло-коричневого цвета с ушками и деликатной мордочкой">
+                  <img loading="lazy" class="card__img" src="assets/images/photo5.jpg" alt="вязаные варежки светло-коричневого цвета с ушками и деликатной мордочкой" width="420" height="295">
                 </picture>
                 
                 <span class="card__sale" aria-label="Скидка">-30%</span>
@@ -486,7 +498,7 @@
                   
                   <source srcset="assets/images/photo1.avif" type="image/avif">
                   <source srcset="assets/images/photo1.webp" type="image/webp">
-                  <img class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет">
+                  <img loading="lazy" class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет" width="420" height="295">
                 </picture>
                 
                 <span class="card__sale" aria-label="Скидка">-50%</span>
