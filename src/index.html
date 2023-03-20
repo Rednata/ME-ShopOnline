@@ -59,6 +59,113 @@
         </div>
         
     </div>
+
+    <!-- <div class="container"> -->
+      <nav class="nav header-nav">
+        <ul class="nav__list container">
+  
+          <li class="nav__item nav__item_catalog">
+            <p class="nav__title">Каталог
+              <button class="nav__btn"></button>
+            </p>
+  
+  
+            <ul class="sublist sublist_catalog">
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Смартфоны
+                </a>                
+              </li>
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Ноутбуки
+                </a>                
+              </li>
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Ювелирные изделия
+                </a>                
+              </li>
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Одежда
+                </a>                
+              </li>
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Бытовая техника
+                </a>                
+              </li>
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Бытовая химия
+                </a>                
+              </li>
+  
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Книги и журналы
+                </a>                
+              </li>
+  
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Домашний текстиль
+                </a>                
+              </li>
+  
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Электроника
+                </a>                
+              </li>
+  
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Косметика
+                </a>                
+              </li>
+            </ul>            
+          </li>
+  
+          <li class="nav__item nav__item_buyer">
+            <p class="nav__title">Покупателям
+              <button class="nav__btn"></button>
+            </p>            
+            <ul class="sublist sublist_buyer">
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Оплата заказа
+                </a>                
+              </li>
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Условия доставки
+                </a>                
+              </li>
+              <li class="sublist__item">
+                <a href="#" class="sublist__link">
+                  Условия возврата заказа
+                </a>                
+              </li>
+              <li class="sublist__item">
+                <a href="blog.html" class="sublist__link">
+                  Блог
+                </a>                
+              </li>
+  
+            </ul>
+          </li>
+  
+          <li class="nav__item nav__item_contacts">
+            <p class="nav__title">Связаться с нами</p>  
+            <p class="header-sublist__item sublist__item">Контакты</p>
+  
+          </li>
+        </ul>
+      </nav>
+    </div>    
+
   </header>
 
   <main>
@@ -69,13 +176,13 @@
             -50% на все ноутбуки
           </h2>
   
-          <div class="banner__time time" data-timer-deadline="2023-03-20 00:08">
+          <div class="banner__time time" data-timer-deadline="2023-03-25 00:08">
           </div>
   
         </div>
       </div>
     </section>
-  
+
     <section class="goods">
       <h2 class="visually-hidden">Карточки с товаром</h2>
       <div class="container">
@@ -83,14 +190,23 @@
   
           <li class="item item_book">
             <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle101.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle101.webp" type="image/webp">
                 <img class="item__img" src="assets/images/Rectangle101.png" alt="очки и чашка кофе рядом с раскрытой книгой" >
+              </picture>              
               <p class="item__content item__content_book">Книга - <span class="item__content_span30">лучший подарок</span></p>
             </a>          
           </li>
   
           <li class="item item_time">
-            <a href="#" class="item__link">
+            <a href="#" class="item__link">          
+            <picture>
+              <source srcset="assets/images/Rectangle102.avif" type="image/avif">
+              <source srcset="assets/images/Rectangle102.webp" type="image/webp">
               <img class="item__img" src="assets/images/Rectangle102.png" alt="циферблат" >
+            </picture>
+              
               <p class="item__content item__content_time">Время скидок!</p>
               <div class="sale sale_right">-25%</div>
             </a>          
@@ -98,21 +214,35 @@
   
           <li class="item item_shoes">
             <a href="#" class="item__link">
-              <img class="item__img" src="assets/images/Rectangle99.png" alt="разноцветные кроссовки" >
+              <picture>
+                <source srcset="assets/images/Rectangle99.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle99.webp" type="image/webp">
+                <img class="item__img" src="assets/images/Rectangle99.png" alt="разноцветные кроссовки" >
+              </picture>              
               <div class="item__content item__content_shoes">Вторая пара кроссовок <span class="item__content_span40">в подарок!</span></div>          
             </a>          
           </li>
   
           <li class="item item_ideas">
             <a href="#" class="item__link">
-              <img class="item__img" src="assets/images/Rectangle100.png" alt="ярко упакованные подарки" >
+              <picture>
+                <source srcset="assets/images/Rectangle100.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle100.webp" type="image/webp">
+                <img class="item__img" src="assets/images/Rectangle100.png" alt="ярко упакованные подарки" >
+              </picture> 
+              
               <p class="item__content item__content_ideas">Идеи новогодних подарков</p>
             </a>          
           </li>
           
           <li class="item item_red">
             <a href="#" class="item__link">
-              <img class="item__img" src="assets/images/Rectangle104.png" alt="ярко-красный кроссовок" >
+              <picture>
+                <source srcset="assets/images/Rectangle104.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle104.webp" type="image/webp">
+                <img class="item__img" src="assets/images/Rectangle104.png" alt="ярко-красный кроссовок" >
+              </picture> 
+              
               <div class="sale sale_left">
                 -40%
               </div>
@@ -121,7 +251,12 @@
   
           <li class="item item_december">
             <a href="#" class="item__link">
-              <img class="item__img" src="assets/images/Rectangle103.png" alt="ноутбук" >
+              <picture>
+                <source srcset="assets/images/Rectangle103.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle103.webp" type="image/webp">
+                <img class="item__img" src="assets/images/Rectangle103.png" alt="ноутбук" >
+              </picture> 
+              
               <p class="item__content item__content_december">Выгодно в декабре!</p>            
               <div class="sale sale_right">-15%</div>
             </a>          
@@ -129,21 +264,35 @@
   
           <li class="item item_new-year">
             <a href="#" class="item__link">
-              <img class="item__img" src="assets/images/Rectangle105.png" alt="золотисто-синяя надпись '2022' с подарочной коробкой" >
+              <picture>
+                <source srcset="assets/images/Rectangle105.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle105.webp" type="image/webp">
+                <img class="item__img" src="assets/images/Rectangle105.png" alt="золотисто-синяя надпись '2022' с подарочной коробкой" >
+              </picture> 
+              
               <p class="item__content item__content_new-year">Новогодние украшения</p>      
             </a>
           </li>
   
           <li class="item item_dress">
             <a href="#" class="item__link">
-              <img class="item__img" src="assets/images/Rectangle106.png" alt="девушка в красном платье" >
+              <picture>
+                <source srcset="assets/images/Rectangle106.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle106.webp" type="image/webp">
+                <img class="item__img" src="assets/images/Rectangle106.png" alt="девушка в красном платье" >
+              </picture> 
+              
               <div class="sale sale_right">-55%</div>
             </a>
           </li>
   
           <li class="item item_chemicals">
             <a href="#" class="item__link">
-              <img class="item__img" src="assets/images/Rectangle107.png" alt="рука в хозяйственной перчатке с пульверизатором" >
+              <picture>
+                <source srcset="assets/images/Rectangle107.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle107.webp" type="image/webp">
+                <img class="item__img" src="assets/images/Rectangle107.png" alt="рука в хозяйственной перчатке с пульверизатором" >
+              </picture>               
               <p class="item__content item__content_chemicals">На бытовую химию</p>
               <div class="sale sale_left">-25%</div>            
             </a>
@@ -151,7 +300,12 @@
   
           <li class="item item_balls">
             <a href="#" class="item__link">
-              <img class="item__img" src="assets/images/Rectangle108.png" alt="елочные игрушки: красные и золотистые шары">
+              <picture>
+                <source srcset="assets/images/Rectangle107.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle107.webp" type="image/webp">
+                <img class="item__img" src="assets/images/Rectangle108.png" alt="елочные игрушки: красные и золотистые шары">
+              </picture>             
+              
             </a>          
           </li>
           
@@ -166,8 +320,13 @@
           <li class="benefit__item card">
             <a class="benefit__link" href="">
               <div class="card-img__wrapper">
-                <picture>                  
-                  <source srcset="assets/images/photo1_1024.jpg" media="(max-width: 1200px)">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.jpg">
+                  
+                  <source srcset="assets/images/photo1.avif" type="image/avif">
+                  <source srcset="assets/images/photo1.webp" type="image/webp">
                   <img class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет">
                 </picture>                
                 <span class="card__sale" aria-label="Скидка">-50%</span>
@@ -182,10 +341,15 @@
     
           <li class="benefit__item card">
             <a class="benefit__link" href="">
-              <div class="card-img__wrapper">
-                <picture>                  
-                  <source srcset="assets/images/photo2_1024.jpg" media="(max-width: 1200px)">
-                  <img class="card__img" src="assets/images/photo2.jpg" alt="кроссовок бело-оранжевого цвета">
+              <div class="card-img__wrapper">                              
+                  <picture>                                    
+                    <source media="(max-width: 1200px)" srcset="assets/images/photo2_1024.avif" type="image/avif">
+                    <source media="(max-width: 1200px)" srcset="assets/images/photo2_1024.webp" type="image/webp">
+                    <source media="(max-width: 1200px)" srcset="assets/images/photo2_1024.jpg">
+                    
+                    <source srcset="assets/images/photo2.avif" type="image/avif">
+                    <source srcset="assets/images/photo2.webp" type="image/webp">
+                    <img class="card__img" src="assets/images/photo2.jpg" alt="кроссовок бело-оранжевого цвета">                                    
                 </picture>                   
                 <span class="card__sale" aria-label="Скидка">-40%</span>
               </div>
@@ -200,10 +364,16 @@
           <li class="benefit__item card">
             <a class="benefit__link" href="">
               <div class="card-img__wrapper">
-                <picture>                  
-                  <source srcset="assets/images/photo3_1024.jpg" media="(max-width: 1200px)">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.jpg">
+                  
+                  <source srcset="assets/images/photo3.avif" type="image/avif">
+                  <source srcset="assets/images/photo3.webp" type="image/webp">
                   <img class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме">
-                </picture>                                   
+                </picture>               
+              
                 <span class="card__sale" aria-label="Скидка">-10%</span>
               </div>
               <div class="card__price">
@@ -217,10 +387,16 @@
           <li class="benefit__item card">
             <a class="benefit__link" href="">
               <div class="card-img__wrapper">
-                <picture>                  
-                  <source srcset="assets/images/photo4_1024.jpg" media="(max-width: 1200px)">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.jpg">
+                  
+                  <source srcset="assets/images/photo4.avif" type="image/avif">
+                  <source srcset="assets/images/photo4.webp" type="image/webp">
                   <img class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета">
-                </picture>                
+                </picture>               
+                
                 <span class="card__sale" aria-label="Скидка">-30%</span>
               </div>
               <div class="card__price">
@@ -234,10 +410,16 @@
           <li class="benefit__item card">
             <a class="benefit__link" href="">
               <div class="card-img__wrapper">
-                <picture>                  
-                  <source srcset="assets/images/photo3_1024.jpg" media="(max-width: 1200px)">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.jpg">
+                  
+                  <source srcset="assets/images/photo3.avif" type="image/avif">
+                  <source srcset="assets/images/photo3.webp" type="image/webp">
                   <img class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме">
-                </picture>                    
+                </picture>
+                
                 <span class="card__sale" aria-label="Скидка">-10%</span>
               </div>
               <div class="card__price">
@@ -251,10 +433,16 @@
           <li class="benefit__item card">
             <a class="benefit__link" href="">
               <div class="card-img__wrapper">
-                <picture>                  
-                  <source srcset="assets/images/photo4_1024.jpg" media="(max-width: 1200px)">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.jpg">
+                  
+                  <source srcset="assets/images/photo4.avif" type="image/avif">
+                  <source srcset="assets/images/photo4.webp" type="image/webp">
                   <img class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета">
-                </picture>                 
+                </picture>
+                
                 <span class="card__sale" aria-label="Скидка">-30%</span>
               </div>
               <div class="card__price">
@@ -268,10 +456,16 @@
           <li class="benefit__item card">
             <a class="benefit__link" href="">
               <div class="card-img__wrapper">
-                <picture>                  
-                  <source srcset="assets/images/photo5_1024.jpg" media="(max-width: 1200px)">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo5_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo5_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo5_1024.jpg">
+                  
+                  <source srcset="assets/images/photo5.avif" type="image/avif">
+                  <source srcset="assets/images/photo5.webp" type="image/webp">
                   <img class="card__img" src="assets/images/photo5.jpg" alt="вязаные варежки светло-коричневого цвета с ушками и деликатной мордочкой">
-                </picture>                 
+                </picture>
+                
                 <span class="card__sale" aria-label="Скидка">-30%</span>
               </div>
               <div class="card__price">
@@ -285,10 +479,16 @@
           <li class="benefit__item card">
             <a class="benefit__link" href="">
               <div class="card-img__wrapper">
-                <picture>                  
-                  <source srcset="assets/images/photo1_1024.jpg" media="(max-width: 1200px)">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.jpg">
+                  
+                  <source srcset="assets/images/photo1.avif" type="image/avif">
+                  <source srcset="assets/images/photo1.webp" type="image/webp">
                   <img class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет">
-                </picture>                   
+                </picture>
+                
                 <span class="card__sale" aria-label="Скидка">-50%</span>
               </div>
               <div class="card__price">
@@ -313,7 +513,7 @@
           </a>      
         </div>                 
 
-        <nav class="nav">
+        <nav class="nav navFooter">
           <ul class="nav__list">
   
             <li class="nav__item nav__item_catalog">

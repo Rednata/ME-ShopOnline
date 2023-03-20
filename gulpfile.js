@@ -7,6 +7,15 @@ import gulpSass from 'gulp-sass';
 import sourcemap from 'gulp-sourcemaps';
 import webpackStream from 'webpack-stream';
 import del from 'del';
+import htmlmin from 'gulp-htmlmin';
+import cleanCSS from 'gulp-clean-css';
+import gulpImg from 'gulp-image';
+import gulpWebp from 'gulp-webp';
+import gulpAvif from 'gulp-avif';
+
+import terser from 'gulp-terser';
+
+import concat from 'gulp-concat';
 
 // import webpack from 'webpack';
 
@@ -14,7 +23,7 @@ import del from 'del';
 //  dev = true -> режим development
 //  dev = false -> режим production
 
-const dev = false;
+const dev = true;
 const prepros = true;
 
 const sass = gulpSass(sassPkg);
@@ -52,6 +61,10 @@ if (!dev) {
 
 export const html = () => gulp
     .src('src/*.html')
+    .pipe(htmlmin({
+      removeComments: true,
+      collapseWhitespace: true,
+    }))
     .pipe(gulp.dest('dist'))
     .pipe(browserSync.stream());
 
@@ -61,6 +74,11 @@ export const style = () => {
         .src('src/scss/**/*.scss')
         .pipe(sourcemap.init())
         .pipe(sass().on('error', sass.logError))
+        .pipe(cleanCSS({
+          2: {
+            specialComments: 0,
+          },
+        }))
         .pipe(sourcemap.write('.'))
         .pipe(gulp.dest('dist/style'))
         .pipe(browserSync.stream());
@@ -69,7 +87,12 @@ export const style = () => {
       // .src('src/css/**/*.css')   если несколько css-Файлов
       .src('src/css/index.css') // если все мпортируется в один Css-файл
       .pipe(gulpCssimport({
-        extentions: ['css']
+        extentions: ['css'],
+      }))
+      .pipe(cleanCSS({
+        2: {
+          specialComments: 0,
+        },
       }))
       .pipe(gulp.dest('dist/style'))
       .pipe(browserSync.stream());
@@ -84,12 +107,15 @@ export const style = () => {
 //     .pipe(browserSync.stream());
 
 
+//  ================== JS =====================
+
+
 export const js = () => gulp
     .src('./src/script/index.js')
     .pipe(webpackStream(webpackConf))
     .pipe(gulp.dest('dist/script'))
     .pipe(browserSync.stream());
-
+    
 export const blog = () => gulp
     .src('./src/script/blog.js')
     .pipe(webpackStream(webpackConf))
@@ -102,12 +128,44 @@ export const article = () => gulp
     .pipe(gulp.dest('dist/script'))
     .pipe(browserSync.stream());
 
+
+
+export const img = () => gulp
+    .src('src/assets/**/*.{jpg,jpeg,png,svg}')
+    .pipe(gulpImg({
+      optipng: ['-i 1', '-strip all', '-fix', '-o7', '-force'],
+      pngquant: ['--speed=1', '--force', 256],
+      zopflipng: ['-y', '--lossy_8bit', '--lossy_transparent'],
+      jpegRecompress: ['--strip', '--quality', 'medium', '--min', 40, '--max', 80],
+      mozjpeg: ['-optimize', '-progressive'],
+      gifsicle: ['--optimize'],
+      svgo: true,
+    }))
+    .pipe(gulp.dest('dist/assets'));
+
+    export const webp = () => gulp
+    .src('src/assets/**/*.{jpg,jpeg,png}')
+    .pipe(gulpWebp({
+      quality: 60
+    }))
+    .pipe(gulp.dest('dist/assets'))
+    .pipe(browserSync.stream({
+      once: true
+    }));
+  
+    export const avif = () => gulp
+    .src('src/assets/**/*.{jpg,jpeg,png}')
+    .pipe(gulpAvif({
+      quality: 60
+    }))
+    .pipe(gulp.dest('dist/assets'))
+    .pipe(browserSync.stream({
+      once: true
+    }));
+
+
 export const copy = () => gulp
-    .src([
-      'src/assets/fonts/**/*',
-      'src/assets/images/**/*',
-      'src/assets/icons/**/*',
-    ], {
+    .src('src/assets/fonts/**/*', {
       base: 'src',
     })
     .pipe(gulp.dest('dist'))
@@ -127,20 +185,22 @@ export const server = () => {
 
   gulp.watch('./src/**/*.html', html);
   gulp.watch(prepros ? './src/scss/**/*.scss' : './src/css/**/*.css', style);
+  gulp.watch('src/img/**/*.{jpg, jpeg, png, svg}', img);
   gulp.watch('./src/script/**/*.js', js);
   gulp.watch('./src/script/**/*.js', blog);
   gulp.watch('./src/script/**/*.js', article);
-  gulp.watch([
-    './src/assets/images/**/*',
-    './src/assets/icons/**/*',
-    './src/assets/fonts/**/*'], copy);
+  gulp.watch('./src/assets/fonts/**/*', copy);
 };
 
 export const clear = () => del('dist/**/*', {forse: true});
 
 //  запуск
 
-export const base = gulp.parallel(html, style, js, blog, article, copy);
+// export const develop = async() => {
+
+// }
+
+export const base = gulp.parallel(html, style, js, blog, article, avif, webp, img, copy);
 
 export const build = gulp.series(clear, base);
 
