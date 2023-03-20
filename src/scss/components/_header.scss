@@ -222,3 +222,23 @@
   }
 
 }
+
+.header-nav {
+  position: absolute;
+  transform: translateY(-150%);    
+  background-color: $light-color-text;
+  color: $dark-color-text;
+  width: 100%;  
+  padding-bottom: 92px;  
+  transition: transform 0.5s ease-in-out;
+  z-index: 100;  
+}
+
+.header-sublist__item {
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.header-nav_active {
+  transform: translateY(-20px);  
+}

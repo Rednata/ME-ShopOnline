@@ -26,7 +26,14 @@ const createPost = ({title, id}) => {
   li.insertAdjacentHTML('afterbegin',
       `
         <a class="blog-item__link" href="article.html?id=${id}" target="_blank">
+
+        <picture>
+          <source srcset="assets/images/Rectangle.avif" type="image/avif">
+          <source srcset="assets/images/Rectangle.webp" type="image/webp">
           <img class="blog-item__image" src="./assets/images/Rectangle.jpg" alt="">
+        </picture>
+
+          
         </a> 
         <div class="blog-item__content">
           <a class="blog-item__link" href="article.html?id=${id}" target="_blank">
