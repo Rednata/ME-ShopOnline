@@ -1,6 +1,6 @@
 import { getTimeInner } from './modules/createElements.js';
 import { getDeadline, timerStart } from './modules/functionTimer.js';
-import { showNavigation } from './modules/showNavigation.js';
+import { showHeaderMenu, showNavigation } from './modules/showNavigation.js';
 
 const initTimer = () => {
   const timeDuration = document.querySelector('[data-timer-deadline]');  
@@ -10,6 +10,7 @@ const initTimer = () => {
     timerStart(deadline);
   }
   showNavigation();
+  showHeaderMenu();
 };
 
 initTimer();
