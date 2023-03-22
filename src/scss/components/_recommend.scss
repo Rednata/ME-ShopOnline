@@ -1,0 +1,40 @@
+.recommend {
+  color: $dark-color-text;
+  margin-bottom: 110px;  
+  @include size1300 {
+    margin-bottom: 70px;
+  }
+  @media (max-width: 850px) {
+    margin-bottom: 50px;  
+  } 
+  @media (max-width: 650px) {
+    margin-bottom: 20px;  
+  }   
+
+  &__title {
+    font-weight: 700;
+    font-size: 50px;
+    margin-bottom: 30px;
+    @include size1300 {
+      font-size: 30px;
+    }
+  }
+
+  &__wrap {
+    max-width: 1770px;
+    overflow: hidden;
+  }
+
+  &__list {
+    grid-template-rows: 1fr;
+    grid-auto-rows: 0;
+
+    @include size1300 {
+      grid-template-rows: 1fr 1fr;
+    }
+    @media (max-width: 650px) {      
+      grid-template-rows: 1fr 1fr 1fr;
+    }
+  }
+
+}
