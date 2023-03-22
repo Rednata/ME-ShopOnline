@@ -14,6 +14,7 @@ import gulpWebp from 'gulp-webp';
 import gulpAvif from 'gulp-avif';
 import { stream as critical } from 'critical';
 import gulpif from 'gulp-if';
+import autoprefixer from 'gulp-autoprefixer';
 
 // import terser from 'gulp-terser';
 // import concat from 'gulp-concat';
@@ -35,6 +36,7 @@ const webpackConf = {
     index: './src/script/index.js',
     blog: './src/script/blog.js',
     article: './src/script/article.js',
+    card: './src/script/card.js',
   },
   output: {
     filename: '[name].js',
@@ -74,6 +76,7 @@ export const style = () => {
         .src('src/scss/**/*.scss')
         .pipe(gulpif(dev, sourcemap.init()))
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
         .pipe(cleanCSS({
           2: {
             specialComments: 0,
@@ -90,6 +93,7 @@ export const style = () => {
       .pipe(gulpCssimport({
         extentions: ['css'],
       }))
+      .pipe(autoprefixer())
       .pipe(cleanCSS({
         2: {
           specialComments: 0,
@@ -117,7 +121,7 @@ export const js = () => gulp
     .pipe(webpackStream(webpackConf))
     .pipe(gulp.dest('dist/script'))
     .pipe(browserSync.stream());
-    
+
 export const blog = () => gulp
     .src('./src/script/blog.js')
     .pipe(webpackStream(webpackConf))
@@ -130,7 +134,11 @@ export const article = () => gulp
     .pipe(gulp.dest('dist/script'))
     .pipe(browserSync.stream());
 
-
+export const card = () => gulp
+    .src('./src/script/card.js')
+    .pipe(webpackStream(webpackConf))
+    .pipe(gulp.dest('dist/script'))
+    .pipe(browserSync.stream());
 
 export const img = () => gulp
     .src('src/assets/**/*.{jpg,jpeg,png,svg}')
@@ -145,37 +153,37 @@ export const img = () => gulp
     })))
     .pipe(gulp.dest('dist/assets'));
 
-    export const webp = () => gulp
+export const webp = () => gulp
     .src('src/assets/**/*.{jpg,jpeg,png}')
     .pipe(gulpWebp({
-      quality: 60
+      quality: 60,
     }))
     .pipe(gulp.dest('dist/assets'))
     .pipe(browserSync.stream({
-      once: true
-    }));
-  
-    export const avif = () => gulp
-    .src('src/assets/**/*.{jpg,jpeg,png}')
-    .pipe(gulpAvif({
-      quality: 60
-    }))
-    .pipe(gulp.dest('dist/assets'))
-    .pipe(browserSync.stream({
-      once: true
+      once: true,
     }));
 
-    export const critCSS = () => gulp
-      .src('dist/*.html')
-      .pipe(critical({
-        base: 'dist/',
-        inline: true,
-        css: ['dist/style/index.css']
-      }))
-      .on('error', err => {
-        console.error(err.message)
-      })
-      .pipe(gulp.dest('dist'))
+export const avif = () => gulp
+    .src('src/assets/**/*.{jpg,jpeg,png}')
+    .pipe(gulpAvif({
+      quality: 60,
+    }))
+    .pipe(gulp.dest('dist/assets'))
+    .pipe(browserSync.stream({
+      once: true,
+    }));
+
+export const critCSS = () => gulp
+  .src('dist/*.html')
+  .pipe(critical({
+    base: 'dist/',
+    inline: true,
+    css: ['dist/style/index.css']
+  }))
+  .on('error', err => {
+    console.error(err.message)
+  })
+    .pipe(gulp.dest('dist'));
 
 export const copy = () => gulp
     .src('src/assets/fonts/**/*', {
@@ -198,10 +206,11 @@ export const server = () => {
 
   gulp.watch('./src/**/*.html', html);
   gulp.watch(prepros ? './src/scss/**/*.scss' : './src/css/**/*.css', style);
-  gulp.watch('src/img/**/*.{jpg, jpeg, png, svg}', img);
+  gulp.watch('./src/assets/images/**/*.{jpg, jpeg, png, svg}', img);
   gulp.watch('./src/script/**/*.js', js);
   gulp.watch('./src/script/**/*.js', blog);
   gulp.watch('./src/script/**/*.js', article);
+  gulp.watch('./src/script/**/*.js', card);
   gulp.watch('./src/assets/fonts/**/*', copy);
 };
 
@@ -213,7 +222,7 @@ export const develop = async() => {
   dev = true;
 };
 
-export const base = gulp.parallel(html, style, js, blog, article, avif, webp, img, copy);
+export const base = gulp.parallel(html, style, js, blog, article, card, avif, webp, img, copy);
 
 export const build = gulp.series(clear, base, critCSS);
 

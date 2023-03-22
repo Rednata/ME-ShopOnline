@@ -1,6 +1,7 @@
 export const showNavigation = () => {
-  const navFooter = document.querySelector('.navFooter');
+  const navFooter = document.querySelector('.navFooter');  
   const navTitleCatalog = navFooter.querySelector('.nav__item_catalog').firstElementChild;
+  
   const navTitleBuyer = navFooter.querySelector('.nav__item_buyer').firstElementChild;
 
   const catalog = navFooter.querySelector('.sublist_catalog');
@@ -20,8 +21,11 @@ export const showNavigation = () => {
 };
 
 export const showHeaderMenu = () => {
+  
   const menuBtn = document.querySelector('.menu');
+  console.log(menuBtn)
   menuBtn.addEventListener('click', () => {
+    console.log(menuBtn);
     document.querySelector('.header-nav').classList.toggle('header-nav_active')
   })
 }
