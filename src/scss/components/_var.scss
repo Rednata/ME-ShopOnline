@@ -4,6 +4,7 @@ $accent-color-text: #3670c7;
 $item-color: #38c0eb;
 $sale-color: #ffbd13;
 $add-color: #8f8f8f;  
+$hr-color: #e8e8e8;  
 
 @mixin fontFace($name, $weight) {
   font: {
@@ -17,4 +18,27 @@ $add-color: #8f8f8f;
   @media(max-width: 1600px) {
     @content;
   }
+}
+@mixin size1400 {
+  @media(max-width: 1400px) {
+    @content;
+  }
+}
+
+@mixin size1300 {
+  @media(max-width: 1300px) {
+    @content;
+  }
+}
+
+@mixin size850 {
+  @media(max-width: 850px) {
+    @content;
+  }
+}
+
+%bgImg {
+  background-color: transparent;
+  background-position: center;  
+  background-repeat: no-repeat;
 }

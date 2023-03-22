@@ -68,12 +68,8 @@
   }
 }
 
-.menu {
-  background-color: $accent-color-text;
-  border: none;
-  border-radius: 10px;
+.menu {  
   font-size: 22px;
-  color: $light-color-text;
   padding: 14px 30px;
   @include size1600 {
     grid-row: 2 / 3;
@@ -225,7 +221,7 @@
 
 .header-nav {
   position: absolute;
-  transform: translateY(-150%);    
+  transform: translateY(-200%);    
   background-color: $light-color-text;
   color: $dark-color-text;
   width: 100%;  
