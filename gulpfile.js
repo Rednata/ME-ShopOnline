@@ -77,11 +77,11 @@ export const style = () => {
         .pipe(gulpif(dev, sourcemap.init()))
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
-        .pipe(cleanCSS({
-          2: {
-            specialComments: 0,
-          },
-        }))
+        // .pipe(cleanCSS({
+        //   2: {
+        //     specialComments: 0,
+        //   },
+        // }))
         .pipe(gulpif(dev, sourcemap.write('../maps')))
         .pipe(gulp.dest('dist/style'))
         .pipe(browserSync.stream());

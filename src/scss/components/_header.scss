@@ -1,5 +1,6 @@
 .header {
-  padding-top: 27px;
+  position: relative;
+  padding-top: 27px;  
     @media(max-width: 600px) {      
       margin-bottom: 20px;
     }
@@ -221,13 +222,14 @@
 
 .header-nav {
   position: absolute;
+  left: 0;
   transform: translateY(-200%);    
   background-color: $light-color-text;
   color: $dark-color-text;
   width: 100%;  
   padding-bottom: 92px;  
   transition: transform 0.5s ease-in-out;
-  z-index: 100;  
+  z-index: 100;    
 }
 
 .header-sublist__item {
@@ -238,3 +240,4 @@
 .header-nav_active {
   transform: translateY(-20px);  
 }
+
