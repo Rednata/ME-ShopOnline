@@ -2,7 +2,8 @@ import { loadAuthor } from './fetch.js';
 // ===================== BLOG ==========================
 
 const headerPage = document.querySelector('.header');
-const footerPage = document.querySelector('.footer');
+// const footerPage = document.querySelector('.footer');
+const mainPage = document.querySelector('main');
 
 const createSection = () => {
   const section = document.createElement('section');
@@ -106,7 +107,7 @@ const createBlogPage = (postList, currentPage) => {
   section.append(blog);
 
   const breadcrumb = document.createElement('div');
-  breadcrumb.classList.add('bread', 'container');
+  breadcrumb.classList.add('bread');
   breadcrumb.insertAdjacentHTML('afterbegin',
       `<ul class="nav-breadcrumb">
           <li class="nav-breadcrumb__li">
@@ -118,24 +119,23 @@ const createBlogPage = (postList, currentPage) => {
         </ul>
       `);
 
-  headerPage.after(breadcrumb, section);
+  headerPage.append(breadcrumb);
 
   const paginationWrap = createPaginationWrap();
   const pagination = createPaginationNumber(paginationWrap, currentPage);
   section.append(paginationWrap);
 
-  footerPage.before(section);
-  // document.body.append(section);
+  mainPage.append(section);
   return {pagination};
 };
 
 // ============  ARTICLE ================
 const articleWrap = document.createElement('div');
-articleWrap.className = 'articleWrap';
+articleWrap.classList.add('articleWrap', 'container');
 
 const createHeader = (title) => {
   const breadcrumb = document.createElement('div');
-  breadcrumb.classList.add('bread', 'container');
+  breadcrumb.classList.add('bread');
   breadcrumb.insertAdjacentHTML('afterbegin',
       `<ul class="nav-breadcrumb">
           <li class="nav-breadcrumb__li">
@@ -152,16 +152,15 @@ const createHeader = (title) => {
 };
 
 const createMain = (title, body) => {
-  const main = document.createElement('main');
-  main.classList.add('main');
-  main.insertAdjacentHTML('afterbegin',
+  const section = document.createElement('section');
+  section.insertAdjacentHTML('afterbegin',
       `
         <article class="article">
           <h1 class="title article__title">${title}</h1>
           <p class="article__text">${body}</p>
         </article>
       `);
-  return main;
+  return section;
 };
 
 const createAside = () => {
@@ -203,9 +202,9 @@ const createFooter = (author) => {
           
         </div>
       `);
-  const main = document.querySelector('.main');
-  main.append(footer);
-  return footer;
+  // const main = document.querySelector('.main');
+  // mainPage.append(footer);
+  articleWrap.append(footer);
 };
 
 const createArticlePage = (articleData) => {
@@ -216,12 +215,15 @@ const createArticlePage = (articleData) => {
   } = articleData;
 
   const header = createHeader(title);
-  const main = createMain(title, body);
+  const section = createMain(title, body);
   const aside = createAside();
-
   loadAuthor(user_id);
-  articleWrap.append(aside, main);
-  headerPage.after(header, articleWrap);
+
+  // console.log('footer: ', footer);
+
+  articleWrap.append(aside, section);
+  headerPage.append(header);
+  mainPage.append(articleWrap);
 };
 
 export {createBlogPage, createArticlePage, createPaginationNumber, createFooter};
