@@ -1,45 +1,143 @@
+'use strict';
+
+// gulp
 import gulp from 'gulp';
+import gulpif from 'gulp-if';
 import browserSync from 'browser-sync';
-// import cssImport from 'gulp-cssimport';
-import gulpCssimport from 'gulp-cssimport';
-import sassPkg from 'sass';
-import gulpSass from 'gulp-sass';
-import sourcemap from 'gulp-sourcemaps';
-import webpackStream from 'webpack-stream';
-import del from 'del';
+import rename from 'gulp-rename';
+import plumber from 'gulp-plumber';
+import { deleteSync } from 'del';
+// import pathbrowserify from 'path-browserify';
+
+// html*pug
 import htmlmin from 'gulp-htmlmin';
+
+// css
+import sass from 'sass';
+import gulpSass from 'gulp-sass';
+const compSass = gulpSass(sass);
+
+import sourcemaps from 'gulp-sourcemaps';
+import autoprefixer from 'gulp-autoprefixer';
 import cleanCSS from 'gulp-clean-css';
+import gcmq from 'gulp-group-css-media-queries';
+import { stream as critical } from 'critical';
+
+// js
+import terser from 'gulp-terser';
+import webpackStream from 'webpack-stream';
+import webpack from 'webpack';
+
+//img
 import gulpImg from 'gulp-image';
 import gulpWebp from 'gulp-webp';
 import gulpAvif from 'gulp-avif';
-import { stream as critical } from 'critical';
-import gulpif from 'gulp-if';
-import autoprefixer from 'gulp-autoprefixer';
+// import svgSprite from 'gulp-svg-sprite';
 
-// import terser from 'gulp-terser';
-// import concat from 'gulp-concat';
-// import webpack from 'webpack';
-
-//  =====================================
-//  dev = true -> режим development
-//  dev = false -> режим production
-
-const prepros = true;
 let dev = false;
 
-const sass = gulpSass(sassPkg);
+const path = {
+  dist: {
+    base: 'dist/',
+    html: 'dist/',
+    js: 'dist/script/',
+    css: 'dist/style/',
+    cssIndex: 'dist/style/index.min.css',
+    img: 'dist/assets/images/',
+    svg: 'dist/assets/icons/',
+    fonts: 'dist/assets/fonts/',
+  },
+  src: {
+    base: 'src/',
+    html: 'src/*.html',
+    pug: 'src/pug/*.pug',
+    scss: 'src/scss/**/*.scss',
+    js: 'src/script/index.js',
+    img: 'src/assets/images/**/*.*',
+    svg: 'src/assets/icons/**/*.svg',
+    imgF: 'src/assets/images/**/*.{jpg,jpeg,png}',
+    assets: [
+      'src/assets/fonts/**/*.*',
+      'src/icons/**/*.*',
+      'src/video/**/*.*',
+      'src/public/**/*.*',
+    ],
+  },
+  watch: {
+    html: 'src/*.html',
+    js: 'src/**/*.js',
+    pug: 'src/**/*.pug',
+    css: 'src/**/*.scss',
+    svg: 'src/assets/icons/**/*.svg',
+    img: 'src/assets/images/**/*.*',
+    imgF: 'src/assets/images/**/*.{jpg,jpeg,png}',
+  },
+};
+
+//html
+
+export const html = () =>
+  gulp
+    .src(path.src.html)
+    .pipe(
+      gulpif(
+        !dev,
+        htmlmin({
+          removeComments: true,
+          collapseWhitespace: true,
+        }),
+      ),
+    )
+    .pipe(gulp.dest(path.dist.html))
+    .pipe(browserSync.stream());
+
+// css
+
+export const scss = () =>
+  gulp
+    .src(path.src.scss)
+    .pipe(gulpif(dev, sourcemaps.init()))
+    .pipe(compSass().on('error', compSass.logError))
+    .pipe(
+      gulpif(
+        !dev,
+        autoprefixer({
+          cascade: false,
+          grid: false,
+        }),
+      ),
+    )
+    .pipe(gulpif(!dev, gcmq()))
+    .pipe(gulpif(!dev, gulp.dest(path.dist.css)))
+    .pipe(
+      gulpif(
+        !dev,
+        cleanCSS({
+          2: {
+            specialComments: 0,
+          },
+        }),
+      ),
+    )
+    .pipe(
+      rename({
+        suffix: '.min',
+      }),
+    )
+    .pipe(gulpif(dev, sourcemaps.write()))
+    .pipe(gulp.dest(path.dist.css))
+    .pipe(browserSync.stream());
+
+// js
 
 const webpackConf = {
   mode: dev ? 'development' : 'production',
-  devtool: dev ? 'source-map' : false,
-  entry: {
-    index: './src/script/index.js',
-    blog: './src/script/blog.js',
-    article: './src/script/article.js',
-    card: './src/script/card.js',
+  devtool: dev ? 'eval-source-map' : false,
+  optimization: {
+    minimize: false,
   },
   output: {
-    filename: '[name].js',
+    filename: 'index.js',
   },
   module: {
     rules: [],
@@ -48,183 +146,176 @@ const webpackConf = {
 
 if (!dev) {
   webpackConf.module.rules.push({
-    test: /\.m?js$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-      },
-    },
+    test: /\.(js)$/,
+    exclude: /(node_modules)/,
+    loader: 'babel-loader',
   });
 }
 
-//  задачи
-
-export const html = () => gulp
-    .src('src/*.html')
-    .pipe(htmlmin({
-      removeComments: true,
-      collapseWhitespace: true,
-    }))
-    .pipe(gulp.dest('dist'))
-    .pipe(browserSync.stream());
-
-export const style = () => {
-  if (prepros) {
-    return gulp
-        .src('src/scss/**/*.scss')
-        .pipe(gulpif(dev, sourcemap.init()))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer())
-        // .pipe(cleanCSS({
-        //   2: {
-        //     specialComments: 0,
-        //   },
-        // }))
-        .pipe(gulpif(dev, sourcemap.write('../maps')))
-        .pipe(gulp.dest('dist/style'))
-        .pipe(browserSync.stream());
-  }
-  return gulp
-      // .src('src/css/**/*.css')   если несколько css-Файлов
-      .src('src/css/index.css') // если все мпортируется в один Css-файл
-      .pipe(gulpif(dev, sourcemap.init()))
-      .pipe(gulpCssimport({
-        extentions: ['css'],
-      }))
-      .pipe(autoprefixer())
-      .pipe(cleanCSS({
-        2: {
-          specialComments: 0,
-        },
-      }))
-      .pipe(gulpif(dev, sourcemap.write('../maps')))
-      .pipe(gulp.dest('dist/style'))
+export const js = () =>
+  gulp
+      .src(path.src.js)
+      // .pipe(plumber())
+      .pipe(webpackStream(webpackConf, webpack))
+      .pipe(gulpif(!dev, gulp.dest(path.dist.js)))
+      .pipe(gulpif(!dev, terser()))
+      .pipe(
+          rename({
+            suffix: '.min',
+          }),
+      )
+      .pipe(gulp.dest(path.dist.js))
       .pipe(browserSync.stream());
-};
 
-// export const css = () => gulp
-//     .src('src/style/index.css')
-//     .pipe(gulpCssimport({
-//       extensions: ['css'],
-//     }))
-//     .pipe(gulp.dest('dist/style'))
-//     .pipe(browserSync.stream());
+export const img = () =>
+  gulp
+    .src(path.src.img)
+    // .pipe(gulpif(!dev, tinypng({
+    // 	key: 'API_KEY',
+    // 	summarize: true,
+    // 	log: true
+    // })))
+    .pipe(
+      gulpif(
+        !dev,
+        gulpImg({
+          optipng: ['-i 1', '-strip all', '-fix', '-o7', '-force'],
+          pngquant: ['--speed=1', '--force', 256],
+          zopflipng: ['-y', '--lossy_8bit', '--lossy_transparent'],
+          jpegRecompress: [
+            '--strip',
+            '--quality',
+            'medium',
+            '--min',
+            40,
+            '--max',
+            80,
+          ],
+          mozjpeg: ['-optimize', '-progressive'],
+          gifsicle: ['--optimize'],
+          svgo: true,
+        }),
+      ),
+    )
+    .pipe(gulp.dest(path.dist.img))
+    .pipe(
+      browserSync.stream({
+        once: true,
+      }),
+    );
 
+export const svg = () =>
+  gulp
+    .src(path.src.svg)
+    // .pipe(
+    //   svgSprite({
+    //     mode: {
+    //       stack: {
+    //         sprite: '../sprite.svg',
+    //       },
+    //     },
+    //   }),
+    // )
+    .pipe(gulp.dest(path.dist.svg))
+    .pipe(
+      browserSync.stream({
+        once: true,
+      }),
+    );
 
-//  ================== JS =====================
-//  ================== JS =====================
+export const webp = () =>
+  gulp
+    .src(path.src.imgF)
+    .pipe(
+      gulpWebp({
+        quality: dev ? 100 : 60,
+      }),
+    )
+    .pipe(gulp.dest(path.dist.img))
+    .pipe(
+      browserSync.stream({
+        once: true,
+      }),
+    );
 
-export const js = () => gulp
-    .src('./src/script/index.js')
-    .pipe(webpackStream(webpackConf))
-    .pipe(gulp.dest('dist/script'))
-    .pipe(browserSync.stream());
+export const avif = () =>
+  gulp
+    .src(path.src.imgF)
+    .pipe(
+      gulpAvif({
+        quality: dev ? 100 : 50,
+      }),
+    )
+    .pipe(gulp.dest(path.dist.img))
+    .pipe(
+      browserSync.stream({
+        once: true,
+      }),
+    );
 
-export const blog = () => gulp
-    .src('./src/script/blog.js')
-    .pipe(webpackStream(webpackConf))
-    .pipe(gulp.dest('dist/script'))
-    .pipe(browserSync.stream());
-
-export const article = () => gulp
-    .src('./src/script/article.js')
-    .pipe(webpackStream(webpackConf))
-    .pipe(gulp.dest('dist/script'))
-    .pipe(browserSync.stream());
-
-export const card = () => gulp
-    .src('./src/script/card.js')
-    .pipe(webpackStream(webpackConf))
-    .pipe(gulp.dest('dist/script'))
-    .pipe(browserSync.stream());
-
-export const img = () => gulp
-    .src('src/assets/**/*.{jpg,jpeg,png,svg}')
-    .pipe(gulpif(!dev, gulpImg({
-      optipng: ['-i 1', '-strip all', '-fix', '-o7', '-force'],
-      pngquant: ['--speed=1', '--force', 256],
-      zopflipng: ['-y', '--lossy_8bit', '--lossy_transparent'],
-      jpegRecompress: ['--strip', '--quality', 'medium', '--min', 40, '--max', 80],
-      mozjpeg: ['-optimize', '-progressive'],
-      gifsicle: ['--optimize'],
-      svgo: true,
-    })))
-    .pipe(gulp.dest('dist/assets'));
-
-export const webp = () => gulp
-    .src('src/assets/**/*.{jpg,jpeg,png}')
-    .pipe(gulpWebp({
-      quality: 60,
-    }))
-    .pipe(gulp.dest('dist/assets'))
-    .pipe(browserSync.stream({
-      once: true,
-    }));
-
-export const avif = () => gulp
-    .src('src/assets/**/*.{jpg,jpeg,png}')
-    .pipe(gulpAvif({
-      quality: 60,
-    }))
-    .pipe(gulp.dest('dist/assets'))
-    .pipe(browserSync.stream({
-      once: true,
-    }));
-
-export const critCSS = () => gulp
-  .src('dist/*.html')
-  .pipe(critical({
-    base: 'dist/',
-    inline: true,
-    css: ['dist/style/index.css']
-  }))
-  .on('error', err => {
-    console.error(err.message)
-  })
-    .pipe(gulp.dest('dist'));
-
-export const copy = () => gulp
-    .src('src/assets/fonts/**/*', {
-      base: 'src',
+export const critCSS = () =>
+  gulp
+    .src(path.src.html)
+    .pipe(
+      critical({
+        base: path.dist.base,
+        inline: true,
+        css: [path.dist.cssIndex],
+      }),
+    )
+    .on('error', (err) => {
+      console.error(err.message);
     })
-    .pipe(gulp.dest('dist'))
-    .pipe(browserSync.stream({
-      once: true,
-    }));
+    .pipe(gulp.dest(path.dist.base));
+
+export const copy = () =>
+  gulp
+    .src(path.src.assets, {
+      base: path.src.base,
+    })
+    .pipe(gulp.dest(path.dist.base))
+    .pipe(
+      browserSync.stream({
+        once: true,
+      }),
+    );
 
 export const server = () => {
   browserSync.init({
     ui: false,
     notify: false,
+    host: 'localhost',
+    port: 3001,
     // tunnel: true,
     server: {
       baseDir: 'dist',
     },
   });
 
-  gulp.watch('./src/**/*.html', html);
-  gulp.watch(prepros ? './src/scss/**/*.scss' : './src/css/**/*.css', style);
-  gulp.watch('./src/assets/images/**/*.{jpg, jpeg, png, svg}', img);
-  gulp.watch('./src/script/**/*.js', js);
-  gulp.watch('./src/script/**/*.js', blog);
-  gulp.watch('./src/script/**/*.js', article);
-  gulp.watch('./src/script/**/*.js', card);
-  gulp.watch('./src/assets/fonts/**/*', copy);
+  gulp.watch(path.watch.html, html);
+  // gulp.watch(path.watch.pug, pug);
+  gulp.watch(path.watch.css, scss);
+  gulp.watch(path.watch.js, js);
+  gulp.watch(path.watch.svg, svg);
+  gulp.watch(path.watch.img, img);
+  gulp.watch(path.watch.imgF, webp);
+  gulp.watch(path.watch.imgF, avif);
 };
 
-export const clear = () => del('dist/**/*', {forse: true});
+// export const clear = (done) => {
+//   deleteSync([path.dist.base], {
+//     force: true,
+//   });
+//   done();
+// };
 
-//  запуск
-
-export const develop = async() => {
+const develop = (ready) => {
   dev = true;
+  ready();
 };
 
-export const base = gulp.parallel(html, style, js, blog, article, card, avif, webp, img, copy);
+export const base = gulp.parallel(html, scss, js, img, svg, webp, avif, copy);
 
-export const build = gulp.series(clear, base, critCSS);
+export const build = gulp.series( base, critCSS);
 
 export default gulp.series(develop, base, server);
-
