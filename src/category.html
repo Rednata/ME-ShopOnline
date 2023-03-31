@@ -4,21 +4,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preload" href="./assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="./assets/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>  
-  <script src="script/card.js" type="module"></script>
+  <link rel="preload" href="assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/open-sans-v34-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="script/category.js" type="module"></script>
   <link rel="stylesheet" href="style/index.min.css">
-  <title>Card</title>
 
+  <title>ShopOnline</title>
 </head>
 <body>
-
   <header class="header container">
     <div class="header__main-page">      
         <div class="header__box">
-          <a class="logo logo_dark header__logo" href="index.html">
-            Shop<span class="logo_color">Online</span> 
-          </a>      
+          <div class="logo logo_dark header__logo">
+            <a class="logo__link" href="index.html">
+              Shop<span class="logo_color">Online</span> 
+            </a>      
+          </div>          
           <button class="menu button" aria-haspopup="menu">
             <img class="menu__img" src="assets/icons/sort.svg" alt="">
             Меню</button>
@@ -55,186 +57,67 @@
               </button>                    
             </li>                            
           </ul>
-        </div>
-
-
+        </div>        
     </div>
-    <nav class="nav header-nav">
-      <ul class="nav__list container">
 
-        <li class="nav__item nav__item_catalog">
-          <p class="nav__title">Каталог
-            <button class="nav__btn"></button>
-          </p>
-
-
-          <ul class="sublist sublist_catalog">
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Смартфоны
-              </a>                
+      <nav class="nav header-nav">
+          <ul class="nav__list container">
+  
+            <li class="nav__item nav__item_catalog">
+              <p class="nav__title">Каталог
+                <button class="nav__btn"></button>
+              </p>    
+    
+              <ul class="sublist sublist_catalog">     
+              </ul>            
             </li>
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Ноутбуки
-              </a>                
+    
+            <li class="nav__item nav__item_buyer">
+              <p class="nav__title">Покупателям
+                <button class="nav__btn"></button>
+              </p>            
+              <ul class="sublist sublist_buyer">
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Оплата заказа
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Условия доставки
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Условия возврата заказа
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="blog.html" class="sublist__link">
+                    Блог
+                  </a>                
+                </li>
+    
+              </ul>
             </li>
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Ювелирные изделия
-              </a>                
+    
+            <li class="nav__item nav__item_contacts">
+              <p class="nav__title">Связаться с нами</p>  
+              <p class="header-sublist__item sublist__item">Контакты</p>
+    
             </li>
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Одежда
-              </a>                
-            </li>
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Бытовая техника
-              </a>                
-            </li>
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Бытовая химия
-              </a>                
-            </li>
-
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Книги и журналы
-              </a>                
-            </li>
-
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Домашний текстиль
-              </a>                
-            </li>
-
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Электроника
-              </a>                
-            </li>
-
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Косметика
-              </a>                
-            </li>
-          </ul>            
-        </li>
-
-        <li class="nav__item nav__item_buyer">
-          <p class="nav__title">Покупателям
-            <button class="nav__btn"></button>
-          </p>            
-          <ul class="sublist sublist_buyer">
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Оплата заказа
-              </a>                
-            </li>
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Условия доставки
-              </a>                
-            </li>
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Условия возврата заказа
-              </a>                
-            </li>
-            <li class="sublist__item">
-              <a href="blog.html" class="sublist__link">
-                Блог
-              </a>                
-            </li>
-
           </ul>
-        </li>
 
-        <li class="nav__item nav__item_contacts">
-          <p class="nav__title">Связаться с нами</p>  
-          <p class="header-sublist__item sublist__item">Контакты</p>
+      </nav>
+    </div>    
 
-        </li>
-      </ul>
-    </nav>
+  </header>
+  <main>    
+      <section class="category">
+        <div class="container category__container">
+        <h1 class="category__title">Электроника</h1>
 
-    <div class="bread">
-      <ul class="nav-breadcrumb">
-        <li class="nav-breadcrumb__li">
-          <a class="nav-breadcrumb__main" href="index.html">Главная</a>
-        </li>
-        <li class="nav-breadcrumb__li">
-          <a class="goBlog" href="blog.html">Блог</a>
-        </li>           
-        <li class="nav-breadcrumb__li">
-          <a class="goBlog" href="#">Ноутбуки</a>
-        </li>           
-      </ul>
-    </div>
-    
-  </header>  
-
-  <main>
-    <section class="good-card container">
-      <h1 class="good-card__title">15.6" Игровой ноутбук ASUS G513IE-HN004T</h1>
-      <div class="good-card__wrap">
-        <div class="good-card__img-box">
-          <picture>
-            <source srcset="assets/images/Rectangle109.avif" type="image/avif">
-            <source srcset="assets/images/Rectangle109.webp" type="image/webp">
-            <img src="assets/images/Rectangle109.jpg" alt="раскрытый ноутбук" class="good-card__img">
-          </picture>
-          <div class="sale good-card__sale">-15%</div>
-        </div>
-              
-        <div class="good-card__price good-price">
-          <span class="good-price__title">109 090 ₽</span>
-          <span class="good-price__old-title">140 590 ₽</span>
-          <p class="good-price__credit">В кредит от 5600 ₽ </p>
-          <button class="button good-price__btn">Добавить в корзину</button>
-          <button class="good-price__favorite"></button>
-          <div class="good-price__outer-box">
-            <div class="good-price__inner-box">
-              <p class="good-price__subtitle">
-                Доставка
-              </p>
-              <p class="good-price__subtitle-detail">
-                1-3 января
-              </p>
-            </div>
-            <div class="good-price__inner-box">
-              <p class="good-price__subtitle">
-                Продавец
-              </p>
-              <p class="good-price__subtitle-detail">
-                ShopOnline
-              </p>          
-            </div>
-    
-          </div>
-          
-          <button class="good-price__bell">Узнать о снижении цены</button>
-        </div>
-      </div>
-  
-      <h2 class="good-card__subtitle">Описание:</h2>
-      <p class="good-card__description">
-        ROG Strix G15/17 – это игровая платформа для массового пользователя, работающая на базе операционной системы Windows 10 Pro. Благодаря мощной конфигурации, которая может включать в себя процессор AMD Ryzen 9 5900HX и видеокарту GeForce RTX 3070, этот ноутбук подходит для широкого спектра задач. Его дисплей доступен в двух вариантах: с киберспортивного уровня частотой обновления в 300 Гц или с высоким разрешением WQHD. Оба варианта обладают низким временем отклика (3 мс) и поддерживают адаптивную синхронизацию Adaptive-Sync. Оптимизированная система охлаждения гарантирует стабильную работу устройства под тяжелыми нагрузками, поэтому ROG Strix G15/17 позволит вам проявить все свое мастерство в любой игровой ситуации!
-      </p>
-    </section>
-  
-    <section class="recommend container">
-      <p class="recommend__title">
-        Рекомендуем также
-      </p>
-      <div class="recommend__wrap">
-  
-        <ul class="benefit__list recommend__list">
+        <!-- <ul class="benefit__list">
           <li class="benefit__item card">
             <a class="benefit__link" href="">
               <div class="card-img__wrapper">
@@ -416,108 +299,11 @@
               <p class="card__title">Пара футболок</p>
             </a>          
           </li>     
-        </ul>
-  
-  
-  
-  
-        <!-- <ul class="recommend__list">
-  
-  
-          <li class="item item_book">
-            <a href="#" class="item__link">
-              <picture>
-                <source srcset="assets/images/Rectangle101.avif" type="image/avif">
-                <source srcset="assets/images/Rectangle101.webp" type="image/webp">
-                <img loading="lazy" class="item__img" src="assets/images/Rectangle101.png" alt="очки и чашка кофе рядом с раскрытой книгой" width="245" height="240">
-              </picture>              
-              <p class="item__content item__content_book">Книга - <span class="item__content_span30">лучший подарок</span></p>
-            </a>          
-          </li>
-  
-  
-          <li class="recommend__item">
-            <div class="recommend__img-box">
-              <picture>
-                <source srcset="assets/images/nout1.avif" type="image/avif">
-                <source srcset="assets/images/nout1.webp" type="image/webp">
-                <img class="recommend__img" src="assets/images/nout1.jpg" alt="Ноутбук Dell" >
-              </picture>
-            </div>        
-            <p class="recommend__price">96 320 ₽</p>
-            <p class="recommend__subtitle">Ноутбук Dell</p>   
-          </li>
-    
-          <li class="recommend__item">
-            <div class="recommend__img-box">
-            <picture>
-              <source srcset="assets/images/nout2.avif" type="image/avif">
-              <source srcset="assets/images/nout2.webp" type="image/webp">
-              <img class="recommend__img" src="assets/images/nout2.jpg" alt="Ноутбук HP 250" >
-            </picture>
-            </div>
-            <p class="recommend__price">64 949 ₽</p>
-            <p class="recommend__subtitle">Ноутбук HP 250</p>   
-          </li>
-    
-          <li class="recommend__item">
-            <div class="recommend__img-box">
-            <picture>
-              <source srcset="assets/images/nout3.avif" type="image/avif">
-              <source srcset="assets/images/nout3.webp" type="image/webp">
-              <img class="recommend__img" src="assets/images/nout3.jpg" alt="Ноутбук HP 15" >
-            </picture>
-            </div>
-            <p class="recommend__price">37 980 ₽</p>
-            <p class="recommend__subtitle">Ноутбук HP 15</p>   
-          </li>
-    
-          <li class="recommend__item">
-            <div class="recommend__img-box">
-            <picture>
-              <source srcset="assets/images/nout4.avif" type="image/avif">
-              <source srcset="assets/images/nout4.webp" type="image/webp">
-              <img class="recommend__img" src="assets/images/nout4.jpg" alt="Ноутбук ASUS ZenBook Pro" >
-            </picture>
-            </div>
-            <div class="recommend__two-price">
-              <p class="recommend__price">102 680 ₽</p>
-              <p class="recommend__price-old">105 999 ₽</p>
-            </div>                  
-            <p class="recommend__subtitle">Ноутбук ASUS ZenBook Pro</p>   
-            <div class="sale recommend__sale">-10%</div>
-          </li>
-  
-          <li class="recommend__item">
-            <div class="recommend__img-box">
-            <picture>
-              <source srcset="assets/images/nout3.avif" type="image/avif">
-              <source srcset="assets/images/nout3.webp" type="image/webp">
-              <img class="recommend__img" src="assets/images/nout3.jpg" alt="Ноутбук HP 15" >
-            </picture>
-            </div>
-            <p class="recommend__price">37 980 ₽</p>
-            <p class="recommend__subtitle">Ноутбук HP 15</p>   
-          </li>
-  
-          <li class="recommend__item">
-            <div class="recommend__img-box">
-            <picture>
-              <source srcset="assets/images/nout3.avif" type="image/avif">
-              <source srcset="assets/images/nout3.webp" type="image/webp">
-              <img class="recommend__img" src="assets/images/nout3.jpg" alt="Ноутбук HP 15" >
-            </picture>
-            </div>
-            <p class="recommend__price">37 980 ₽</p>
-            <p class="recommend__subtitle">Ноутбук HP 15</p>   
-          </li>
-  
         </ul> -->
       </div>
-      
-    </section>    
+      </section>          
+    
   </main>
-
   <footer class="footer">
     <div class="container footer__container">
       <div class="footer__wrapper">        
@@ -535,62 +321,7 @@
                 <button class="nav__btn"></button>
               </p>
 
-  
-              <ul class="sublist sublist_catalog">
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Смартфоны
-                  </a>                
-                </li>
-                <li class="sublist__item">
-                  <a href="card.html" class="sublist__link">
-                    Ноутбуки
-                  </a>                
-                </li>
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Ювелирные изделия
-                  </a>                
-                </li>
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Одежда
-                  </a>                
-                </li>
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Бытовая техника
-                  </a>                
-                </li>
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Бытовая химия
-                  </a>                
-                </li>
-
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Книги и журналы
-                  </a>                
-                </li>
-
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Домашний текстиль
-                  </a>                
-                </li>
-
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Электроника
-                  </a>                
-                </li>
-    
-                <li class="sublist__item">
-                  <a href="#" class="sublist__link">
-                    Косметика
-                  </a>                
-                </li>
+              <ul class="sublist sublist_catalog">>
               </ul>            
             </li>
   
@@ -676,6 +407,6 @@
     </div>    
 
   </footer>
-
+  
 </body>
 </html>

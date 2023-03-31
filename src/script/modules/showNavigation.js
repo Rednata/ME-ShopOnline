@@ -23,9 +23,7 @@ export const showNavigation = () => {
 export const showHeaderMenu = () => {
   
   const menuBtn = document.querySelector('.menu');
-  console.log(menuBtn)
   menuBtn.addEventListener('click', () => {
-    console.log(menuBtn);
     document.querySelector('.header-nav').classList.toggle('header-nav_active')
   })
 }
