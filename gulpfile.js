@@ -47,13 +47,11 @@ const path = {
     base: 'src/',
     html: 'src/*.html',
     scss: 'src/scss/**/*.scss',
-    js: [
-      'src/script/index.js',
-      'src/script/blog.js',
-      'src/script/article.js',
-      'src/script/card.js',
-      'src/script/category.js',
-    ],
+    js: 'src/script/index.js',
+    blog: 'src/script/blog.js',
+    article: 'src/script/article.js',
+    card: 'src/script/card.js',
+    catalog: 'src/script/catalog.js',
     img: 'src/assets/**/*.{jpg,svg,jpeg,png}',
     // svg: 'src/assets/icons/**/*.svg',
     imgF: 'src/assets/**/*.{jpg,jpeg,png}',
@@ -141,17 +139,15 @@ const webpackConf = {
   optimization: {
     minimize: false,
   },
-  // entry: {
-  //   index: './src/script/index.js',
-  //   blog: './src/script/blog.js',
-  //   article: './src/script/article.js',
-  //   card: './src/script/card.js',
-  // },
-  // output: {
-  //   filename: '[name].js',
-  // },
+  entry: {
+    index: './src/script/index.js',
+    blog: './src/script/blog.js',
+    article: './src/script/article.js',
+    card: './src/script/card.js',
+    catalog: './src/script/catalog.js',
+  },
   output: {
-    filename: 'index.js',
+    filename: '[name].js',
   },
   module: {
     rules: [],
@@ -180,25 +176,6 @@ export const js = () =>
       )
       .pipe(gulp.dest(path.dist.js))
       .pipe(browserSync.stream());
-
-
-// export const blog = () => gulp
-//     .src('./src/script/blog.js')
-//     .pipe(webpackStream(webpackConf))
-//     .pipe(gulp.dest('dist/script'))
-//     .pipe(browserSync.stream());
-
-// export const article = () => gulp
-//     .src('./src/script/article.js')
-//     .pipe(webpackStream(webpackConf))
-//     .pipe(gulp.dest('dist/script'))
-//     .pipe(browserSync.stream());
-
-// export const card = () => gulp
-//     .src('./src/script/card.js')
-//     .pipe(webpackStream(webpackConf))
-//     .pipe(gulp.dest('dist/script'))
-//     .pipe(browserSync.stream());
 
 export const img = () =>
   gulp
@@ -312,12 +289,12 @@ export const server = () => {
   gulp.watch(path.watch.copy, copy);
 };
 
-// export const clear = (done) => {
-//   deleteSync([path.dist.base], {
-//     force: true,
-//   });
-//   done();
-// };
+export const clear = (done) => {
+  deleteSync([path.dist.base], {
+    force: true,
+  });
+  done();
+};
 
 //  запуск
 
@@ -328,9 +305,8 @@ const develop = (ready) => {
 
 export const base = gulp.parallel(html, style, js, img, webp, avif, copy);
 
-export const build = gulp.series(base, critCSS);
+export const build = gulp.series(clear, base, critCSS);
 
 export default gulp.series(develop, base, server);
 
-// export const base = gulp.parallel(html, style, js, blog, article, card, avif, webp, img, copy);
 

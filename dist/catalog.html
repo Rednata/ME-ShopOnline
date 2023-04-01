@@ -4,21 +4,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preload" href="./assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="./assets/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>  
-  <script src="script/card.min.js" type="module"></script>
+  <link rel="preload" href="assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/open-sans-v34-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="script/catalog.min.js" type="module"></script>
   <link rel="stylesheet" href="style/index.min.css">
-  <title>Card</title>
 
+  <title>ShopOnline</title>
 </head>
 <body>
-
   <header class="header container">
     <div class="header__main-page">      
         <div class="header__box">
-          <a class="logo logo_dark header__logo" href="index.html">
-            Shop<span class="logo_color">Online</span> 
-          </a>      
+          <div class="logo logo_dark header__logo">
+            <a class="logo__link" href="index.html">
+              Shop<span class="logo_color">Online</span> 
+            </a>      
+          </div>          
           <button class="menu button" aria-haspopup="menu">
             <img class="menu__img" src="assets/icons/sort.svg" alt="">
             Меню</button>
@@ -55,91 +57,68 @@
               </button>                    
             </li>                            
           </ul>
-        </div>
-
-
+        </div>        
     </div>
-    <nav class="nav header-nav">
-      <ul class="nav__list container">
 
-        <li class="nav__item nav__item_catalog">
-          <p class="nav__title">Каталог
-            <button class="nav__btn"></button>
-          </p>
-
-          <ul class="sublist sublist_catalog">
-          </ul>                     
-        </li>
-
-        <li class="nav__item nav__item_buyer">
-          <p class="nav__title">Покупателям
-            <button class="nav__btn"></button>
-          </p>            
-          <ul class="sublist sublist_buyer">
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Оплата заказа
-              </a>                
-            </li>
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Условия доставки
-              </a>                
-            </li>
-            <li class="sublist__item">
-              <a href="#" class="sublist__link">
-                Условия возврата заказа
-              </a>                
-            </li>
-            <li class="sublist__item">
-              <a href="blog.html" class="sublist__link">
-                Блог
-              </a>                
-            </li>
-
-          </ul>
-        </li>
-
-        <li class="nav__item nav__item_contacts">
-          <p class="nav__title">Связаться с нами</p>  
-          <p class="header-sublist__item sublist__item">Контакты</p>
-
-        </li>
-      </ul>
-    </nav>
-
-    <div class="bread">
-      <ul class="nav-breadcrumb">
-        <li class="nav-breadcrumb__li">
-          <a class="nav-breadcrumb__main" href="index.html">Главная</a>
-        </li>
-        <li class="nav-breadcrumb__li">
-          <a class="goBlog" href="catalog.html">Каталог</a>
-        </li>           
-        <li class="nav-breadcrumb__li">
-          <a class="goBlog" href="#">Ноутбуки</a>
-        </li>           
-      </ul>
-    </div>
-    
-  </header>  
-
-  <main>
-    <section class="good-card container">
-
-    </section>
+      <nav class="nav header-nav">
+          <ul class="nav__list container">
   
-    <section class="recommend container">
-      <!-- <p class="recommend__title">
-        Рекомендуем также
-      </p>
-      <div class="recommend__wrap">
+            <li class="nav__item nav__item_catalog">
+              <p class="nav__title">Каталог
+                <button class="nav__btn"></button>
+              </p>    
+    
+              <ul class="sublist sublist_catalog">     
+              </ul>            
+            </li>
+    
+            <li class="nav__item nav__item_buyer">
+              <p class="nav__title">Покупателям
+                <button class="nav__btn"></button>
+              </p>            
+              <ul class="sublist sublist_buyer">
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Оплата заказа
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Условия доставки
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Условия возврата заказа
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="blog.html" class="sublist__link">
+                    Блог
+                  </a>                
+                </li>
+    
+              </ul>
+            </li>
+    
+            <li class="nav__item nav__item_contacts">
+              <p class="nav__title">Связаться с нами</p>  
+              <p class="header-sublist__item sublist__item">Контакты</p>
+    
+            </li>
+          </ul>
 
-      </div> -->
-      
-    </section>    
+      </nav>
+    </div>    
+
+  </header>
+  <main>    
+      <section class="category">
+        <div class="container category__container">              
+      </div>
+      </section>          
+    
   </main>
-
   <footer class="footer">
     <div class="container footer__container">
       <div class="footer__wrapper">        
@@ -157,7 +136,7 @@
                 <button class="nav__btn"></button>
               </p>
 
-              <ul class="sublist sublist_catalog">
+              <ul class="sublist sublist_catalog">>
               </ul>            
             </li>
   
@@ -243,6 +222,6 @@
     </div>    
 
   </footer>
-
+  
 </body>
 </html>

@@ -1,13 +1,13 @@
-import { loadPosts } from './modules/fetch.js';
+import { loadPageCatalog} from './modules/fetchCategories.js';
 import {showHeaderMenu, showNavigation} from './modules/showNavigation.js';
 import { makeMenu, getCategoryLink } from './modules/fetchCategories.js';
 
-const init = () => {
-  loadPosts();
+const init = () => {  
   showNavigation();
-  showHeaderMenu();
+  showHeaderMenu();  
+  loadPageCatalog();
   makeMenu();
-  getCategoryLink();
+  getCategoryLink();  
 };
 
 init();

@@ -1,4 +1,5 @@
 export const showNavigation = () => {
+  console.log('SHOW MUST GO ON!');
   const navFooter = document.querySelector('.navFooter');  
   const navTitleCatalog = navFooter.querySelector('.nav__item_catalog').firstElementChild;
   
