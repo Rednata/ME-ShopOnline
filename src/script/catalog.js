@@ -1,13 +1,11 @@
-import { loadPageCatalog} from './modules/fetchCategories.js';
 import {showHeaderMenu, showNavigation} from './modules/showNavigation.js';
-import { makeMenu, getCategoryLink } from './modules/fetchCategories.js';
+import { renderMenu, renderCatalog } from './modules/fetchCard.js';
 
-const init = () => {  
+const init = () => {
   showNavigation();
-  showHeaderMenu();  
-  loadPageCatalog();
-  makeMenu();
-  getCategoryLink();  
+  showHeaderMenu();
+  renderMenu();
+  renderCatalog();
 };
 
 init();

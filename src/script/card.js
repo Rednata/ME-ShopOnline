@@ -1,15 +1,11 @@
 import {showHeaderMenu, showNavigation} from './modules/showNavigation.js';
-import { 
-  makeMenu, getCategoryLink, loadPageGood, loadPageCatalog, getGoodLink } from './modules/fetchCategories.js';
+import { renderMenu, renderPageCard } from './modules/fetchCard.js';
 
 const init = () => {
   showNavigation();
   showHeaderMenu();
-  makeMenu();
-  getCategoryLink();
-  getGoodLink();
-  loadPageGood();
-  // loadPageCatalog()
+  renderMenu();
+  renderPageCard();
 };
 
 init();

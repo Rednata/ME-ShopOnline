@@ -1,13 +1,12 @@
 import { loadPosts } from './modules/fetch.js';
 import {showHeaderMenu, showNavigation} from './modules/showNavigation.js';
-import { makeMenu, getCategoryLink } from './modules/fetchCategories.js';
+import { renderMenu } from './modules/fetchCard.js';
 
 const init = () => {
   loadPosts();
   showNavigation();
   showHeaderMenu();
-  makeMenu();
-  getCategoryLink();
+  renderMenu();
 };
 
 init();

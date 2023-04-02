@@ -1,13 +1,12 @@
 import { loadArticle } from './modules/fetch.js';
 import {showNavigation, showHeaderMenu} from './modules/showNavigation.js';
-import { makeMenu, getCategoryLink } from './modules/fetchCategories.js';
+import { renderMenu } from './modules/fetchCard.js';
 
 const init = () => {
   loadArticle();
   showNavigation();
   showHeaderMenu();
-  makeMenu();
-  getCategoryLink();
+  renderMenu();
 };
 
 init();
