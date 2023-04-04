@@ -52,6 +52,7 @@ const path = {
     article: 'src/script/article.js',
     card: 'src/script/card.js',
     catalog: 'src/script/catalog.js',
+    shop: 'src/script/shop.js',
     img: 'src/assets/**/*.{jpg,svg,jpeg,png}',
     // svg: 'src/assets/icons/**/*.svg',
     imgF: 'src/assets/**/*.{jpg,jpeg,png}',
@@ -145,6 +146,7 @@ const webpackConf = {
     article: './src/script/article.js',
     card: './src/script/card.js',
     catalog: './src/script/catalog.js',
+    shop: './src/script/shop.js',
   },
   output: {
     filename: '[name].js',

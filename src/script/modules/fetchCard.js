@@ -67,6 +67,7 @@ const renderPageCard = async () => {
   const [category, goodID] = getHashFromURL().split('#');
   createBreadCrumb(category);
   const url = `https://determined-painted-hawthorn.glitch.me/api/goods/${goodID}`;
+  console.log(url);
   const dataGood = await fetchGoods(url);
 
   const title = createTitle('good-card__title', dataGood.title);
@@ -89,6 +90,7 @@ const renderPageCard = async () => {
   const {titleRecom, wrapRecom} = createRecommend(dataRecommend);
   recomContainer.append(titleRecom, wrapRecom);
 
+  return dataGood;
 };
 
 export { renderMenu, renderCatalog, renderPageCard, createHrefLink };
