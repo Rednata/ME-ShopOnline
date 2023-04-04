@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" href="./assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>  
+  <script src="script/shop.min.js" type="module"></script>
+  <link rel="stylesheet" href="style/index.min.css">
+  <title>Shop</title>
+</head>
+<body>
+  <header class="header container">
+    <div class="header__main-page">      
+        <div class="header__box">
+          <a class="logo logo_dark header__logo" href="index.html">
+            Shop<span class="logo_color">Online</span> 
+          </a>      
+          <button class="menu button" aria-haspopup="menu">
+            <img class="menu__img" src="assets/icons/sort.svg" alt="">
+            Меню</button>
+  
+          <form class="search" action="#" method="post">
+            <label class="search__label">
+              <input class="search__input" type="search" placeholder="Я ищу">            
+              <button class="search__btn">
+                <img  class="search__img" src="assets/icons/search.svg" alt="поисковая лупа">
+              </button>
+            </label>
+
+          </form>
+  
+          <ul class="header__icons">
+            <li class="icon">            
+              <button class="icon__btn" aria-label="Профиль">
+                <span class="header-icon__img header-icon__img_profile"></span>
+                <span class="icon__hidden">Профиль</span> 
+              </button>
+            </li>  
+
+            <li class="icon">            
+              <a class="icon__btn btn-cart" href="shop.html" aria-label="Корзина">
+                <span class="header-icon__img header-icon__img_cart">
+                  <span class="btn-cart__count">2</span>
+                  </span>
+                <span class="icon__hidden">Корзина</span> 
+              </a>              
+            </li>  
+
+            <li class="icon">            
+              <button class="icon__btn" aria-label="Избранное">
+                <span class="header-icon__img header-icon__img_favorite"></span>
+                <span class="icon__hidden">Избранное</span> 
+              </button>                    
+            </li>                            
+          </ul>
+        </div>
+    </div>
+
+    <nav class="nav header-nav">
+      <ul class="nav__list container">
+
+        <li class="nav__item nav__item_catalog">
+          <p class="nav__title">Каталог
+            <button class="nav__btn"></button>
+          </p>
+
+          <ul class="sublist sublist_catalog">
+          </ul>                     
+        </li>
+
+        <li class="nav__item nav__item_buyer">
+          <p class="nav__title">Покупателям
+            <button class="nav__btn"></button>
+          </p>            
+          <ul class="sublist sublist_buyer">
+            <li class="sublist__item">
+              <a href="#" class="sublist__link">
+                Оплата заказа
+              </a>                
+            </li>
+            <li class="sublist__item">
+              <a href="#" class="sublist__link">
+                Условия доставки
+              </a>                
+            </li>
+            <li class="sublist__item">
+              <a href="#" class="sublist__link">
+                Условия возврата заказа
+              </a>                
+            </li>
+            <li class="sublist__item">
+              <a href="blog.html" class="sublist__link">
+                Блог
+              </a>                
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="nav__item nav__item_contacts">
+          <p class="nav__title">Связаться с нами</p>  
+          <p class="header-sublist__item sublist__item">Контакты</p>
+
+        </li>
+      </ul>
+    </nav>
+
+    <div class="bread">
+      <ul class="nav-breadcrumb">
+        <li class="nav-breadcrumb__li">
+          <a class="nav-breadcrumb__main" href="index.html">Главная</a>
+        </li>
+        <li class="nav-breadcrumb__li">
+          <a class="" href="#">Корзина</a>
+        </li>           
+      </ul>
+    </div>    
+  </header>  
+
+  <main>
+    <section class="shop">
+      <h1 class="visually-hidden">Корзина с выбранными товарами</h1>
+
+      <div class="container shop__outer-container">
+        
+        <div class="shop__inner-container">
+
+          <div class="shop__wrap shop__wrap_cart cart">
+            <div class="cart__title-wrap">
+              <h2 class="title">Корзина</h2>
+              <span class="cart__count">2</span>
+            </div>
+            <div class="cart__control">
+              <input class="cart__input-checkall" type="checkbox" name="all" id="all">
+              <!-- <button class="cart__btn-checkall"></button> -->
+              <label for="all" >Выбрать все</label>
+              <button class="cart__btn-deleteall"></button>
+            </div>                        
+            
+
+            <div class="hr"></div>
+
+            <ul class="cart-list">
+              <li class="cart-list__item">
+                <input class="cart-list__input" type="checkbox" name="" id="">
+                <img class="cart-list__img" src="./assets/images/nout1.jpg" alt="" >
+                <div class="cart-list__info">
+                  <div class="cart-list__content">
+                    <p class="cart-list__title">15.6" Игровой ноутбук ASUS G513IE-HN004T</p>
+                    <p class="cart-list__text">Цвет: черный</p>
+                    <p class="cart-list__text">Оперативная память: 16 ГБ</p>
+                  </div>
+                  <div class="cart-list__count-control count">
+                    <buton class="count__btn count__btn_minus">−</buton>
+                    <span class="count__text">1</span>
+                    <buton class="count__btn count__btn_plus">+</buton>
+                  </div>
+                  <div class="cart-list__price">
+                    <p class="cart-list__priceFinal">109 090 ₽</p>
+                    <p class="cart-list__priceStart">140 590 ₽</p>
+                    <p class="cart-list__credit">В кредит от 5600 ₽ </p>
+  
+                  </div>
+                </div>                                
+              </li>
+              
+            </ul>          
+          </div> 
+
+          <div class="delivery shop__wrap">
+            <div class="delivery-wrap">
+              <h2 class="title">Способ доставки</h2>
+              <button class="delivery-wrap__btn">Изменить</button>
+            </div>        
+            <div class="delivery__box delivery__box_local">
+              <span class="delivery__name ">Пункт выдачи</span>
+              <span class="delivery__info">г. Москва (Московская область), улица Павлика Морозова, д. 48, (Пункт выдачи), Ежедневно 10:00-21:00</span>
+            </div>
+            
+            <div class="delivery__box delivery__box_price">
+              <span class="delivery__name">Стоимость доставки</span>
+              <span class="delivery__info">Бесплатно</span>
+            </div>
+    
+            <div class="delivery__box">
+              <span class="delivery__name delivery__name_date">10-13 февраля</span> 
+              <span class="delivery__info">
+                <img class="delivery__img" src="./assets/images/nout2.jpg" alt="">
+                <img class="delivery__img" src="./assets/images/nout3.jpg" alt="">
+              </span>
+            </div>
+          </div>
+
+        </div>
+     
+        <div class="total shop__wrap shop__wrap_total">
+
+          <div class="total__box">
+            <span class="total__title">Итого:</span>
+            <span class="total__sumFinal">112 992 ₽</span>
+          </div>          
+
+          <div class="total__wrap">
+            <div class="total__box">
+              <span class="total__name">Товары, 
+                <span class="span__count">2  шт.</span>
+              </span>
+              <span class="total__sumStart">145 080 ₽</span>
+            </div>
+
+            <div class="total__box">
+              <span class="total__name">Скидка</span>
+              <span class="total__sale">32 088 ₽</span>
+            </div>
+
+            <div class="total__box">
+              <span class="total__name">Доставка</span>
+              <span class="total__deliv">Бесплатно</span>
+            </div>            
+          </div>
+          
+          <div class="total-info">
+            <div class="total-info__title">
+              <span class="total-info__name">Доставка:</span>
+              <span class="total-info__value">Пункт выдачи</span>
+            </div>            
+            <p class="total-info__time">Ежедневно 10:00 - 21:00</p>
+            <p class="total-info__address">г. Москва (Московская область), улица Павлика Морозова, д. 48</p>
+          </div>
+          <div class="total-info">
+            <span class="total-info__name">Дата:</span>
+            <span class="total-info__value">10-13 февраля</span>              
+          </div>
+          <div class="total-info">
+            <span class="total-info__name">Оплата:</span>
+            <span class="total-info__value">Картой</span>              
+          </div>
+          <button class="button total__btn">Заказать</button>
+          <div class="total__box-input">
+            <input class="total__input" type="checkbox" name="agree" id="agree">
+            <label for="agree">
+              <span class="agree__maintext">Согласен с условиями</span>
+              <span class="agree__text">правил пользования торговой площадкой и правилами возврата</span>
+               
+            </label>        
+          </div>
+          
+      </div>
+          
+
+    </div>            
+    
+    </section>
+
+  </main>
+  
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__wrapper">        
+        <div class="logo logo_light footer__logo">
+          <a class="logo__link" href="index.html">
+            Shop<span class="logo_color">Online</span> 
+          </a>      
+        </div>                 
+
+        <nav class="nav navFooter">
+          <ul class="nav__list">
+  
+            <li class="nav__item nav__item_catalog">
+              <p class="nav__title">Каталог
+                <button class="nav__btn"></button>
+              </p>
+
+  
+              <ul class="sublist sublist_catalog">
+                <!-- <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Смартфоны
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="card.html" class="sublist__link">
+                    Ноутбуки
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Ювелирные изделия
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Одежда
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Бытовая техника
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Бытовая химия
+                  </a>                
+                </li>
+
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Книги и журналы
+                  </a>                
+                </li>
+
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Домашний текстиль
+                  </a>                
+                </li>
+
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Электроника
+                  </a>                
+                </li>
+    
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Косметика
+                  </a>                
+                </li> -->
+              </ul>            
+            </li>
+  
+            <li class="nav__item nav__item_buyer">
+              <p class="nav__title">Покупателям
+                <button class="nav__btn"></button>
+              </p>            
+              <ul class="sublist sublist_buyer">
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Оплата заказа
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Условия доставки
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Условия возврата заказа
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="blog.html" class="sublist__link">
+                    Блог
+                  </a>                
+                </li>
+  
+              </ul>
+            </li>
+  
+            <li class="nav__item nav__item_contacts">
+              <p class="nav__title">Контакты</p>  
+              
+              <ul class="sublist sublist_contacts">
+                <li class="sublist-contacts__item">
+                  <a href="tel:+79378392361" class="sublist-contacts__link">
+                    Тел: +7 937 839 23-61
+                  </a>                
+                </li>
+                <li class="sublist-contacts__item">
+                  <a href="mailto:OnlineShop@gmail.com" class="sublist-contacts__link">
+                    Email: OnlineShop@gmail.com
+                  </a>                
+                </li>
+                <li class="sublist-contacts__item">
+                  <ul class="sublist__icons">
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_wsp" href="#" aria-label="Whatsapp"></a>
+                    </li>
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_inst" href="#" aria-label="Instagram"></a>
+                    </li>
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_yout" href="#" aria-label="Youtube"></a>
+                    </li>
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_fb" href="#" aria-label="Facebook"></a>
+                    </li>
+                    <li class="sublist__icon">
+                      <a class="sublist__icon-link sublist__icon-link_tgr" href="#" aria-label="Telegram"></a>
+                    </li>
+  
+                  </ul>
+  
+              </ul>
+  
+            </li>
+          </ul>
+        </nav>
+      </div>      
+
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          © OnlineShop, 2021
+        </p>
+        <div class="footer__author">
+          <p class="footer__author-name">Design by Anastasia Ilina</p>
+          <p class="footer__author-contact">Tg: @Mrshmallowww</p>
+        </div>
+      </div>
+    </div>    
+
+  </footer>
+</body>
+</html>

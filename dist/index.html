@@ -7,11 +7,24 @@
   <link rel="preload" href="assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/open-sans-v34-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <script src="script/category.js" type="module"></script>
-  <link rel="stylesheet" href="style/index.css">
+  <script src="script/index.min.js" type="module"></script>
+  
+  <!-- <link rel="stylesheet" href="style/index.css"> -->
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const createLink = url => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = url;
+        document.head.append(link)
+      }
+      createLink('style/index.min.css');
+    })
+  </script>
   <title>ShopOnline</title>
 </head>
+
 <body>
   <header class="header container">
     <div class="header__main-page">      
@@ -44,10 +57,12 @@
             </li>  
 
             <li class="icon">            
-              <button class="icon__btn" aria-label="Корзина">
-                <span class="header-icon__img header-icon__img_cart"></span>
+              <a class="icon__btn btn-cart" href="shop.html" aria-label="Корзина">
+                <span class="header-icon__img header-icon__img_cart">
+                  <span class="btn-cart__count">5</span>
+                  </span>
                 <span class="icon__hidden">Корзина</span> 
-              </button>              
+              </a>              
             </li>  
 
             <li class="icon">            
@@ -57,7 +72,8 @@
               </button>                    
             </li>                            
           </ul>
-        </div>        
+        </div>
+        
     </div>
 
       <nav class="nav header-nav">
@@ -66,9 +82,64 @@
             <li class="nav__item nav__item_catalog">
               <p class="nav__title">Каталог
                 <button class="nav__btn"></button>
-              </p>    
+              </p>
     
-              <ul class="sublist sublist_catalog">     
+    
+              <ul class="sublist sublist_catalog">
+                <!-- <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Смартфоны
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Ноутбуки
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Ювелирные изделия
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Одежда
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Бытовая техника
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Бытовая химия
+                  </a>                
+                </li>
+    
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Книги и журналы
+                  </a>                
+                </li>
+    
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Домашний текстиль
+                  </a>                
+                </li>
+    
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Электроника
+                  </a>                
+                </li>
+    
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Косметика
+                  </a>                
+                </li> -->
               </ul>            
             </li>
     
@@ -112,12 +183,156 @@
     </div>    
 
   </header>
-  <main>    
-      <section class="category">
-        <div class="container category__container">
-        <h1 class="category__title">Электроника</h1>
 
-        <!-- <ul class="benefit__list">
+  <main>
+    <section class="banner">
+      <div class="container">
+        <div class="banner__box">
+          <h2 class="banner__title">
+            -50% на все ноутбуки
+          </h2>
+  
+          <div class="banner__time time" data-timer-deadline="2023-04-25 00:08">
+          </div>
+  
+        </div>
+      </div>
+    </section>
+
+    <section class="goods">
+      <h2 class="visually-hidden">Карточки с товаром</h2>
+      <div class="container">
+        <ul class="goods__list">
+  
+          <li class="item item_book">
+            <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle101.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle101.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle101.png" alt="очки и чашка кофе рядом с раскрытой книгой" width="245" height="240">
+              </picture>              
+              <p class="item__content item__content_book">Книга - <span class="item__content_span30">лучший подарок</span></p>
+            </a>          
+          </li>
+  
+          <li class="item item_time">
+            <a href="#" class="item__link">          
+            <picture>
+              <source srcset="assets/images/Rectangle102.avif" type="image/avif">
+              <source srcset="assets/images/Rectangle102.webp" type="image/webp">
+              <img loading="lazy" class="item__img" src="assets/images/Rectangle102.png" alt="циферблат" width="245" height="240">
+            </picture>
+              
+              <p class="item__content item__content_time">Время скидок!</p>
+              <div class="sale sale_right">-25%</div>
+            </a>          
+          </li>
+  
+          <li class="item item_shoes">
+            <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle99.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle99.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle99.png" alt="разноцветные кроссовки" width="550" height="540">
+              </picture>              
+              <div class="item__content item__content_shoes">Вторая пара кроссовок <span class="item__content_span40">в подарок!</span></div>          
+            </a>          
+          </li>
+  
+          <li class="item item_ideas">
+            <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle100.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle100.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle100.png" alt="ярко упакованные подарки" width="550" height="240">
+              </picture> 
+              
+              <p class="item__content item__content_ideas">Идеи новогодних подарков</p>
+            </a>          
+          </li>
+          
+          <li class="item item_red">
+            <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle104.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle104.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle104.png" alt="ярко-красный кроссовок" width="550" height="240">
+              </picture> 
+              
+              <div class="sale sale_left">
+                -40%
+              </div>
+            </a>          
+          </li>
+  
+          <li class="item item_december">
+            <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle103.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle103.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle103.png" alt="ноутбук" width="550" height="240">
+              </picture> 
+              
+              <p class="item__content item__content_december">Выгодно в декабре!</p>            
+              <div class="sale sale_right">-15%</div>
+            </a>          
+          </li>
+  
+          <li class="item item_new-year">
+            <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle105.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle105.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle105.png" alt="золотисто-синяя надпись '2022' с подарочной коробкой" width="1160" height="540">
+              </picture> 
+              
+              <p class="item__content item__content_new-year">Новогодние украшения</p>      
+            </a>
+          </li>
+  
+          <li class="item item_dress">
+            <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle106.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle106.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle106.png" alt="девушка в красном платье" width="245" height="540">
+              </picture> 
+              
+              <div class="sale sale_right">-55%</div>
+            </a>
+          </li>
+  
+          <li class="item item_chemicals">
+            <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle107.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle107.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle107.png" alt="рука в хозяйственной перчатке с пульверизатором" width="245" height="240">
+              </picture>               
+              <p class="item__content item__content_chemicals">На бытовую химию</p>
+              <div class="sale sale_left">-25%</div>            
+            </a>
+          </li>
+  
+          <li class="item item_balls">
+            <a href="#" class="item__link">
+              <picture>
+                <source srcset="assets/images/Rectangle108.avif" type="image/avif">
+                <source srcset="assets/images/Rectangle108.webp" type="image/webp">
+                <img loading="lazy" class="item__img" src="assets/images/Rectangle108.png" alt="елочные игрушки: красные и золотистые шары" width="245" height="240">
+              </picture>             
+              
+            </a>          
+          </li>
+          
+        </ul>
+      </div>   
+    </section>   
+    
+    <section class="benefit">
+      <div class="container benefit__container">
+        <h2 class="benefit__title">Это выгодно!</h2>
+        <ul class="benefit__list">
           <li class="benefit__item card">
             <a class="benefit__link" href="">
               <div class="card-img__wrapper">
@@ -299,11 +514,12 @@
               <p class="card__title">Пара футболок</p>
             </a>          
           </li>     
-        </ul> -->
+        </ul>
       </div>
-      </section>          
-    
+      
+    </section>
   </main>
+
   <footer class="footer">
     <div class="container footer__container">
       <div class="footer__wrapper">        
@@ -321,7 +537,62 @@
                 <button class="nav__btn"></button>
               </p>
 
-              <ul class="sublist sublist_catalog">>
+  
+              <ul class="sublist sublist_catalog">
+                <!-- <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Смартфоны
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="card.html" class="sublist__link">
+                    Ноутбуки
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Ювелирные изделия
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Одежда
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Бытовая техника
+                  </a>                
+                </li>
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Бытовая химия
+                  </a>                
+                </li>
+
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Книги и журналы
+                  </a>                
+                </li>
+
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Домашний текстиль
+                  </a>                
+                </li>
+
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Электроника
+                  </a>                
+                </li>
+    
+                <li class="sublist__item">
+                  <a href="#" class="sublist__link">
+                    Косметика
+                  </a>                
+                </li> -->
               </ul>            
             </li>
   
@@ -364,7 +635,7 @@
                   </a>                
                 </li>
                 <li class="sublist-contacts__item">
-                  <a href="e-mail" class="sublist-contacts__link">
+                  <a href="mailto:OnlineShop@gmail.com" class="sublist-contacts__link">
                     Email: OnlineShop@gmail.com
                   </a>                
                 </li>
@@ -407,6 +678,6 @@
     </div>    
 
   </footer>
-  
+ 
 </body>
 </html>

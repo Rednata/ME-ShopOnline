@@ -1,5 +1,4 @@
 import { getTimeInner } from './modules/createElements.js';
-import { makeMenu, getCategoryLink } from './modules/fetchCategories.js';
 import { getDeadline, timerStart } from './modules/functionTimer.js';
 import { showHeaderMenu, showNavigation } from './modules/showNavigation.js';
 import { renderMenu } from './modules/fetchCard.js';
@@ -11,14 +10,9 @@ const initTimer = () => {
     const deadline = getDeadline(timeDuration);
     timerStart(deadline);
   }
-  makeMenu();
   showNavigation();
   showHeaderMenu();
-<<<<<<< HEAD
-  getCategoryLink();
-=======
   renderMenu();
->>>>>>> mod.7_course-work
 };
 
 initTimer();
