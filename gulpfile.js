@@ -149,7 +149,7 @@ const webpackConf = {
     shop: './src/script/shop.js',
   },
   output: {
-    filename: 'index.js',
+    filename: '[name].js',
   },
   module: {
     rules: [],
@@ -307,5 +307,6 @@ const develop = (ready) => {
 
 export const base = gulp.parallel(html, style, js, img, webp, avif, copy);
 
-export const build = gulp.series( base, critCSS);
+export const build = gulp.series(clear, base, critCSS);
 
+export default gulp.series(develop, base, server);
