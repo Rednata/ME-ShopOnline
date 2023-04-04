@@ -1,0 +1,309 @@
+.shop {
+  font-size: 16px;
+  color: $dark-color-text;
+  margin-bottom: 100px;
+
+  &__outer-container {
+    display: grid;
+    grid-template-columns: 74% 24%;  
+    column-gap: 23px;        
+
+    @media (max-width: 1600px) {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  }
+
+  &__inner-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    
+  }
+
+  &__wrap {
+    box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    padding: 30px;
+
+    &_total {
+      padding: 30px 10px 30px 40px;
+      align-self: flex-start;
+    }
+  }
+}
+
+.title {  
+  font-weight: 700;
+  font-size: 50px;
+  margin-bottom: 20px;
+
+  @media (max-width: 1600px) {
+    font-size: 40px;
+  }
+  
+}
+
+.delivery-wrap {
+  display: flex;
+  justify-content: space-between;
+
+  &__btn {
+    font-weight: 700;
+    color: $accent-color-text;
+    align-self: center;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.cart {
+
+  &__title-wrap {
+    display: flex;
+  }
+
+  &__control {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+  }
+
+  &__input-checkall {
+    width: 20px;
+    height: 20px;
+    margin-right: 11px;
+
+  }
+
+  &__btn-deleteall {
+    background-image: url("../../assets/icons/delete.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    border: none;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  &__count {
+    font-size: 24px;
+  }
+
+  &__btn-checkall {
+    margin-bottom: 20px;
+    
+    ~span {
+      font-weight: 700;
+    }
+  }
+
+}
+
+.hr {
+  height: 1px;
+  background-color: $hr-color;
+  margin-bottom: 20px;
+}
+
+.cart-list {
+    
+    &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    height: 26px;
+    width: 26px;
+    margin-right: 20px;    
+  }
+
+  &__img {
+    width: 130px;
+    height: 130px;
+    margin-right: 12px;
+    border-radius: 10px;
+    border: 1px solid $hr-color;
+  }
+
+  &__title {
+    font-size: 22px;
+    color: $dark-color-text;
+    margin-bottom: 8px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 40px;
+  }
+
+  
+  &__text {
+    font-size: 22px;
+    color: $add-color;
+  }
+
+  &__price {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  &__priceFinal {
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+
+  &__priceStart {
+    font-size: 18px;
+    color: $add-color;
+    margin-bottom: 16px;
+  }
+
+  &__credit {
+    color: $accent-color-text
+  }
+}
+
+.count {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid $hr-color;
+    cursor: pointer;
+
+    &_minus {
+      color: $add-color
+    }
+    &_plus {
+      color: $dark-color-text;
+    }
+  }
+}
+
+.total {  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: $add-color;
+  max-width: 420px;
+
+  &__title {
+    font-weight: 700;
+    font-size: 26px;
+    color: $dark-color-text;
+  }
+  &__sumFinal {
+    font-weight: 700;
+    font-size: 26px;
+    color: $dark-color-text;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 30px;
+}
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__btn {
+    font-size: 16px;
+    width: 78%;
+    height: 51px;
+    margin: 0 auto;
+  }
+
+  &__box-input {
+    display: flex;
+    justify-content: space-between;    
+
+    .agree__maintext {
+      color: #525252;  
+    }
+  }
+
+  &__input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+}
+
+.total-info {
+  padding-right: 30px;
+
+  &__title {
+    margin-bottom: 10px;
+  }
+
+  &__name {
+    font-weight: 700;
+    color: $dark-color-text;
+  }
+
+  &__value {
+    font-weight: 700;
+    color: $accent-color-text;
+  }
+
+  &__time {
+    margin-bottom: 6px;
+  }
+}
+
+.delivery {
+
+  &__box {
+    display: flex;
+    gap: 30px;
+
+    &_local {
+      margin-bottom: 15px;
+    }
+    &_price {
+      margin-bottom: 30px;
+    }
+    
+  }
+
+  &__name {
+    color: $add-color;
+    min-width: 19%; 
+
+    &_date {
+      font-weight: 700;
+      color: $dark-color-text;
+    }
+  }
+
+  &__info {
+    display: flex;
+    gap: 17px;    
+    flex-grow: 1;
+  }
+
+  &__img {
+    width: 80px;
+    height: 80px;
+  }
+}

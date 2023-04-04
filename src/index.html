@@ -19,7 +19,7 @@
         link.href = url;
         document.head.append(link)
       }
-      createLink('css/index.min.css');
+      createLink('style/index.min.css');
     })
   </script>
   <title>ShopOnline</title>
@@ -57,10 +57,12 @@
             </li>  
 
             <li class="icon">            
-              <button class="icon__btn" aria-label="Корзина">
-                <span class="header-icon__img header-icon__img_cart"></span>
+              <a class="icon__btn btn-cart" href="shop.html" aria-label="Корзина">
+                <span class="header-icon__img header-icon__img_cart">
+                  <span class="btn-cart__count">5</span>
+                  </span>
                 <span class="icon__hidden">Корзина</span> 
-              </button>              
+              </a>              
             </li>  
 
             <li class="icon">            
@@ -633,7 +635,7 @@
                   </a>                
                 </li>
                 <li class="sublist-contacts__item">
-                  <a href="e-mail" class="sublist-contacts__link">
+                  <a href="mailto:OnlineShop@gmail.com" class="sublist-contacts__link">
                     Email: OnlineShop@gmail.com
                   </a>                
                 </li>
