@@ -1,16 +1,17 @@
-import {showHeaderMenu, showNavigation} from './modules/showNavigation.js';
-import { renderMenu, renderPageCard } from './modules/fetchCard.js';
-import { openCardPage, openCatalogPage } from './modules/openCatalogPage.js';
+import {onClickHeaderBtnMenu, showNavigation} from './modules/showNavigation.js';
+import { renderPageCard } from './modules/render.js';
+import { renderMenu } from './modules/render.js';
+import { openCardPage, openCatalogPage } from './modules/openWindow.js';
 import { addGoodInCart, showCountGoodInCart} from './modules/shopControl.js'
 
 const init = async () => {
   showNavigation();
-  showHeaderMenu();
+  onClickHeaderBtnMenu();
   renderMenu();
   const dataGood = await renderPageCard();
   addGoodInCart(dataGood);
-  openCatalogPage();
-  openCardPage();
+  // openCatalogPage();
+  // openCardPage();
   showCountGoodInCart();
 };
 

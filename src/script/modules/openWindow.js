@@ -1,20 +1,23 @@
-import { getHashFromURL } from './fetchCard.js';
+import { getHashFromURL } from './commonFunction.js';
 //   НЕ ПОНимаю, как и почему работает =================
-const openCatalogPage = () => {
-  const cataloges = document.querySelectorAll('.sublist_catalog');
 
-  cataloges.forEach(catalog => {
-    catalog.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = e.target;
-      if (target.closest('.sublist__link')) {
-        const category = target.textContent;
-        const urlCurrent = new URL(document.location);
-        const urlCatalog = new URL('catalog.html', urlCurrent);
-        window.open(`${urlCatalog}#${category}`);
-      }
-    });
-  });
+const CATALOGS = document.querySelectorAll('.sublist_catalog');
+
+const openCatalogPage = () => {
+  // CATALOGS.forEach(item => {
+  //   item.addEventListener('click', (e) => {
+  //     e.preventDefault();
+  //     const target = e.target;
+  //     if (target.closest('.sublist__link')) {
+  //       const category = target.textContent;
+  //       // const urlCurrent = new URL(document.location);
+  //       // const urlCatalog = new URL('catalog.html', urlCurrent);
+  //       // const url = new URL('/catalog.html#Игрушки');
+  //       window.open(`/catalog.html#${category}`);
+  //       // window.open(`${urlCatalog}#${category}`);
+  //     }
+  //   });
+  // });
 };
 
 const openCardPage = () => {

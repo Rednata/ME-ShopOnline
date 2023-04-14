@@ -1,9 +1,8 @@
 import { getTimeInner } from './modules/createElements.js';
 import { getDeadline, timerStart } from './modules/functionTimer.js';
-import { showHeaderMenu, showNavigation } from './modules/showNavigation.js';
-import { renderMenu } from './modules/fetchCard.js';
-import { openCatalogPage } from './modules/openCatalogPage.js';
-import { showCountGoodInCart} from './modules/shopControl.js'
+import { onClickHeaderBtnMenu, showNavigation } from './modules/showNavigation.js';
+import { renderMenu } from './modules/render.js';
+import { showCountGoodInCart} from './modules/shopControl.js';
 
 
 const initTimer = () => {
@@ -14,9 +13,8 @@ const initTimer = () => {
     timerStart(deadline);
   }
   showNavigation();
-  showHeaderMenu();
+  onClickHeaderBtnMenu();
   renderMenu();
-  openCatalogPage();
   showCountGoodInCart();
 };
 

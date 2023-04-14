@@ -1,10 +1,10 @@
-import {showHeaderMenu, showNavigation} from './modules/showNavigation.js';
-import { renderMenu } from './modules/fetchCard.js';
+import {onClickHeaderBtnMenu, showNavigation} from './modules/showNavigation.js';
+import { renderMenu } from './modules/render.js';
 import{renderShopPage, shopControl, showCountGoodInCart} from './modules/shopControl.js'
 
 const init = () => {
   showNavigation();
-  showHeaderMenu();
+  onClickHeaderBtnMenu();
   renderMenu();  
   shopControl();
   // showCountGoodInCart();

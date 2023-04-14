@@ -1,6 +1,6 @@
 import { addInLocalStorage, getLocalStorage, clearLocalStorage } from './localStorageCart.js';
 import { fetchGoods } from './fetchCard.js';
-import { formatCartPrice } from './createCatalog&Cards.js';
+import { formatPrice } from './commonFunction.js';
 
 const CARTLIST = document.querySelector('.cart-list');
 
@@ -49,8 +49,8 @@ const addGoodInCart = (dataGood) => {
 
 const renderCard = ({title, price, image, discount, category, id}, count) => {
   console.log(image);
-  const priceStart = formatCartPrice(price * count);
-  const priceFinal = formatCartPrice(Math.round((price * count * (100 - discount)) / 100));  
+  const priceStart = formatPrice(price * count);
+  const priceFinal = formatPrice(Math.round((price * count * (100 - discount)) / 100));  
 
   const li = document.createElement('li');
   li.className = 'cart-list__item';
@@ -142,10 +142,10 @@ const makeAllSum = () => {
   const totalSumStart = document.querySelector('.total__sumStart');
   const totalSale = document.querySelector('.total__sale');
 
-  totalSumFinal.textContent = formatCartPrice(String(sum - saleSum)) + ' ₽';
+  totalSumFinal.textContent = formatPrice(String(sum - saleSum)) + ' ₽';
   spanCount.textContent = count;
-  totalSale.textContent = formatCartPrice(String(saleSum)) + ' ₽';
-  totalSumStart.textContent = formatCartPrice(String(sum)) + ' ₽';
+  totalSale.textContent = formatPrice(String(saleSum)) + ' ₽';
+  totalSumStart.textContent = formatPrice(String(sum)) + ' ₽';
 
 
 
@@ -191,14 +191,14 @@ const controlCountBtn = () => {
         if (dataGood.discount) {
           const price = dataGood.price;
           console.log(price);  
-          const priceStart = formatCartPrice(dataGood.price * count);
-          const priceFinal = formatCartPrice(Math.round((dataGood.price * count * (100 - dataGood.discount)) / 100));  
+          const priceStart = formatPrice(dataGood.price * count);
+          const priceFinal = formatPrice(Math.round((dataGood.price * count * (100 - dataGood.discount)) / 100));  
           fieldPriceFinally.textContent = priceFinal;
           fieldPriceStart.textContent = priceStart
         } else {
           const price = dataGood.price;
           console.log(price);          
-          const priceFinal = formatCartPrice(dataGood.price * count);        
+          const priceFinal = formatPrice(dataGood.price * count);        
           fieldPriceFinally.textContent = priceFinal
         }
 
@@ -225,14 +225,14 @@ const controlCountBtn = () => {
         if (dataGood.discount) {
           const price = dataGood.price;
           console.log(price);  
-          const priceStart = formatCartPrice(dataGood.price * count);
-          const priceFinal = formatCartPrice(Math.round((dataGood.price * count * (100 - dataGood.discount)) / 100));  
+          const priceStart = formatPrice(dataGood.price * count);
+          const priceFinal = formatPrice(Math.round((dataGood.price * count * (100 - dataGood.discount)) / 100));  
           fieldPriceFinally.textContent = priceFinal;
           fieldPriceStart.textContent = priceStart
         } else {
           const price = dataGood.price;
           console.log(price);          
-          const priceFinal = formatCartPrice(dataGood.price * count);        
+          const priceFinal = formatPrice(dataGood.price * count);        
           fieldPriceFinally.textContent = priceFinal
         }
       } else {

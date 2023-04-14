@@ -1,13 +1,14 @@
-import {showHeaderMenu, showNavigation} from './modules/showNavigation.js';
-import { renderMenu, renderCatalog } from './modules/fetchCard.js';
-import { openCatalogPage } from './modules/openCatalogPage.js';
+import {onClickHeaderBtnMenu, showNavigation} from './modules/showNavigation.js';
+import { renderCatalog } from './modules/render.js';
+import { renderMenu } from './modules/render.js';
+import { openCatalogPage } from './modules/openWindow.js';
 import { showCountGoodInCart} from './modules/shopControl.js'
 
 const init = () => {
   showNavigation();
-  showHeaderMenu();
+  onClickHeaderBtnMenu();
   renderMenu();
-  openCatalogPage();
+  // openCatalogPage();
   renderCatalog();
   showCountGoodInCart();
 };
