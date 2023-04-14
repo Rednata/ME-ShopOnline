@@ -20,15 +20,10 @@ const createMenuItem = (item) => {
 
   const link = document.createElement('a');
   link.className = 'sublist__link';
-
-  const path = 'catalog.html';
-  const hash = `#${item}`;
-  const href = createHrefLink(path, hash);
-
-  link.href = href;
   link.textContent = item;
-
   liItem.append(link);
+  link.href = `/catalog.html#${item}`;
+  link.target = '_blank';
 
   return liItem;
 };
@@ -54,9 +49,12 @@ const getHashFromURL = () => {
 
 const renderCatalog = async () => {
   const catalogName = getHashFromURL();
+  console.log('catalogName: ', catalogName);
+
   const title = createTitle('catalog__title', catalogName);
   const url = `https://determined-painted-hawthorn.glitch.me/api/goods/category/${catalogName}`;
   const catalogDate = await fetchGoods(url);
+  console.log(catalogDate);
   const catalog = createCatalog(catalogDate);
 
   const sectionCatalog = document.querySelector('.catalog__container');
@@ -67,11 +65,9 @@ const renderPageCard = async () => {
   const [category, goodID] = getHashFromURL().split('#');
   createBreadCrumb(category);
   const url = `https://determined-painted-hawthorn.glitch.me/api/goods/${goodID}`;
-  console.log(url);
+
   const dataGood = await fetchGoods(url);
-
   const title = createTitle('good-card__title', dataGood.title);
-
   const cart = createCart(dataGood);
   const img = createImgCard(dataGood);
 
@@ -93,4 +89,4 @@ const renderPageCard = async () => {
   return dataGood;
 };
 
-export { renderMenu, renderCatalog, renderPageCard, createHrefLink };
+export { renderMenu, renderCatalog, renderPageCard, createHrefLink, fetchGoods, getHashFromURL };

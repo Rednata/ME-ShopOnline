@@ -1,9 +1,14 @@
 const addInLocalStorage = (data) => {
   localStorage.setItem('cart', JSON.stringify(data));
+  console.log(data);
 };
 
 const getLocalStorage = () =>
   JSON.parse(localStorage.getItem('cart'));
 
-export {addInLocalStorage, getLocalStorage};
+  const clearLocalStorage = () => {
+    localStorage.clear();
+  }
+
+export {addInLocalStorage, getLocalStorage, clearLocalStorage};
 
