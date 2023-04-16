@@ -19,8 +19,8 @@ export const showNavigation = () => {
 };
 
 export const onClickHeaderBtnMenu = () => {
-  const menuBtn = document.querySelector('.menu');
-  menuBtn.addEventListener('click', () => {
+  const MENU_BTN = document.querySelector('.menu');
+  MENU_BTN.addEventListener('click', () => {
     document.querySelector('.header-nav').classList.toggle('header-nav_active');
   });
 };

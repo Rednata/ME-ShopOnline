@@ -1,14 +1,15 @@
 import {onClickHeaderBtnMenu, showNavigation} from './modules/showNavigation.js';
-import { renderMenu } from './modules/render.js';
-import{renderShopPage, shopControl, showCountGoodInCart} from './modules/shopControl.js'
+import { renderMenu, showCountGoodInCart } from './modules/render.js';
+import {shopControl} from './modules/shopControl.js'
+import { renderShopPage } from './modules/render.js';
 
 const init = () => {
   showNavigation();
   onClickHeaderBtnMenu();
-  renderMenu();  
+  renderMenu();
+  showCountGoodInCart('shop');
+  renderShopPage();
   shopControl();
-  // showCountGoodInCart();
-  // renderShopPage();
 };
 
 init();

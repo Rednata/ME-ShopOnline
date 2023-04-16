@@ -97,13 +97,10 @@ const createCatalogItem = ({id, price, title, image, discount, category}) => {
 };
 
 const createCatalog = (data, catalogName) => {
-  const title = createElemWithClass('h1', 'catalog__title');
-  title.textContent = catalogName;
-
   const catalogList = data.map(item => createCatalogItem(item));
   const list = createElemWithClass('ul', 'benefit__list');
   list.append(...catalogList);
-  return {list, title};
+  return list;
 };
 
 // ==================  CARD page ========================
@@ -178,7 +175,6 @@ const createCart = ({price: priceStart, discount}) => {
     priceStartElem.textContent = `${formatPriceStart} ₽`;
     priceFinalElem.after(priceStartElem);
   }
-  console.log(cart);
   return cart;
 };
 
@@ -204,5 +200,87 @@ const createCard = (data) => {
   return {titlePage, wrapCard, titleDescript, content};
 };
 
+const createRecommend = (data) => {
+  console.warn(data);
+  const titleRecommend = createElemWithClass('p', 'recommend__title');
+  titleRecommend.textContent = 'Рекомендуем также';
+  const wrapRecommend = createElemWithClass('div', 'recommend__wrap');
+  const listRecommend = createCatalog(data);
+  wrapRecommend.append(listRecommend);
+  return {titleRecommend, wrapRecommend}
+};
 
-export {getTimeInner, createMenuItem, createCatalog, createCard, createDescript};
+// ===================  CART page ========================
+
+const createCartListPrice = (cartListItem, price, discount, count) => {
+  console.warn(count);
+  if (count === '-') count = 0;
+
+  const priceStart = formatPrice(price * count);
+  const priceFinal = formatPrice(getPriceFinal(price * count, discount));
+
+  const cartListPrice = cartListItem.querySelector('.cart-list__price');
+  cartListPrice.innerHTML = '';
+  if (discount) {
+    cartListPrice.insertAdjacentHTML('afterbegin',
+        `<p class="cart-list__priceFinal">${priceFinal} ₽</p>
+          <p class="cart-list__priceStart">${priceStart} ₽</p>
+          <p class="cart-list__credit">В кредит от 5600 ₽ </p>
+    `);
+  } else {
+    cartListPrice.insertAdjacentHTML('afterbegin', 
+        `          
+        <p class="cart-list__priceFinal">${priceStart} ₽</p>
+          <p class="cart-list__credit">В кредит от 5600 ₽ </p>
+    `);
+  }
+};
+
+const createCartListItem = ({title, price, image, discount, category, id}, count) => {
+  // const priceStart = formatPrice(price * count);
+  // const priceFinal = formatPrice(getPriceFinal(price * count, discount));
+
+  const cartListItem = createElemWithClass('li', 'cart-list__item');
+  cartListItem.dataset.name = id;
+  cartListItem.insertAdjacentHTML('afterbegin',
+      `
+      <div class="cart-list__wrap-input">
+        <input class="cart-list__input" type="checkbox" name="" id="">
+        <div class="cart-list__img">
+          <img  src=https://determined-painted-hawthorn.glitch.me/${image} alt="" >
+        </div>
+      </div>
+            
+      <div class="cart-list__info">
+        <div class="cart-list__content">
+          <a href="card.html#${category}#${id}" class="cart-list__title">${title}</a>
+          
+        </div>
+        <div class="cart-list__count-control count">
+          <buton class="count__btn count__btn_minus">−</buton>
+          <span class="count__text">${count}</span>
+          <buton class="count__btn count__btn_plus">+</buton>
+        </div>
+        <div class="cart-list__price">          
+        </div>
+      </div>      
+      <button class="cart-list__cart"></button>
+  `);
+  createCartListPrice(cartListItem, price, discount, count)
+
+  return cartListItem;
+}
+
+const createDeliveryImg = ({image, id}) => {
+  const wrapImg = createElemWithClass('div', 'delivery__box-img');
+  wrapImg.dataset.img = id;
+
+  const img = createElemWithClass('img', 'delivery__img');
+  img.src = createImageSRC(image);
+  wrapImg.append(img);
+  return wrapImg;
+};
+
+export {getTimeInner, createMenuItem, createCatalog,
+  createCard, createDescript, createRecommend, createElemWithClass,
+  createCartListItem, createDeliveryImg, createCartListPrice};

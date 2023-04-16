@@ -1,332 +1,259 @@
 import { addInLocalStorage, getLocalStorage, clearLocalStorage } from './localStorageCart.js';
+import { showCountGoodInCart } from './render.js';
+
 import { fetchGoods } from './fetchCard.js';
-import { formatPrice } from './commonFunction.js';
+import { formatPrice, getHashFromURL, imitationChangeGoodInCart, getIndexGoodInLocalStorage, fromStrFormatToNumber, getPriceFinal } from './commonFunction.js';
+import { createCartListPrice } from './createElements.js';
+
+// const onClickCartDelete = () => {
+//   document.querySelector('.shop').innerHTML = '';
+//     renderConfirmDeleteModal()
+//     delFromImgCart();
+//     const btnAllDel = document.querySelector('.cart__btn-deleteall');
+//     btnAllDel.removeEventListener('click', onClickCartDelete)
+
+// }
+
+// const renderConfirmDeleteModal = () => {
+//   const div = document.createElement('div');    
+//   div.style.cssText = `
+//     display: flex;
+//     top: 50%;
+//     left: 50%;
+//     margin: 0 auto;
+//     height: 200px;
+//     width: 400px;
+//     z-index: 100;
+//     font-size: 32px;
+//     font-weight: bold;
+//     border: 2px solid #3670c7;      
+//     border-radius: 10px;
+//     justify-content: center;
+//     align-items: center;
+//     `;
+//   div.textContent = 'Корзина очищена';
+  
+//   document.querySelector('.shop').prepend(div);
+//   setTimeout(() => {
+//     div.remove();
+//   }, 2000)
+  
+// };
+
+// const delFromImgCart = () => {
+//   document.querySelector('.btn-cart__count').innerHTML = '';
+// }
+
+// const ctrlDeleteAll = () => {
+//   const btnCheckAll = document.querySelector('.cart__input-checkall');
+//   btnCheckAll.addEventListener('click', () => {
+//     if (btnCheckAll.checked) {      
+//       const cartListInput = CARTLIST.querySelectorAll('.cart-list__input');
+//       cartListInput.forEach(elem => elem.checked = true)
+//       console.log('true');
+//       const btnAllDel = document.querySelector('.cart__btn-deleteall');
+//       btnAllDel.addEventListener('click', onClickCartDelete);
+//       clearLocalStorage()  
+//     } else {
+//       console.log('++++');
+//       const cartListInput = CARTLIST.querySelectorAll('.cart-list__input');
+//       cartListInput.forEach(elem => elem.checked = false)
+//     }
+//   })
 
 const CARTLIST = document.querySelector('.cart-list');
 
-const cart = getLocalStorage() || [];
-
-const addItemInCart = (cart, dataGood) => {
-  const indexGoodInCart = cart.findIndex(item => item.id === dataGood.id);
-  console.log(dataGood);
-  if (indexGoodInCart === -1) {
-    cart.push({id: dataGood.id, count: 1, price: dataGood.price, discount: dataGood.discount});
-    addInLocalStorage(cart);
+const saveGoodInCart = (localStorageCart, data, ind) => {
+  if (ind === -1) {
+    const newObj = {id: data.id, count: 1, price: data.price, discount: data.discount};
+    localStorageCart.push(newObj);
   } else {
-    cart[indexGoodInCart].count++;
-    addInLocalStorage(cart);
+    localStorageCart[ind].count++;
+  }
+  addInLocalStorage(localStorageCart);
+};
+
+const taskOnClickAddInCartBtn = async () => {
+  const localStorageCart = getLocalStorage() || [];
+  const hash = getHashFromURL();
+  const id = hash.match(/\d/g).join('');
+  const urlItem = `/goods/${id}`;
+  const data = await fetchGoods(urlItem);
+  const ind = getIndexGoodInLocalStorage(localStorageCart, id);
+
+  saveGoodInCart(localStorageCart, data, ind);
+  showCountGoodInCart()
+}
+
+const onClickAddInCartBtn = () => {
+  const addInCartBtn = document.querySelector('.good-price__btn');
+  addInCartBtn.addEventListener('click', taskOnClickAddInCartBtn);
+}
+
+const getCurrentRow = (target) => target.closest('.cart-list__item');
+
+const changeCurrentCount = (elem, sign) => {
+  if (sign === 'plus') {
+    const currentCountElem = elem.previousElementSibling;
+    const currentCount = currentCountElem.textContent;
+    if (currentCount === '-') {
+      currentCountElem.textContent = 1;
+    } else {
+      currentCountElem.textContent = +currentCount + 1;
+    }
+    return currentCountElem.textContent
+  } else if (sign === 'minus') {
+    const currentCountElem = elem.nextElementSibling;
+    const currentCount = currentCountElem.textContent;
+    if (currentCount >= 2) {
+      currentCountElem.textContent = +currentCount - 1;
+    } else {
+      currentCountElem.textContent = '-';
+    }
+    return currentCountElem.textContent;
   }
 };
 
-const showCountGoodInCart = () => {    
-  const cart = getLocalStorage() || [];
-  const countInCartBtn = document.querySelector('.btn-cart__count');
-  let countInCart = 0;
-  cart.forEach(elem => {  
-    countInCart += Number(elem.count);
-    
-  });
-  countInCartBtn.textContent = countInCart || '';
-}
+const getIdFromItem = (row) => row.dataset.name;
 
-const addGoodInCart = (dataGood) => {    
-  console.log(dataGood);
-  const addInCartBtn = document.querySelector('.good-price__btn');
-  addInCartBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-      cart.push({id: dataGood.id, count: 1, price: dataGood.price, discount: dataGood.discount });
-      addInLocalStorage(cart);      
-      showCountGoodInCart();
-    } else {
-      const cart = getLocalStorage();      
-      addItemInCart(cart, dataGood);
-      showCountGoodInCart();
-    }
+const getDataItem = async (id) => {
+  const urlParam = `/goods/${id}`;
+  const data = await fetchGoods(urlParam);
+  return data;
+};
 
-    
+const changeTotalSum = () => {
+  const localStorageCart = getLocalStorage() || [];
+  console.log(localStorageCart);
+  let priceFinal = 0;
+  let priceStart = 0;
+  localStorageCart.forEach(({price, count, discount}) => {
+    priceStart += price * count;
+    priceFinal += getPriceFinal(price, discount) * count;
   })
-}
+  document.querySelector('.total__sumFinal').textContent = formatPrice(priceFinal) + ' ₽';
+  document.querySelector('.total__sumStart').textContent = formatPrice(priceStart) + ' ₽';
+  document.querySelector('.total__sale').textContent = formatPrice(priceStart - priceFinal) + ' ₽';
+};
 
-const renderCard = ({title, price, image, discount, category, id}, count) => {
-  console.log(image);
-  const priceStart = formatPrice(price * count);
-  const priceFinal = formatPrice(Math.round((price * count * (100 - discount)) / 100));  
-
-  const li = document.createElement('li');
-  li.className = 'cart-list__item';
-  li.dataset.name = id;
-  li.insertAdjacentHTML('afterbegin',
-      `
-      <div class="cart-list__wrap-input">
-        <input class="cart-list__input" type="checkbox" name="" id="">
-        <div class="cart-list__img">
-          <img  src=https://determined-painted-hawthorn.glitch.me/${image} alt="" >
-        </div>
-      </div>
-            
-      <div class="cart-list__info">
-        <div class="cart-list__content">
-          <a href="card.html#${category}#${id}" class="cart-list__title">${title}</a>
-          
-        </div>
-        <div class="cart-list__count-control count">
-          <buton class="count__btn count__btn_minus">−</buton>
-          <span class="count__text">${count}</span>
-          <buton class="count__btn count__btn_plus">+</buton>
-        </div>
-        <div class="cart-list__price">          
-        </div>
-      </div>      
-      <button class="cart-list__cart"></button>
-  `);
-  const cartListPrice = li.querySelector('.cart-list__price');
-  if (discount) {
-    cartListPrice.insertAdjacentHTML('afterbegin',
-        `<p class="cart-list__priceFinal">${priceFinal} ₽</p>
-          <p class="cart-list__priceStart">${priceStart} ₽</p>
-          <p class="cart-list__credit">В кредит от 5600 ₽ </p>
-    `)
-  } else {
-    cartListPrice.insertAdjacentHTML('afterbegin', 
-        `          
-        <p class="cart-list__priceFinal">${priceStart} ₽</p>
-          <p class="cart-list__credit">В кредит от 5600 ₽ </p>
-    `);
-  }
-  return li;
-}
-
-const createDeliveryImg = ({image}) => {
-  const wrapImg = document.createElement('div');
-  wrapImg.className = 'delivery__box-img';
-
-  const img = document.createElement('img');
-  img.className = 'delivery__img';
-  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
-  wrapImg.append(img);
-  return wrapImg;
-}
-
-const renderShopPage = () => {
-  
-  const cartItems = getLocalStorage() || [];   
-  console.log(cartItems);
-
-  cartItems.forEach(async item => {
-    const url = `https://determined-painted-hawthorn.glitch.me/api/goods/`;
-    const data = await fetchGoods(url + item.id);     
-    const liItem = renderCard(data, item.count);
-    CARTLIST.append(liItem)
-
-    const deliveryInfo = document.querySelector('.delivery__info-img');
-    const deliveryImg = createDeliveryImg(data);
-    
-    deliveryInfo.append(deliveryImg);
-  })
-}
-
-const makeAllSum = () => {
-  const cart = getLocalStorage();
-  let count = 0;
-  let sum = 0;
-  let saleSum = 0;
-  cart.forEach(elem => {
-    console.log(elem)
-    count += elem.count;
-    sum += (elem.count * elem.price);    
-    saleSum  += (elem.price - Math.round((elem.price * (100 - elem.discount)) / 100)) * elem.count    
-  })
-
-  const totalSumFinal = document.querySelector('.total__sumFinal');
-  const spanCount = document.querySelector('.span__count');
-  const totalSumStart = document.querySelector('.total__sumStart');
-  const totalSale = document.querySelector('.total__sale');
-
-  totalSumFinal.textContent = formatPrice(String(sum - saleSum)) + ' ₽';
-  spanCount.textContent = count;
-  totalSale.textContent = formatPrice(String(saleSum)) + ' ₽';
-  totalSumStart.textContent = formatPrice(String(sum)) + ' ₽';
-
-
-
-  console.warn(count);
-  console.warn(sum);
-  console.warn(saleSum);
-}
-
-const controlCountBtn = () => {      
+const controlCountBtn = () => {
   CARTLIST.addEventListener('click', async ({target}) => {
-    console.log(target)
-    if (target.classList.contains('count__btn_plus')) {     
-      const currentRow = target.closest('.cart-list__item'); 
-      const currentCountBtn = target.previousElementSibling;
-      const fieldPriceFinally = currentRow.querySelector('.cart-list__priceFinal')
-      const fieldPriceStart = currentRow.querySelector('.cart-list__priceStart')
+    let count;
+    if (target.classList.contains('count__btn_plus')) {
+      count = changeCurrentCount(target, 'plus');
 
-      const goodID = currentRow.dataset.name;
-      const cart = getLocalStorage();
-      console.log(cart);
-      const indexGoodInCart = cart.findIndex(item => item.id === goodID);            
-      console.log('index:', indexGoodInCart);
-      let count;
-      if (currentCountBtn.textContent === '-') {
-        count = 1;
-      } else {
-        count = currentCountBtn.textContent;
-        count++;
-      }
-        currentCountBtn.textContent = count;
-        
-        if (indexGoodInCart == '-1') {
-          const goodID = currentRow.dataset.name;
-          cart.push({'id': goodID, 'count': 1})          
-        } else {
-          cart[indexGoodInCart].count = +currentCountBtn.textContent;
-        }
-        
-        addInLocalStorage(cart);
-        const url = `https://determined-painted-hawthorn.glitch.me/api/goods/${goodID}`;
-        const dataGood = await fetchGoods(url);
+      //   =======  ДУБЛИРУЕТСЯ =================
+      const currentRow = getCurrentRow(target);
+      const id = getIdFromItem(currentRow);
+      const data = await getDataItem(id);
   
-        if (dataGood.discount) {
-          const price = dataGood.price;
-          console.log(price);  
-          const priceStart = formatPrice(dataGood.price * count);
-          const priceFinal = formatPrice(Math.round((dataGood.price * count * (100 - dataGood.discount)) / 100));  
-          fieldPriceFinally.textContent = priceFinal;
-          fieldPriceStart.textContent = priceStart
-        } else {
-          const price = dataGood.price;
-          console.log(price);          
-          const priceFinal = formatPrice(dataGood.price * count);        
-          fieldPriceFinally.textContent = priceFinal
-        }
+      createCartListPrice(currentRow, data.price, data.discount, count);
+  
+      const localStorageCart = getLocalStorage();
+  
+      const ind = getIndexGoodInLocalStorage(localStorageCart, id);
+      localStorageCart[ind].count = +count;
+      addInLocalStorage(localStorageCart);
+      showCountGoodInCart('shop');
+  
+      changeTotalSum();
 
     } else if (target.classList.contains('count__btn_minus')) {
-     
-      const currentRow = target.closest('.cart-list__item'); 
-      console.log(currentRow);
-      const currentCountBtn = target.nextElementSibling;
-      const fieldPriceFinally = currentRow.querySelector('.cart-list__priceFinal')
-      const fieldPriceStart = currentRow.querySelector('.cart-list__priceStart')
-      let count = currentCountBtn.textContent; 
-      count--;
-      
-      if (count > 0) {
-        currentCountBtn.textContent = count;
-        const goodID = currentRow.dataset.name;
-        const cart = getLocalStorage();
-        const indexGoodInCart = cart.findIndex(item => item.id === goodID);
-        cart[indexGoodInCart].count = +currentCountBtn.textContent;
-        addInLocalStorage(cart);
-        const url = `https://determined-painted-hawthorn.glitch.me/api/goods/${goodID}`;
-        const dataGood = await fetchGoods(url);
+      count = changeCurrentCount(target, 'minus');
+
+      //   =======  ДУБЛИРУЕТСЯ =================
+      const currentRow = getCurrentRow(target);
+      const id = getIdFromItem(currentRow);
+      const data = await getDataItem(id);
   
-        if (dataGood.discount) {
-          const price = dataGood.price;
-          console.log(price);  
-          const priceStart = formatPrice(dataGood.price * count);
-          const priceFinal = formatPrice(Math.round((dataGood.price * count * (100 - dataGood.discount)) / 100));  
-          fieldPriceFinally.textContent = priceFinal;
-          fieldPriceStart.textContent = priceStart
-        } else {
-          const price = dataGood.price;
-          console.log(price);          
-          const priceFinal = formatPrice(dataGood.price * count);        
-          fieldPriceFinally.textContent = priceFinal
-        }
-      } else {
-        currentCountBtn.textContent = '-';
-        const goodID = currentRow.dataset.name;
-        const cart = getLocalStorage();
-        const indexGoodInCart = cart.findIndex(item => item.id === goodID);
-        if (indexGoodInCart >= 0) {
-          cart.splice(indexGoodInCart, 1);
-          addInLocalStorage(cart);
-          fieldPriceFinally.textContent = '';
-          fieldPriceStart.textContent = '';
-        }        
-        
-        
-
-      }
-      
-
+      createCartListPrice(currentRow, data.price, data.discount, count);
+  
+      const localStorageCart = getLocalStorage();
+  
+      const ind = getIndexGoodInLocalStorage(localStorageCart, id);
+      localStorageCart[ind].count = +count;
+      addInLocalStorage(localStorageCart);
+      showCountGoodInCart('shop');
+  
+      changeTotalSum();
     }
-    showCountGoodInCart();
-    makeAllSum();
-  })
-}
-
-const onClickCartDelete = () => {
-  document.querySelector('.shop').innerHTML = '';
-    renderConfirmDeleteModal()
-    delFromImgCart();
-    const btnAllDel = document.querySelector('.cart__btn-deleteall');
-    btnAllDel.removeEventListener('click', onClickCartDelete)
-
-}
-
-const renderConfirmDeleteModal = () => {
-  const div = document.createElement('div');    
-  div.style.cssText = `
-    display: flex;
-    top: 50%;
-    left: 50%;
-    margin: 0 auto;
-    height: 200px;
-    width: 400px;
-    z-index: 100;
-    font-size: 32px;
-    font-weight: bold;
-    border: 2px solid #3670c7;      
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    `;
-  div.textContent = 'Корзина очищена';
-  
-  document.querySelector('.shop').prepend(div);
-  setTimeout(() => {
-    div.remove();
-  }, 2000)
-  
+  });
 };
 
-const delFromImgCart = () => {
-  document.querySelector('.btn-cart__count').innerHTML = '';
+const removeImgFromDelivery = (id) => {
+  const imagesNode = document.querySelectorAll('.delivery__box-img');
+  const imagesArr = Array.from(imagesNode);
+  const currentImg = imagesArr.find(img => img.dataset.img === id);
+  currentImg.closest('.delivery__box-img').remove();
 }
 
-const ctrlDeleteAll = () => {
-  const btnCheckAll = document.querySelector('.cart__input-checkall');
-  btnCheckAll.addEventListener('click', () => {
-    if (btnCheckAll.checked) {      
-      const cartListInput = CARTLIST.querySelectorAll('.cart-list__input');
-      cartListInput.forEach(elem => elem.checked = true)
-      console.log('true');
-      const btnAllDel = document.querySelector('.cart__btn-deleteall');
-      btnAllDel.addEventListener('click', onClickCartDelete);
-      clearLocalStorage()  
+const controlDelOneItem = () => {
+  CARTLIST.addEventListener('click', ({target}) => {
+    if (target.classList.contains('cart-list__cart')) {
+      const currentRow = getCurrentRow(target);
+      const currentCheckbox = currentRow.querySelector('.cart-list__input');
+      if (currentCheckbox.checked) {
+        const localStorageCart = getLocalStorage();
+        const id = getIdFromItem(currentRow);
+        const index = getIndexGoodInLocalStorage(localStorageCart, id);
+
+        localStorageCart.splice(index, 1);
+        addInLocalStorage(localStorageCart);
+        showCountGoodInCart('shop');
+        changeTotalSum();
+        currentRow.remove();
+        removeImgFromDelivery(id);
+      }
+    }
+  });
+};
+
+const controlDelSomeItem = () => {
+  const delSomeItemsBtn = document.querySelector('.cart__btn-deleteall');
+  delSomeItemsBtn.addEventListener('click', () => {
+    const allItems = Array.from(document.querySelectorAll('.cart-list__input'));
+    const checkedItems = allItems.filter(elem => elem.checked);
+    console.log(checkedItems);
+    checkedItems.forEach(item => {
+      const currentRow = getCurrentRow(item);
+      const localStorageCart = getLocalStorage();
+      const id = getIdFromItem(currentRow);
+      const index = getIndexGoodInLocalStorage(localStorageCart, id);
+
+      localStorageCart.splice(index, 1);
+      addInLocalStorage(localStorageCart);
+      showCountGoodInCart('shop');
+      changeTotalSum();
+      currentRow.remove();
+      removeImgFromDelivery(id);
+    });
+  });
+};
+
+const onClickAllCheckedBtn = () => {
+  const allCheckedBtn = document.querySelector('.cart__input-checkall');
+  
+  allCheckedBtn.addEventListener('click', () => {
+
+    const allItems = Array.from(document.querySelectorAll('.cart-list__input'));
+    if (allCheckedBtn.checked) {
+      allItems.forEach(item => {
+        console.log(item);
+        item.checked = true;
+      })
     } else {
-      console.log('++++');
-      const cartListInput = CARTLIST.querySelectorAll('.cart-list__input');
-      cartListInput.forEach(elem => elem.checked = false)
+      allItems.forEach(item => item.checked = false);
     }
   })
-  
 
-  
+};
 
-
-}
-
-
-const shopControl = () => {    
-  renderShopPage();
-  showCountGoodInCart();
+const shopControl = () => {
   controlCountBtn();
-  makeAllSum();
-  ctrlDeleteAll()
-}
+  changeTotalSum();
+  controlDelOneItem();
+  controlDelSomeItem();
+  onClickAllCheckedBtn();
+};
 
-export {shopControl, renderShopPage, showCountGoodInCart, addGoodInCart};
+export {shopControl, onClickAddInCartBtn, changeTotalSum};

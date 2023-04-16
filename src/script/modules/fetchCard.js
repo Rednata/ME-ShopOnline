@@ -1,5 +1,3 @@
-import { createCart, createImgCard, createBreadCrumb, createDescript, createElemWithClass, createRecommend } from './createCatalog&Cards.js';
-
 const URL = 'https://determined-painted-hawthorn.glitch.me/api';
 
 const fetchGoods = async (param) => {
@@ -14,14 +12,5 @@ const createHrefLink = (path, hash) => {
   url.hash = hash;
   return url;
 };
-
-
-
-
-
-
-
-
-
 
 export { createHrefLink, fetchGoods };

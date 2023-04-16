@@ -1,10 +1,11 @@
+import { getLocalStorage } from './localStorageCart.js';
+
 const getHashFromURL = () => {
   const url = decodeURI(document.location.hash);
   return url.slice(1);
 };
 
 const createImageSRC = (image) => {
-  console.dir(image);
   if (image === 'image/notimage.jpg') {
     console.log('noimage');
     return 'assets/images/no-photo.jpg';
@@ -26,5 +27,15 @@ const formatPrice = (price) => {
   }
 };
 
+const getCountGoodInCart = () => {
+  const cart = getLocalStorage() || [];
+  const countInCart = cart.reduce((acc, elem) => acc + Number(elem.count), 0) || '';
+  return countInCart;
+}
 
-export {getHashFromURL, createImageSRC, getPriceFinal, formatPrice};
+const getIndexGoodInLocalStorage = (localStorageCart, id) =>
+  localStorageCart.findIndex(item => item.id === id);
+
+const fromStrFormatToNumber = (str) => Number(str.match(/\d/g).join(''));  
+
+export {getHashFromURL, createImageSRC, getPriceFinal, formatPrice, getCountGoodInCart,  getIndexGoodInLocalStorage, fromStrFormatToNumber };

@@ -1,6 +1,7 @@
 import { fetchGoods } from './fetchCard.js';
-import {createMenuItem, createCatalog, createCard, createDescript} from './createElements.js';
-import { getHashFromURL } from './commonFunction.js';
+import {createMenuItem, createCatalog, createCard, createRecommend, createElemWithClass, createCartListItem, createDeliveryImg} from './createElements.js';
+import { getCountGoodInCart, getHashFromURL } from './commonFunction.js';
+import { getLocalStorage } from './localStorageCart.js';
 
 const renderMenu = async () => {
   const urlParam = '/category';
@@ -20,7 +21,9 @@ const renderCatalog = async () => {
   const urlParam = `/goods/category/${catalogName}`;
   const catalogDate = await fetchGoods(urlParam);
 
-  const {list, title} = createCatalog(catalogDate, catalogName);
+  const title = createElemWithClass('h1', 'catalog__title');
+  title.textContent = catalogName;
+  const list = createCatalog(catalogDate, catalogName);
 
   const sectionCatalog = document.querySelector('.catalog__container');
   sectionCatalog.append(title, list);
@@ -35,23 +38,61 @@ const renderPageCard = async () => {
   const [category, goodID] = getHashFromURL().split('#');
   renderBreadCrumb(category);
 
-  const urlParam = `/goods/${goodID}`;
-  const dataGood = await fetchGoods(urlParam);
-
+  const urlPageParams = `/goods/${goodID}`;
+  const dataGood = await fetchGoods(urlPageParams);
   const {titlePage, wrapCard, titleDescript, content} = createCard(dataGood);
 
-  // const urlCatalog = `https://determined-painted-hawthorn.glitch.me/api/goods/category/${dataGood.category}`;
-  // const dataRecommend = await fetchGoods(urlCatalog);
+  const urlCatalogParams = `/goods/category/${dataGood.category}`;
+  const dataRecommend = await fetchGoods(urlCatalogParams);
+  const {titleRecommend, wrapRecommend} = createRecommend(dataRecommend);
 
   const cardContainer = document.querySelector('.good-card');
   cardContainer.append(titlePage, wrapCard, titleDescript, content);
 
-  // const recomContainer = document.querySelector('.recommend');
-  // const {titleRecom, wrapRecom} = createRecommend(dataRecommend);
-  // recomContainer.append(titleRecom, wrapRecom);
+  const recomContainer = document.querySelector('.recommend');
+
+  recomContainer.append(titleRecommend, wrapRecommend);
 
   return dataGood;
 };
 
+const showCountGoodInCart = (flag) => {
+  const countInCartBn = getCountGoodInCart();
 
-export {renderMenu, renderCatalog, renderPageCard};
+  const btnCartCount = document.querySelector('.btn-cart__count');
+  if (countInCartBn) {
+    btnCartCount.textContent = countInCartBn;
+    btnCartCount.style.backgroundColor = '#ffffff';
+  } else {
+    btnCartCount.textContent = countInCartBn;
+    btnCartCount.style.backgroundColor = 'transparent';
+  }
+  if (flag) {
+      document.querySelector('.cart__count').textContent = countInCartBn;
+      document.querySelector('.span__count').textContent = countInCartBn
+  }
+
+};
+
+const renderShopPage = () => {
+  const CARTLIST = document.querySelector('.cart-list');
+
+  const cart = getLocalStorage() || [];
+  if (cart) {
+    cart.forEach(async item => {
+      const urlParam = `/goods/${item.id}`;
+      const data = await fetchGoods(urlParam);
+      const cartListItem = createCartListItem(data, item.count);
+      CARTLIST.append(cartListItem);
+
+      const deliveryInfo = document.querySelector('.delivery__info-img');
+      const deliveryImg = createDeliveryImg(data);
+      deliveryInfo.append(deliveryImg);
+    });
+  } else {
+    console.log('В КОРЗИНЕ ПУСТО');
+  }
+};
+
+
+export {renderMenu, renderCatalog, renderPageCard, showCountGoodInCart, renderShopPage};
