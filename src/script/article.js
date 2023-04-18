@@ -1,12 +1,14 @@
 import { loadArticle } from './modules/fetch.js';
-import {showNavigation, showHeaderMenu} from './modules/showNavigation.js';
-import { renderMenu } from './modules/fetchCard.js';
+import {showNavigation, onClickHeaderBtnMenu} from './modules/showNavigation.js';
+import { renderMenu } from './modules/render.js';
+import { showCountGoodInCart} from './modules/render.js';
 
 const init = () => {
   loadArticle();
   showNavigation();
-  showHeaderMenu();
+  onClickHeaderBtnMenu();
   renderMenu();
+  showCountGoodInCart();
 };
 
 init();

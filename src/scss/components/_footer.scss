@@ -117,6 +117,11 @@
       transform: translateY(10%);     
     }
 
+    &_dark {
+      background-image: url("../assets/icons/polygon2.svg");
+      background-color: transparent;
+    }
+
     &_open {
       transform: rotate(180deg);  
     }

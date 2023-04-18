@@ -1,33 +1,259 @@
-import { addInLocalStorage, getLocalStorage } from './localStorageCart.js';
+import { addInLocalStorage, getLocalStorage, clearLocalStorage } from './localStorageCart.js';
+import { showCountGoodInCart } from './render.js';
 
-const cart = getLocalStorage() || [];
+import { fetchGoods } from './fetchCard.js';
+import { formatPrice, getHashFromURL, imitationChangeGoodInCart, getIndexGoodInLocalStorage, fromStrFormatToNumber, getPriceFinal } from './commonFunction.js';
+import { createCartListPrice } from './createElements.js';
 
-const addItemInCart = (cart, dataGood) => {
-  const indexGoodInCart = cart.findIndex(item => item.title === dataGood.title);
-  if (indexGoodInCart === -1) {
-    cart.push({title: dataGood.title, count: 1});
-    addInLocalStorage(cart);
+// const onClickCartDelete = () => {
+//   document.querySelector('.shop').innerHTML = '';
+//     renderConfirmDeleteModal()
+//     delFromImgCart();
+//     const btnAllDel = document.querySelector('.cart__btn-deleteall');
+//     btnAllDel.removeEventListener('click', onClickCartDelete)
+
+// }
+
+// const renderConfirmDeleteModal = () => {
+//   const div = document.createElement('div');    
+//   div.style.cssText = `
+//     display: flex;
+//     top: 50%;
+//     left: 50%;
+//     margin: 0 auto;
+//     height: 200px;
+//     width: 400px;
+//     z-index: 100;
+//     font-size: 32px;
+//     font-weight: bold;
+//     border: 2px solid #3670c7;      
+//     border-radius: 10px;
+//     justify-content: center;
+//     align-items: center;
+//     `;
+//   div.textContent = 'Корзина очищена';
+  
+//   document.querySelector('.shop').prepend(div);
+//   setTimeout(() => {
+//     div.remove();
+//   }, 2000)
+  
+// };
+
+// const delFromImgCart = () => {
+//   document.querySelector('.btn-cart__count').innerHTML = '';
+// }
+
+// const ctrlDeleteAll = () => {
+//   const btnCheckAll = document.querySelector('.cart__input-checkall');
+//   btnCheckAll.addEventListener('click', () => {
+//     if (btnCheckAll.checked) {      
+//       const cartListInput = CARTLIST.querySelectorAll('.cart-list__input');
+//       cartListInput.forEach(elem => elem.checked = true)
+//       console.log('true');
+//       const btnAllDel = document.querySelector('.cart__btn-deleteall');
+//       btnAllDel.addEventListener('click', onClickCartDelete);
+//       clearLocalStorage()  
+//     } else {
+//       console.log('++++');
+//       const cartListInput = CARTLIST.querySelectorAll('.cart-list__input');
+//       cartListInput.forEach(elem => elem.checked = false)
+//     }
+//   })
+
+const CARTLIST = document.querySelector('.cart-list');
+
+const saveGoodInCart = (localStorageCart, data, ind) => {
+  if (ind === -1) {
+    const newObj = {id: data.id, count: 1, price: data.price, discount: data.discount};
+    localStorageCart.push(newObj);
   } else {
-    cart[indexGoodInCart].count++;
-    addInLocalStorage(cart);
+    localStorageCart[ind].count++;
+  }
+  addInLocalStorage(localStorageCart);
+};
+
+const taskOnClickAddInCartBtn = async () => {
+  const localStorageCart = getLocalStorage() || [];
+  const hash = getHashFromURL();
+  const id = hash.match(/\d/g).join('');
+  const urlItem = `/goods/${id}`;
+  const data = await fetchGoods(urlItem);
+  const ind = getIndexGoodInLocalStorage(localStorageCart, id);
+
+  saveGoodInCart(localStorageCart, data, ind);
+  showCountGoodInCart()
+}
+
+const onClickAddInCartBtn = () => {
+  const addInCartBtn = document.querySelector('.good-price__btn');
+  addInCartBtn.addEventListener('click', taskOnClickAddInCartBtn);
+}
+
+const getCurrentRow = (target) => target.closest('.cart-list__item');
+
+const changeCurrentCount = (elem, sign) => {
+  if (sign === 'plus') {
+    const currentCountElem = elem.previousElementSibling;
+    const currentCount = currentCountElem.textContent;
+    if (currentCount === '-') {
+      currentCountElem.textContent = 1;
+    } else {
+      currentCountElem.textContent = +currentCount + 1;
+    }
+    return currentCountElem.textContent
+  } else if (sign === 'minus') {
+    const currentCountElem = elem.nextElementSibling;
+    const currentCount = currentCountElem.textContent;
+    if (currentCount >= 2) {
+      currentCountElem.textContent = +currentCount - 1;
+    } else {
+      currentCountElem.textContent = '-';
+    }
+    return currentCountElem.textContent;
   }
 };
 
-const shopControl = (dataGood) => {
-  const addInCartBtn = document.querySelector('.good-price__btn');
+const getIdFromItem = (row) => row.dataset.name;
 
-  addInCartBtn.addEventListener('click', () => {
-    if (cart.length === 0) {
-      cart.push({title: dataGood.title, count: 1});
-      addInLocalStorage(cart);
-    } else {
-      const cart = getLocalStorage();
-      console.warn(cart);
-      addItemInCart(cart, dataGood);
+const getDataItem = async (id) => {
+  const urlParam = `/goods/${id}`;
+  const data = await fetchGoods(urlParam);
+  return data;
+};
 
-      // addInLocalStorage(cart);
-    };
-});
+const changeTotalSum = () => {
+  const localStorageCart = getLocalStorage() || [];
+  console.log(localStorageCart);
+  let priceFinal = 0;
+  let priceStart = 0;
+  localStorageCart.forEach(({price, count, discount}) => {
+    priceStart += price * count;
+    priceFinal += getPriceFinal(price, discount) * count;
+  })
+  document.querySelector('.total__sumFinal').textContent = formatPrice(priceFinal) + ' ₽';
+  document.querySelector('.total__sumStart').textContent = formatPrice(priceStart) + ' ₽';
+  document.querySelector('.total__sale').textContent = formatPrice(priceStart - priceFinal) + ' ₽';
+};
+
+const controlCountBtn = () => {
+  CARTLIST.addEventListener('click', async ({target}) => {
+    let count;
+    if (target.classList.contains('count__btn_plus')) {
+      count = changeCurrentCount(target, 'plus');
+
+      //   =======  ДУБЛИРУЕТСЯ =================
+      const currentRow = getCurrentRow(target);
+      const id = getIdFromItem(currentRow);
+      const data = await getDataItem(id);
+  
+      createCartListPrice(currentRow, data.price, data.discount, count);
+  
+      const localStorageCart = getLocalStorage();
+  
+      const ind = getIndexGoodInLocalStorage(localStorageCart, id);
+      localStorageCart[ind].count = +count;
+      addInLocalStorage(localStorageCart);
+      showCountGoodInCart('shop');
+  
+      changeTotalSum();
+
+    } else if (target.classList.contains('count__btn_minus')) {
+      count = changeCurrentCount(target, 'minus');
+
+      //   =======  ДУБЛИРУЕТСЯ =================
+      const currentRow = getCurrentRow(target);
+      const id = getIdFromItem(currentRow);
+      const data = await getDataItem(id);
+  
+      createCartListPrice(currentRow, data.price, data.discount, count);
+  
+      const localStorageCart = getLocalStorage();
+  
+      const ind = getIndexGoodInLocalStorage(localStorageCart, id);
+      localStorageCart[ind].count = +count;
+      addInLocalStorage(localStorageCart);
+      showCountGoodInCart('shop');
+  
+      changeTotalSum();
+    }
+  });
+};
+
+const removeImgFromDelivery = (id) => {
+  const imagesNode = document.querySelectorAll('.delivery__box-img');
+  const imagesArr = Array.from(imagesNode);
+  const currentImg = imagesArr.find(img => img.dataset.img === id);
+  currentImg.closest('.delivery__box-img').remove();
 }
 
-export {shopControl};
+const controlDelOneItem = () => {
+  CARTLIST.addEventListener('click', ({target}) => {
+    if (target.classList.contains('cart-list__cart')) {
+      const currentRow = getCurrentRow(target);
+      const currentCheckbox = currentRow.querySelector('.cart-list__input');
+      if (currentCheckbox.checked) {
+        const localStorageCart = getLocalStorage();
+        const id = getIdFromItem(currentRow);
+        const index = getIndexGoodInLocalStorage(localStorageCart, id);
+
+        localStorageCart.splice(index, 1);
+        addInLocalStorage(localStorageCart);
+        showCountGoodInCart('shop');
+        changeTotalSum();
+        currentRow.remove();
+        removeImgFromDelivery(id);
+      }
+    }
+  });
+};
+
+const controlDelSomeItem = () => {
+  const delSomeItemsBtn = document.querySelector('.cart__btn-deleteall');
+  delSomeItemsBtn.addEventListener('click', () => {
+    const allItems = Array.from(document.querySelectorAll('.cart-list__input'));
+    const checkedItems = allItems.filter(elem => elem.checked);
+    console.log(checkedItems);
+    checkedItems.forEach(item => {
+      const currentRow = getCurrentRow(item);
+      const localStorageCart = getLocalStorage();
+      const id = getIdFromItem(currentRow);
+      const index = getIndexGoodInLocalStorage(localStorageCart, id);
+
+      localStorageCart.splice(index, 1);
+      addInLocalStorage(localStorageCart);
+      showCountGoodInCart('shop');
+      changeTotalSum();
+      currentRow.remove();
+      removeImgFromDelivery(id);
+    });
+  });
+};
+
+const onClickAllCheckedBtn = () => {
+  const allCheckedBtn = document.querySelector('.cart__input-checkall');
+  
+  allCheckedBtn.addEventListener('click', () => {
+
+    const allItems = Array.from(document.querySelectorAll('.cart-list__input'));
+    if (allCheckedBtn.checked) {
+      allItems.forEach(item => {
+        console.log(item);
+        item.checked = true;
+      })
+    } else {
+      allItems.forEach(item => item.checked = false);
+    }
+  })
+
+};
+
+const shopControl = () => {
+  controlCountBtn();
+  changeTotalSum();
+  controlDelOneItem();
+  controlDelSomeItem();
+  onClickAllCheckedBtn();
+};
+
+export {shopControl, onClickAddInCartBtn, changeTotalSum};

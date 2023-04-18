@@ -1,30 +1,26 @@
 export const showNavigation = () => {
-  console.log('SHOW MUST GO ON!');
-  const navFooter = document.querySelector('.navFooter');  
-  const navTitleCatalog = navFooter.querySelector('.nav__item_catalog').firstElementChild;
-  
-  const navTitleBuyer = navFooter.querySelector('.nav__item_buyer').firstElementChild;
+  const NAV_TITLE_CATALOG = document.querySelectorAll('.nav__item_catalog .nav__title')
+  const NAV_TITLE_BUYER = document.querySelectorAll('.nav__item_buyer .nav__title');
 
-  const catalog = navFooter.querySelector('.sublist_catalog');
-  const buyer = navFooter.querySelector('.sublist_buyer');
+  const CATALOG = document.querySelectorAll('.sublist_catalog');
+  const BUYER = document.querySelectorAll('.sublist_buyer');
 
-  navTitleCatalog.addEventListener('click', () => {
-    catalog.classList.toggle('sublist_show');
-    const btnCatalog = navTitleCatalog.querySelector('.nav__btn');
-    btnCatalog.classList.toggle('nav__btn_open');
+  NAV_TITLE_CATALOG.forEach((title, ind) => {
+    title.addEventListener('click', () => {
+      CATALOG[ind].classList.toggle('sublist_show');
+    });
   });
 
-  navTitleBuyer.addEventListener('click', () => {
-    buyer.classList.toggle('sublist_show');
-    const btnBuyer = navTitleBuyer.querySelector('.nav__btn');
-    btnBuyer.classList.toggle('nav__btn_open');
+  NAV_TITLE_BUYER.forEach((title, ind) => {
+    title.addEventListener('click', () => {
+      BUYER[ind].classList.toggle('sublist_show');
+    });
   });
 };
 
-export const showHeaderMenu = () => {
-  
-  const menuBtn = document.querySelector('.menu');
-  menuBtn.addEventListener('click', () => {
-    document.querySelector('.header-nav').classList.toggle('header-nav_active')
-  })
-}
+export const onClickHeaderBtnMenu = () => {
+  const MENU_BTN = document.querySelector('.menu');
+  MENU_BTN.addEventListener('click', () => {
+    document.querySelector('.header-nav').classList.toggle('header-nav_active');
+  });
+};
