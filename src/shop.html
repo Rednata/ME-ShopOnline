@@ -40,9 +40,9 @@
             </li>  
 
             <li class="icon">            
-              <a class="icon__btn btn-cart" href="shop.html" aria-label="Корзина">
+              <a class="icon__btn btn-cart" href="shop.html" aria-label="Корзина" id="cart">
                 <span class="header-icon__img header-icon__img_cart">
-                  <span class="btn-cart__count">2</span>
+                  <span class="btn-cart__count"></span>
                   </span>
                 <span class="icon__hidden">Корзина</span> 
               </a>              
@@ -63,7 +63,7 @@
 
         <li class="nav__item nav__item_catalog">
           <p class="nav__title">Каталог
-            <button class="nav__btn"></button>
+            <button class="nav__btn nav__btn_dark"></button>
           </p>
 
           <ul class="sublist sublist_catalog">
@@ -72,7 +72,7 @@
 
         <li class="nav__item nav__item_buyer">
           <p class="nav__title">Покупателям
-            <button class="nav__btn"></button>
+            <button class="nav__btn nav__btn_dark"></button>
           </p>            
           <ul class="sublist sublist_buyer">
             <li class="sublist__item">
@@ -130,7 +130,7 @@
           <div class="shop__wrap shop__wrap_cart cart">
             <div class="cart__title-wrap">
               <h2 class="title">Корзина</h2>
-              <span class="cart__count">2</span>
+              <span class="cart__count">1</span>
             </div>
             <div class="cart__control">
               <input class="cart__input-checkall" type="checkbox" name="all" id="all">
@@ -143,7 +143,8 @@
             <div class="hr"></div>
 
             <ul class="cart-list">
-              <li class="cart-list__item">
+
+              <!-- <li class="cart-list__item">
                 <input class="cart-list__input" type="checkbox" name="" id="">
                 <img class="cart-list__img" src="./assets/images/nout1.jpg" alt="" >
                 <div class="cart-list__info">
@@ -164,7 +165,7 @@
   
                   </div>
                 </div>                                
-              </li>
+              </li> -->
               
             </ul>          
           </div> 
@@ -175,21 +176,23 @@
               <button class="delivery-wrap__btn">Изменить</button>
             </div>        
             <div class="delivery__box delivery__box_local">
-              <span class="delivery__name ">Пункт выдачи</span>
+              <span class="delivery__name delivery__name-get">Пункт выдачи</span>
               <span class="delivery__info">г. Москва (Московская область), улица Павлика Морозова, д. 48, (Пункт выдачи), Ежедневно 10:00-21:00</span>
             </div>
             
             <div class="delivery__box delivery__box_price">
-              <span class="delivery__name">Стоимость доставки</span>
-              <span class="delivery__info">Бесплатно</span>
+              <span class="delivery__name delivery__name_big">Стоимость доставки</span>
+              <span class="delivery__name delivery__name_small">Бесплатная доставка</span>
+              <span class="delivery__info delivery__info_pay">Бесплатно</span>
             </div>
     
-            <div class="delivery__box">
+            <div class="delivery__box delivery__box_date">
               <span class="delivery__name delivery__name_date">10-13 февраля</span> 
-              <span class="delivery__info">
-                <img class="delivery__img" src="./assets/images/nout2.jpg" alt="">
-                <img class="delivery__img" src="./assets/images/nout3.jpg" alt="">
-              </span>
+              <div class="delivery__info-img">
+                <!-- <div class="delivery__box-img">
+                  <img class="delivery__img" src="./assets/images/nout2.jpg" alt="">
+                </div> -->
+              </div>
             </div>
           </div>
 
@@ -229,11 +232,11 @@
             <p class="total-info__time">Ежедневно 10:00 - 21:00</p>
             <p class="total-info__address">г. Москва (Московская область), улица Павлика Морозова, д. 48</p>
           </div>
-          <div class="total-info">
+          <div class="total-info total-info_flex">
             <span class="total-info__name">Дата:</span>
             <span class="total-info__value">10-13 февраля</span>              
           </div>
-          <div class="total-info">
+          <div class="total-info total-info_flex">
             <span class="total-info__name">Оплата:</span>
             <span class="total-info__value">Картой</span>              
           </div>
@@ -252,6 +255,197 @@
 
     </div>            
     
+    </section>
+
+        
+    <section class="benefit">
+      <div class="container benefit__container">
+        <h2 class="benefit__title">Это выгодно!</h2>
+        <ul class="benefit__list">
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.jpg">
+                  
+                  <source srcset="assets/images/photo1.avif" type="image/avif">
+                  <source srcset="assets/images/photo1.webp" type="image/webp">
+                  <img loading="lazy" class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет" width="420" height="295">
+                </picture>                
+                <span class="card__sale" aria-label="Скидка">-50%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__sale-price">1299 ₽</span>
+                <span class="card__start-price">2598 ₽</span>
+              </div>
+              <p class="card__title">Пара футболок</p>
+            </a>          
+          </li>
+    
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">                              
+                  <picture>                                    
+                    <source media="(max-width: 1200px)" srcset="assets/images/photo2_1024.avif" type="image/avif">
+                    <source media="(max-width: 1200px)" srcset="assets/images/photo2_1024.webp" type="image/webp">
+                    <source media="(max-width: 1200px)" srcset="assets/images/photo2_1024.jpg">
+                    
+                    <source srcset="assets/images/photo2.avif" type="image/avif">
+                    <source srcset="assets/images/photo2.webp" type="image/webp">
+                    <img loading="lazy" class="card__img" src="assets/images/photo2.jpg" alt="кроссовок бело-оранжевого цвета" width="420" height="295">                                    
+                </picture>                   
+                <span class="card__sale" aria-label="Скидка">-40%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__sale-price">2099₽</span>
+                <span class="card__start-price">5938 ₽</span>
+              </div>
+              <p class="card__title">Кроссовки</p>
+            </a>                    
+          </li>
+  
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.jpg">
+                  
+                  <source srcset="assets/images/photo3.avif" type="image/avif">
+                  <source srcset="assets/images/photo3.webp" type="image/webp">
+                  <img loading="lazy" class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме" width="420" height="295">
+                </picture>               
+              
+                <span class="card__sale" aria-label="Скидка">-10%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__sale-price">3902 ₽</span>
+                <span class="card__start-price">4490 ₽</span>
+              </div>
+              <p class="card__title">Постельное белье</p>
+            </a>                    
+          </li>        
+  
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.jpg">
+                  
+                  <source srcset="assets/images/photo4.avif" type="image/avif">
+                  <source srcset="assets/images/photo4.webp" type="image/webp">
+                  <img loading="lazy" class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета" width="420" height="295">
+                </picture>               
+                
+                <span class="card__sale" aria-label="Скидка">-30%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__sale-price">2999 ₽</span>
+                <span class="card__start-price">6030 ₽</span>
+              </div>
+              <p class="card__title">Фен</p>
+              </a>
+          </li>        
+  
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo3_1024.jpg">
+                  
+                  <source srcset="assets/images/photo3.avif" type="image/avif">
+                  <source srcset="assets/images/photo3.webp" type="image/webp">
+                  <img loading="lazy" class="card__img" src="assets/images/photo3.jpg" alt="большая деревянная современная кровать, заправленная постельным бельем в серо-бежевой и белой гамме" width="420" height="295">
+                </picture>
+                
+                <span class="card__sale" aria-label="Скидка">-10%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__sale-price">3902 ₽</span>
+                <span class="card__start-price">4490 ₽</span>
+              </div>
+              <p class="card__title">Постельное белье</p>
+            </a>                    
+          </li>
+              
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo4_1024.jpg">
+                  
+                  <source srcset="assets/images/photo4.avif" type="image/avif">
+                  <source srcset="assets/images/photo4.webp" type="image/webp">
+                  <img loading="lazy" class="card__img" src="assets/images/photo4.jpg" alt="фен белого цвета" width="420" height="295">
+                </picture>
+                
+                <span class="card__sale" aria-label="Скидка">-30%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__sale-price">2999 ₽</span>
+                <span class="card__start-price">6030 ₽</span>
+              </div>
+              <p class="card__title">Фен</p>
+            </a>
+          </li>        
+  
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo5_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo5_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo5_1024.jpg">
+                  
+                  <source srcset="assets/images/photo5.avif" type="image/avif">
+                  <source srcset="assets/images/photo5.webp" type="image/webp">
+                  <img loading="lazy" class="card__img" src="assets/images/photo5.jpg" alt="вязаные варежки светло-коричневого цвета с ушками и деликатной мордочкой" width="420" height="295">
+                </picture>
+                
+                <span class="card__sale" aria-label="Скидка">-30%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__sale-price">540 ₽</span>
+                <span class="card__start-price">890 ₽</span>
+              </div>
+              <p class="card__title">Варежки-мишки</p>
+            </a>                    
+          </li>
+    
+          <li class="benefit__item card">
+            <a class="benefit__link" href="">
+              <div class="card-img__wrapper">
+                <picture>                                    
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.avif" type="image/avif">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.webp" type="image/webp">
+                  <source media="(max-width: 1200px)" srcset="assets/images/photo1_1024.jpg">
+                  
+                  <source srcset="assets/images/photo1.avif" type="image/avif">
+                  <source srcset="assets/images/photo1.webp" type="image/webp">
+                  <img loading="lazy" class="card__img" src="assets/images/photo1.jpg" alt="две аккуратно сложенные футболки, рядом пара кроссовок в цвет" width="420" height="295">
+                </picture>
+                
+                <span class="card__sale" aria-label="Скидка">-50%</span>
+              </div>
+              <div class="card__price">
+                <span class="card__sale-price">1299 ₽</span>
+                <span class="card__start-price">2598 ₽</span>
+              </div>
+              <p class="card__title">Пара футболок</p>
+            </a>          
+          </li>     
+        </ul>
+      </div>
+      
     </section>
 
   </main>

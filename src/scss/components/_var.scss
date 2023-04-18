@@ -5,6 +5,10 @@ $item-color: #38c0eb;
 $sale-color: #ffbd13;
 $add-color: #8f8f8f;  
 $hr-color: #e8e8e8;  
+$hover-color: #5D92E0;
+$focus-color: #3B65A5;
+$active-color: #FF0000;
+
 
 @mixin fontFace($name, $weight) {
   font: {
