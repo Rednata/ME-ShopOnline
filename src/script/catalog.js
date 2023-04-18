@@ -8,7 +8,7 @@ const init = () => {
   showNavigation();
   onClickHeaderBtnMenu();
   renderMenu();
-  // openCatalogPage();
+  openCatalogPage();
   renderCatalog();
   showCountGoodInCart();
 };
