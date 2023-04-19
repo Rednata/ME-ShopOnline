@@ -1,4 +1,4 @@
-@import '../../node_modules/normalize-scss/sass/_normalize';
+@import 'components/normalize';
 @import 'components/var';
 @import 'components/fonts';
 @import 'components/global';
@@ -16,3 +16,5 @@
 @import 'components/good-card';
 @import 'components/recommend';
 @import 'components/footer';
+@import 'components/catalog';
+@import 'components/shop';

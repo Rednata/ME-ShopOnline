@@ -1,10 +1,14 @@
 import { loadPosts } from './modules/fetch.js';
-import {showHeaderMenu, showNavigation} from './modules/showNavigation.js';
+import {onClickHeaderBtnMenu, showNavigation} from './modules/showNavigation.js';
+import { renderMenu } from './modules/render.js';
+import { showCountGoodInCart} from './modules/render.js';
 
 const init = () => {
   loadPosts();
   showNavigation();
-  showHeaderMenu();
+  onClickHeaderBtnMenu();
+  renderMenu();
+  showCountGoodInCart();
 };
 
 init();

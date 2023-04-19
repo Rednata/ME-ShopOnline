@@ -1,6 +1,6 @@
 html {
-  position: relative;
-  box-sizing: border-box;
+  // position: relative;
+  box-sizing: border-box; 
 }
 
 *,
@@ -66,7 +66,7 @@ iframe {
   max-width: 1920px;
   padding: 0 75px;
   margin: 0 auto;
-
+  
   @media(max-width:1500px) {    
     padding: 0 42px; 
   }

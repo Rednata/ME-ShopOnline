@@ -1,5 +1,6 @@
 .header {
-  padding-top: 27px;
+  position: relative;
+  padding-top: 27px;  
     @media(max-width: 600px) {      
       margin-bottom: 20px;
     }
@@ -167,7 +168,7 @@
     display: flex;
     flex-direction: column;
     background-color: transparent;
-    border: none;
+    border: none;    
     font-weight: 700;
     font-size: 16px;
     @media(max-width: 1100px) {      
@@ -209,7 +210,8 @@
     background-image: url('../assets/icons/person.svg');
   }
 
-  &_cart {
+  &_cart {              
+    position: relative;
     background-image: url('../assets/icons/shopping_cart.svg');
   }
 
@@ -221,13 +223,14 @@
 
 .header-nav {
   position: absolute;
+  left: 0;
   transform: translateY(-200%);    
   background-color: $light-color-text;
   color: $dark-color-text;
   width: 100%;  
   padding-bottom: 92px;  
   transition: transform 0.5s ease-in-out;
-  z-index: 100;  
+  z-index: 100;    
 }
 
 .header-sublist__item {
@@ -237,4 +240,22 @@
 
 .header-nav_active {
   transform: translateY(-20px);  
+}
+
+.btn-cart {
+  color: $dark-color-text;
+
+  &__count {
+    position: absolute;
+    right: 0;
+    display: block;  
+    height: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    width: 14px;
+    text-align: center;    
+    background-color: #fff;    
+    border-radius: 50%;
+    color: $accent-color-text
+  }
 }
