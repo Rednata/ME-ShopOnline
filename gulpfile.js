@@ -5,6 +5,7 @@ import browserSync from 'browser-sync';
 import rename from 'gulp-rename';
 import plumber from 'gulp-plumber';
 import { deleteSync } from 'del';
+import ghPages from 'gulp-gh-pages';
 
 // html
 import htmlmin from 'gulp-htmlmin';
@@ -310,3 +311,8 @@ export const base = gulp.parallel(html, style, js, img, webp, avif, copy);
 export const build = gulp.series(clear, base, critCSS);
 
 export default gulp.series(develop, base, server);
+
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+      .pipe(ghPages());
+});
