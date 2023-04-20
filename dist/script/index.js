@@ -598,6 +598,9 @@ const initTimer = () => {
     const deadline = getDeadline(timeDuration);
     timerStart(deadline);
   }
+  setTimeout(() => {
+    document.querySelector('.header-nav').classList.remove('header-nav_hidden');
+  }, 500);
   showNavigation();
   onClickHeaderBtnMenu();
   renderMenu();

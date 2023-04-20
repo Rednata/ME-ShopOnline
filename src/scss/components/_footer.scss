@@ -68,6 +68,7 @@
   &__list {
     display: flex;
     gap: 100px;    
+    // margin-bottom: 50px;
     @media(max-width: 1300px) {
       gap: 80px;
     }

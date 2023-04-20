@@ -713,6 +713,7 @@ body {
 }
 
 .header-nav {
+  display: block;
   position: absolute;
   left: 0;
   -webkit-transform: translateY(-200%);
@@ -734,17 +735,21 @@ body {
   z-index: 10;
 }
 
-.header-sublist__item {
-  font-weight: 400;
-  font-size: 22px;
-}
-
 .header-nav_active {
   -webkit-transform: translateY(-10px);
   -moz-transform: translateY(-10px);
   -ms-transform: translateY(-10px);
   -o-transform: translateY(-10px);
   transform: translateY(-10px);
+}
+
+.header-nav_hidden {
+  display: none;
+}
+
+.header-sublist__item {
+  font-weight: 400;
+  font-size: 22px;
 }
 
 .btn-cart {
