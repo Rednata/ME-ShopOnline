@@ -1,13 +1,14 @@
 import { getLocalStorage } from './localStorageCart.js';
 
-const getHashFromURL = () => {
-  const url = decodeURI(document.location.hash);
-  return url.slice(1);
+const getHashFromURL = (search1, search2) => {
+  const url = new URL(window.location.href);
+  if (search2) {
+    return [url.searchParams.get(search1), url.searchParams.get(search2)];
+  } else return url.searchParams.get(search1);
 };
 
 const createImageSRC = (image) => {
   if (image === 'image/notimage.jpg') {
-    console.log('noimage');
     return 'assets/images/no-photo.jpg';
   } else {
     return `https://determined-painted-hawthorn.glitch.me/${image}`;

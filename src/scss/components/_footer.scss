@@ -149,6 +149,7 @@
 }
 
 .sublist {
+  // border: 1px solid red;
   display: flex;
   flex-direction: column;
   row-gap: 15px;
@@ -188,7 +189,7 @@
 
   &__item {
     line-height: 33px;     
-    min-width: 220px;
+    width: 220px;
     @media(max-width: 1000px) {
       line-height: 24px;  
       min-width: max-content;
