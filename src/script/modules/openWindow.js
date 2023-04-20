@@ -1,5 +1,5 @@
 import { getHashFromURL } from './commonFunction.js';
-//   НЕ ПОНимаю, как и почему работает =================
+import { renderCatalog, renderPageCard } from './render.js';
 
 const CATALOGS = document.querySelectorAll('.sublist_catalog');
 
@@ -7,45 +7,33 @@ const openCatalogPage = () => {
   CATALOGS.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log('click');
       const target = e.target;
       if (target.closest('.sublist__link')) {
         const category = target.textContent;
-        // location.href = `/catalog.html#${category}`;
-        // const urlCurrent = new URL(document.location);
-        // const urlCatalog = new URL('catalog.html', urlCurrent);
-        // const url = new URL('/catalog.html#Игрушки');
-        window.open(`/catalog.html#${category}`);
-        // window.open(`${urlCatalog}#${category}`);
+        location.href = `/catalog.html?category=${category}`;
+        renderCatalog();
       }
     });
   });
 };
 
 const openCardPage = () => {
-  // const categoryHash = getHashFromURL();
-  // const hashIndex = categoryHash.indexOf('#');
-  // const category = categoryHash.slice(0, hashIndex);
+  const category = getHashFromURL('category');
+  const benefitList = document.querySelector('.benefit__list');
 
-  // const benefitList = document.querySelector('.benefit__list');
-
-  // benefitList.addEventListener('click', (e) => {
- 
-  //   const target = e.target; 
+  benefitList.addEventListener('click', (e) => {
+    const target = e.target;
    
-  //   if (target.closest('.benefit__item')) {
-  //     e.preventDefault();
-  //     const good = target.closest('.benefit__item');
-  //     const goodID = good.dataset.name;
-      
-  //     console.log('target: ', target);
+    if (target.closest('.benefit__item')) {
+      e.preventDefault();
 
-  //     const urlCurrent = new URL(document.location);
-  //     const urlCard = new URL('card.html', urlCurrent);
+      const good = target.closest('.benefit__item');
+      const goodID = good.dataset.name;
 
-  //     window.open(`${urlCard}#${category}#${goodID}`);
-  //   }
-  // });
+      location.href = `/card.html?category=${category}&id=${goodID}`;
+      renderPageCard();
+    }
+  });
 };
 
 export {openCatalogPage, openCardPage};

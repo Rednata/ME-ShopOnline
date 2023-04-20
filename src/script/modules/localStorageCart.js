@@ -1,6 +1,5 @@
 const addInLocalStorage = (data) => {
-  localStorage.setItem('cart', JSON.stringify(data));
-  console.log(data);
+  localStorage.setItem('cart', JSON.stringify(data));  
 };
 
 const getLocalStorage = () =>

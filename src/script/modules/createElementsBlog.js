@@ -219,8 +219,6 @@ const createArticlePage = (articleData) => {
   const aside = createAside();
   loadAuthor(user_id);
 
-  // console.log('footer: ', footer);
-
   articleWrap.append(aside, section);
   headerPage.append(header);
   mainPage.append(articleWrap);

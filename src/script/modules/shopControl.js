@@ -5,62 +5,6 @@ import { fetchGoods } from './fetchCard.js';
 import { formatPrice, getHashFromURL, imitationChangeGoodInCart, getIndexGoodInLocalStorage, fromStrFormatToNumber, getPriceFinal } from './commonFunction.js';
 import { createCartListPrice } from './createElements.js';
 
-// const onClickCartDelete = () => {
-//   document.querySelector('.shop').innerHTML = '';
-//     renderConfirmDeleteModal()
-//     delFromImgCart();
-//     const btnAllDel = document.querySelector('.cart__btn-deleteall');
-//     btnAllDel.removeEventListener('click', onClickCartDelete)
-
-// }
-
-// const renderConfirmDeleteModal = () => {
-//   const div = document.createElement('div');    
-//   div.style.cssText = `
-//     display: flex;
-//     top: 50%;
-//     left: 50%;
-//     margin: 0 auto;
-//     height: 200px;
-//     width: 400px;
-//     z-index: 100;
-//     font-size: 32px;
-//     font-weight: bold;
-//     border: 2px solid #3670c7;      
-//     border-radius: 10px;
-//     justify-content: center;
-//     align-items: center;
-//     `;
-//   div.textContent = 'Корзина очищена';
-  
-//   document.querySelector('.shop').prepend(div);
-//   setTimeout(() => {
-//     div.remove();
-//   }, 2000)
-  
-// };
-
-// const delFromImgCart = () => {
-//   document.querySelector('.btn-cart__count').innerHTML = '';
-// }
-
-// const ctrlDeleteAll = () => {
-//   const btnCheckAll = document.querySelector('.cart__input-checkall');
-//   btnCheckAll.addEventListener('click', () => {
-//     if (btnCheckAll.checked) {      
-//       const cartListInput = CARTLIST.querySelectorAll('.cart-list__input');
-//       cartListInput.forEach(elem => elem.checked = true)
-//       console.log('true');
-//       const btnAllDel = document.querySelector('.cart__btn-deleteall');
-//       btnAllDel.addEventListener('click', onClickCartDelete);
-//       clearLocalStorage()  
-//     } else {
-//       console.log('++++');
-//       const cartListInput = CARTLIST.querySelectorAll('.cart-list__input');
-//       cartListInput.forEach(elem => elem.checked = false)
-//     }
-//   })
-
 const CARTLIST = document.querySelector('.cart-list');
 
 const saveGoodInCart = (localStorageCart, data, ind) => {
@@ -75,14 +19,13 @@ const saveGoodInCart = (localStorageCart, data, ind) => {
 
 const taskOnClickAddInCartBtn = async () => {
   const localStorageCart = getLocalStorage() || [];
-  const hash = getHashFromURL();
-  const id = hash.match(/\d/g).join('');
+  const id = getHashFromURL('id');
   const urlItem = `/goods/${id}`;
   const data = await fetchGoods(urlItem);
   const ind = getIndexGoodInLocalStorage(localStorageCart, id);
 
   saveGoodInCart(localStorageCart, data, ind);
-  showCountGoodInCart()
+  showCountGoodInCart();
 }
 
 const onClickAddInCartBtn = () => {
@@ -101,7 +44,7 @@ const changeCurrentCount = (elem, sign) => {
     } else {
       currentCountElem.textContent = +currentCount + 1;
     }
-    return currentCountElem.textContent
+    return currentCountElem.textContent;
   } else if (sign === 'minus') {
     const currentCountElem = elem.nextElementSibling;
     const currentCount = currentCountElem.textContent;
@@ -124,7 +67,6 @@ const getDataItem = async (id) => {
 
 const changeTotalSum = () => {
   const localStorageCart = getLocalStorage() || [];
-  console.log(localStorageCart);
   let priceFinal = 0;
   let priceStart = 0;
   localStorageCart.forEach(({price, count, discount}) => {
@@ -151,7 +93,7 @@ const controlCountBtn = () => {
   
       const localStorageCart = getLocalStorage();
   
-      const ind = getIndexGoodInLocalStorage(localStorageCart, id);
+      const ind = getIndexGoodInLocalStorage(localStorageCart, id);            
       localStorageCart[ind].count = +count;
       addInLocalStorage(localStorageCart);
       showCountGoodInCart('shop');
@@ -171,7 +113,8 @@ const controlCountBtn = () => {
       const localStorageCart = getLocalStorage();
   
       const ind = getIndexGoodInLocalStorage(localStorageCart, id);
-      localStorageCart[ind].count = +count;
+
+      localStorageCart[ind].count = +count || 0;
       addInLocalStorage(localStorageCart);
       showCountGoodInCart('shop');
   
@@ -208,12 +151,12 @@ const controlDelOneItem = () => {
   });
 };
 
-const controlDelSomeItem = () => {
+const controlDelSomeItems = () => {
   const delSomeItemsBtn = document.querySelector('.cart__btn-deleteall');
   delSomeItemsBtn.addEventListener('click', () => {
     const allItems = Array.from(document.querySelectorAll('.cart-list__input'));
     const checkedItems = allItems.filter(elem => elem.checked);
-    console.log(checkedItems);
+
     checkedItems.forEach(item => {
       const currentRow = getCurrentRow(item);
       const localStorageCart = getLocalStorage();
@@ -238,7 +181,6 @@ const onClickAllCheckedBtn = () => {
     const allItems = Array.from(document.querySelectorAll('.cart-list__input'));
     if (allCheckedBtn.checked) {
       allItems.forEach(item => {
-        console.log(item);
         item.checked = true;
       })
     } else {
@@ -252,7 +194,7 @@ const shopControl = () => {
   controlCountBtn();
   changeTotalSum();
   controlDelOneItem();
-  controlDelSomeItem();
+  controlDelSomeItems();
   onClickAllCheckedBtn();
 };
 
