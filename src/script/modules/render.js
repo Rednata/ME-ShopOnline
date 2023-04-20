@@ -17,7 +17,8 @@ const renderMenu = async () => {
 };
 
 const renderCatalog = async () => {
-  const catalogName = getHashFromURL();
+  const catalogName = getHashFromURL('category');
+
   const urlParam = `/goods/category/${catalogName}`;
   const catalogDate = await fetchGoods(urlParam);
 
@@ -26,6 +27,7 @@ const renderCatalog = async () => {
   const list = createCatalog(catalogDate, catalogName);
 
   const sectionCatalog = document.querySelector('.catalog__container');
+  sectionCatalog.innerHTML = '';
   sectionCatalog.append(title, list);
 };
 
@@ -35,7 +37,7 @@ const renderBreadCrumb = (category) => {
 };
 
 const renderPageCard = async () => {
-  const [category, goodID] = getHashFromURL().split('#');
+  const [category, goodID] = getHashFromURL('category', 'id');
   renderBreadCrumb(category);
 
   const urlPageParams = `/goods/${goodID}`;
@@ -91,6 +93,7 @@ const renderShopPage = () => {
     });
   } else {
     console.log('В КОРЗИНЕ ПУСТО');
+    // TODO: showMessage
   }
 };
 

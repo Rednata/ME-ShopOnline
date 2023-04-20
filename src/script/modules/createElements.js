@@ -1,7 +1,6 @@
 import { createImageSRC, getPriceFinal, formatPrice } from './commonFunction.js';
 
 const getTimeInner = (timeDuration) => {
-  console.log('++++');
   timeDuration.insertAdjacentHTML('afterbegin',
       ` <p class="time__title">
       До конца акции:
@@ -47,8 +46,9 @@ const createMenuItem = (item) => {
 
   link.textContent = item;
   liItem.append(link);
-  link.href = `/catalog.html#${item}`;
-  link.target = '_blank';
+  link.href = `/catalog.html?category=${item}`;
+  // link.href = `/catalog.html#${item}`;
+  // link.target = '_blank';
 
   return liItem;
 };
@@ -60,8 +60,8 @@ const createCatalogItem = ({id, price, title, image, discount, category}) => {
   li.dataset.name = id;
 
   const link = createElemWithClass('a', 'benefit__link');
-  const href = `/card.html#${category}#${id}`;
-  link.target = '_blank';
+  const href = `/card.html?category=${category}&id=${id}`;
+  // link.target = '_blank';
   link.href = href;
 
   const wrapIMG = createElemWithClass('div', 'card-img__wrapper');
@@ -201,7 +201,6 @@ const createCard = (data) => {
 };
 
 const createRecommend = (data) => {
-  console.warn(data);
   const titleRecommend = createElemWithClass('p', 'recommend__title');
   titleRecommend.textContent = 'Рекомендуем также';
   const wrapRecommend = createElemWithClass('div', 'recommend__wrap');
@@ -213,7 +212,6 @@ const createRecommend = (data) => {
 // ===================  CART page ========================
 
 const createCartListPrice = (cartListItem, price, discount, count) => {
-  console.warn(count);
   if (count === '-') count = 0;
 
   const priceStart = formatPrice(price * count);
@@ -237,8 +235,6 @@ const createCartListPrice = (cartListItem, price, discount, count) => {
 };
 
 const createCartListItem = ({title, price, image, discount, category, id}, count) => {
-  // const priceStart = formatPrice(price * count);
-  // const priceFinal = formatPrice(getPriceFinal(price * count, discount));
 
   const cartListItem = createElemWithClass('li', 'cart-list__item');
   cartListItem.dataset.name = id;
@@ -253,7 +249,7 @@ const createCartListItem = ({title, price, image, discount, category, id}, count
             
       <div class="cart-list__info">
         <div class="cart-list__content">
-          <a href="card.html#${category}#${id}" class="cart-list__title">${title}</a>
+          <a href="card.html?category=${category}&id=${id}" class="cart-list__title">${title}</a>
           
         </div>
         <div class="cart-list__count-control count">
@@ -266,7 +262,7 @@ const createCartListItem = ({title, price, image, discount, category, id}, count
       </div>      
       <button class="cart-list__cart"></button>
   `);
-  createCartListPrice(cartListItem, price, discount, count)
+  createCartListPrice(cartListItem, price, discount, count);
 
   return cartListItem;
 }
