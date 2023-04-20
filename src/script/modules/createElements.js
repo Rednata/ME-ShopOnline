@@ -32,7 +32,6 @@ const createElemWithClass = (elem, className) => {
   return elemClass;
 };
 
-
 const createSaleIcon = (tegName, className, discount) => {
   const spanSale = createElemWithClass(tegName, className);
   spanSale.textContent = `-${discount}%`;
@@ -46,9 +45,7 @@ const createMenuItem = (item) => {
 
   link.textContent = item;
   liItem.append(link);
-  link.href = `/catalog.html?category=${item}`;
-  // link.href = `/catalog.html#${item}`;
-  // link.target = '_blank';
+  link.href = `catalog.html?category=${item}`;
 
   return liItem;
 };
@@ -60,7 +57,7 @@ const createCatalogItem = ({id, price, title, image, discount, category}) => {
   li.dataset.name = id;
 
   const link = createElemWithClass('a', 'benefit__link');
-  const href = `/card.html?category=${category}&id=${id}`;
+  const href = `card.html?category=${category}&id=${id}`;
   // link.target = '_blank';
   link.href = href;
 

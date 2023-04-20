@@ -10,7 +10,7 @@ const openCatalogPage = () => {
       const target = e.target;
       if (target.closest('.sublist__link')) {
         const category = target.textContent;
-        location.href = `/catalog.html?category=${category}`;
+        location.href = `catalog.html?category=${category}`;
         renderCatalog();
       }
     });
@@ -30,7 +30,7 @@ const openCardPage = () => {
       const good = target.closest('.benefit__item');
       const goodID = good.dataset.name;
 
-      location.href = `/card.html?category=${category}&id=${goodID}`;
+      location.href = `card.html?category=${category}&id=${goodID}`;
       renderPageCard();
     }
   });
