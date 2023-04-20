@@ -20,7 +20,9 @@ export const showNavigation = () => {
 
 export const onClickHeaderBtnMenu = () => {
   const MENU_BTN = document.querySelector('.menu');
+  const MENU_BTN_IMG = MENU_BTN.querySelector('.menu__img');
   MENU_BTN.addEventListener('click', () => {
     document.querySelector('.header-nav').classList.toggle('header-nav_active');
+    MENU_BTN_IMG.classList.toggle('menu__img-active');
   });
 };
