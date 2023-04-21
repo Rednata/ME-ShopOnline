@@ -765,7 +765,7 @@ body {
   font-weight: bold;
   width: 14px;
   text-align: center;
-  background-color: #fff;
+  background-color: transparent;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -1451,6 +1451,8 @@ body {
 
 .benefit__container {
   margin-bottom: 140px;
+  overflow: auto;
+  height: 1080px;
 }
 
 .benefit__title {
@@ -1461,7 +1463,7 @@ body {
 
 .benefit__list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 420px);
   grid-auto-flow: dense;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -1480,6 +1482,11 @@ body {
   -webkit-border-radius: 14px;
   -moz-border-radius: 14px;
   border-radius: 14px;
+  border: 1px solid #e8e8e8;
+}
+
+.card {
+  overflow: hidden;
 }
 
 .card__img {
@@ -1488,7 +1495,6 @@ body {
   -moz-border-radius: 14px;
   border-radius: 14px;
   max-height: 295px;
-  max-width: 420px;
   -o-object-fit: contain;
   object-fit: contain;
 }
@@ -2012,7 +2018,7 @@ body {
 }
 
 .cart__btn-deleteall {
-  background-image: url("../../assets/icons/delete.svg");
+  background-image: url("../assets/icons/delete.svg");
   background-position: center;
   background-repeat: no-repeat;
   -moz-background-size: contain;
@@ -2433,9 +2439,14 @@ body {
 
 @media (max-width: 1919px) {
   .benefit__list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(300px, 420px));
     row-gap: 40px;
     justify-items: center;
+    -webkit-box-pack: space-evenly;
+    -webkit-justify-content: space-evenly;
+    -moz-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
   }
 }
 
@@ -2565,8 +2576,8 @@ body {
     font-size: 20px;
   }
 
-  .card__img {
-    max-width: 300px;
+  .benefit__container {
+    height: 1024px;
   }
 }
 
@@ -2621,6 +2632,7 @@ body {
 
   .benefit__container {
     margin-bottom: 100px;
+    height: 1475px;
   }
 
   .benefit__title {
@@ -2764,16 +2776,7 @@ body {
   }
 
   .benefit__list {
-    grid-template-columns: repeat(2, 1fr);
-    -webkit-column-gap: 20px;
-    -moz-column-gap: 20px;
-    column-gap: 20px;
-    row-gap: 30px;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -moz-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 300px));
   }
 
   .card-img__wrapper {
@@ -2808,6 +2811,7 @@ body {
     -moz-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+    gap: 30px;
   }
 
   .nav__item_catalog {
@@ -2953,6 +2957,7 @@ body {
   }
 
   .benefit__container {
+    height: 1320px;
     margin-bottom: 80px;
   }
 
@@ -3116,7 +3121,7 @@ body {
     right: 0;
     width: 24px;
     height: 24px;
-    background-image: url("../../assets/icons/delete.svg");
+    background-image: url("../assets/icons/delete.svg");
     background-position: center;
     -moz-background-size: contain;
     background-size: contain;
@@ -3239,8 +3244,7 @@ body {
   }
 
   .card__img {
-    max-width: 220px;
-    max-height: 216px;
+    max-height: 220px;
   }
 
   .card__sale {
@@ -3375,7 +3379,6 @@ body {
     -moz-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 30px;
   }
 
   .nav__title {
@@ -3414,6 +3417,12 @@ body {
     -o-transition: opacity 0.3s, visibility 0.3s;
     -moz-transition: opacity 0.3s, visibility 0.3s;
     transition: opacity 0.3s, visibility 0.3s;
+  }
+}
+
+@media (max-width: 700px) {
+  .benefit__list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -3761,7 +3770,6 @@ body {
   }
 
   .card__img {
-    max-width: 130px;
     max-height: 130px;
   }
 }
