@@ -1,4 +1,4 @@
-import { createImageSRC, getPriceFinal, formatPrice } from './commonFunction.js';
+import { getPriceFinal, formatPrice } from './commonFunction.js';
 
 const getTimeInner = (timeDuration) => {
   timeDuration.insertAdjacentHTML('afterbegin',
@@ -66,7 +66,13 @@ const createCatalogItem = ({id, price, title, image, discount, category}) => {
   img.loading = 'lazy';
   img.width = '420';
   img.height = '295';
-  img.src = createImageSRC(image);
+
+  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
+  img.addEventListener('error', () => {
+    img.src = 'assets/images/no-photo.jpg';
+
+  });
+
   wrapIMG.append(img);
 
   const wrapPrice = createElemWithClass('div', 'card__price');
@@ -107,7 +113,10 @@ const createImgCard = ({discount, image}) => {
   const img = createElemWithClass('img', 'good-card__img');
   // img.width = '420';
   // img.height = '295';
-  img.src = createImageSRC(image);
+  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
+  img.addEventListener('error', () => {
+    img.src = 'assets/images/no-photo.jpg';
+  });
   imgBox.append(img);
 
   if (discount) {
@@ -269,7 +278,11 @@ const createDeliveryImg = ({image, id}) => {
   wrapImg.dataset.img = id;
 
   const img = createElemWithClass('img', 'delivery__img');
-  img.src = createImageSRC(image);
+
+  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
+  img.addEventListener('error', () => {
+    img.src = 'assets/images/no-photo.jpg';
+  });
   wrapImg.append(img);
   return wrapImg;
 };
