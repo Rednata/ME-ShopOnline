@@ -373,7 +373,10 @@ const createCatalogItem = ({
   img.loading = 'lazy';
   img.width = '420';
   img.height = '295';
-  img.src = createImageSRC(image);
+  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
+  img.addEventListener('error', () => {
+    img.src = 'assets/images/no-photo.jpg';
+  });
   wrapIMG.append(img);
   const wrapPrice = createElements_createElemWithClass('div', 'card__price');
   const priceFinal = createElements_createElemWithClass('span', 'card__sale-price');
@@ -411,7 +414,10 @@ const createImgCard = ({
   const img = createElements_createElemWithClass('img', 'good-card__img');
   // img.width = '420';
   // img.height = '295';
-  img.src = createImageSRC(image);
+  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
+  img.addEventListener('error', () => {
+    img.src = 'assets/images/no-photo.jpg';
+  });
   imgBox.append(img);
   if (discount) {
     const saleIcon = createSaleIcon('div', 'sale good-card__sale', discount);
@@ -578,7 +584,10 @@ const createElements_createDeliveryImg = ({
   const wrapImg = createElements_createElemWithClass('div', 'delivery__box-img');
   wrapImg.dataset.img = id;
   const img = createElements_createElemWithClass('img', 'delivery__img');
-  img.src = createImageSRC(image);
+  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
+  img.addEventListener('error', () => {
+    img.src = 'assets/images/no-photo.jpg';
+  });
   wrapImg.append(img);
   return wrapImg;
 };
@@ -599,13 +608,6 @@ const commonFunction_getHashFromURL = (search1, search2) => {
   if (search2) {
     return [url.searchParams.get(search1), url.searchParams.get(search2)];
   } else return url.searchParams.get(search1);
-};
-const commonFunction_createImageSRC = image => {
-  if (image === 'image/notimage.jpg') {
-    return 'assets/images/no-photo.jpg';
-  } else {
-    return `https://determined-painted-hawthorn.glitch.me/${image}`;
-  }
 };
 const commonFunction_getPriceFinal = (price, discount) => Math.round(price * (100 - discount) / 100);
 const commonFunction_formatPrice = price => {
