@@ -87,7 +87,7 @@ const createCatalogItem = ({id, price, title, image, discount, category}) => {
   const itemTitle = createElemWithClass('p', 'card__title');
   itemTitle.textContent = title;
 
-  link.append(wrapIMG, wrapPrice, title);
+  link.append(wrapIMG, wrapPrice, itemTitle);
   li.append(link);
 
   return li;

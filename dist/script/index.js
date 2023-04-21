@@ -128,7 +128,7 @@ const createCatalogItem = ({
   }
   const itemTitle = createElemWithClass('p', 'card__title');
   itemTitle.textContent = title;
-  link.append(wrapIMG, wrapPrice, title);
+  link.append(wrapIMG, wrapPrice, itemTitle);
   li.append(link);
   return li;
 };
@@ -492,7 +492,9 @@ const renderCatalog = async () => {
 };
 const renderBreadCrumb = category => {
   const breadCrumb = document.querySelector('.nav-breadcrumb');
-  breadCrumb.lastElementChild.querySelector('a').textContent = category;
+  const link = breadCrumb.lastElementChild.querySelector('a');
+  link.textContent = category;
+  link.href = `catalog.html?category=${category}`;
 };
 const render_renderPageCard = async () => {
   const [category, goodID] = getHashFromURL('category', 'id');
@@ -551,6 +553,20 @@ const renderShopPage = () => {
   }
 };
 
+const renderBenefit = async () => {
+  const url = `/goods/`;
+  const data = await fetchCard_fetchGoods(url);
+  const sales = data.filter(item => item.discount);
+  const title = createElemWithClass('h1', 'catalog__title');
+  title.textContent = 'Это выгодно!';
+  const list = createCatalog(sales);
+  const sectionCatalog = document.querySelector('.benefit__container');
+  sectionCatalog.innerHTML = '';
+  sectionCatalog.append(title, list);
+
+  // console.log(sales);
+};
+
 
 ;// CONCATENATED MODULE: ./src/script/modules/openWindow.js
 
@@ -598,11 +614,15 @@ const initTimer = () => {
     const deadline = getDeadline(timeDuration);
     timerStart(deadline);
   }
+  setTimeout(() => {
+    document.querySelector('.header-nav').classList.remove('header-nav_hidden');
+  }, 500);
   showNavigation();
   onClickHeaderBtnMenu();
   renderMenu();
   showCountGoodInCart();
   openCatalogPage();
+  renderBenefit();
 };
 initTimer();
 /******/ })()

@@ -150,7 +150,7 @@ const createCatalogItem = ({
   img.loading = 'lazy';
   img.width = '420';
   img.height = '295';
-  img.src = createImageSRC(image);
+  img.src = commonFunction_createImageSRC(image);
   wrapIMG.append(img);
   const wrapPrice = createElements_createElemWithClass('div', 'card__price');
   const priceFinal = createElements_createElemWithClass('span', 'card__sale-price');
@@ -160,14 +160,14 @@ const createCatalogItem = ({
     wrapIMG.append(saleIcon);
     const priceStart = createElements_createElemWithClass('span', 'card__start-price');
     priceStart.textContent = `${price} ₽`;
-    priceFinal.textContent = getPriceFinal(price, discount) + ' ₽';
+    priceFinal.textContent = commonFunction_getPriceFinal(price, discount) + ' ₽';
     wrapPrice.append(priceFinal, priceStart);
   } else {
     wrapPrice.append(priceFinal);
   }
   const itemTitle = createElements_createElemWithClass('p', 'card__title');
   itemTitle.textContent = title;
-  link.append(wrapIMG, wrapPrice, title);
+  link.append(wrapIMG, wrapPrice, itemTitle);
   li.append(link);
   return li;
 };
@@ -388,7 +388,9 @@ const renderCatalog = async () => {
 };
 const renderBreadCrumb = category => {
   const breadCrumb = document.querySelector('.nav-breadcrumb');
-  breadCrumb.lastElementChild.querySelector('a').textContent = category;
+  const link = breadCrumb.lastElementChild.querySelector('a');
+  link.textContent = category;
+  link.href = `catalog.html?category=${category}`;
 };
 const renderPageCard = async () => {
   const [category, goodID] = getHashFromURL('category', 'id');
@@ -447,6 +449,20 @@ const renderShopPage = () => {
   }
 };
 
+const renderBenefit = async () => {
+  const url = `/goods/`;
+  const data = await fetchCard_fetchGoods(url);
+  const sales = data.filter(item => item.discount);
+  const title = createElements_createElemWithClass('h1', 'catalog__title');
+  title.textContent = 'Это выгодно!';
+  const list = createElements_createCatalog(sales);
+  const sectionCatalog = document.querySelector('.benefit__container');
+  sectionCatalog.innerHTML = '';
+  sectionCatalog.append(title, list);
+
+  // console.log(sales);
+};
+
 
 ;// CONCATENATED MODULE: ./src/script/modules/shopControl.js
 
@@ -499,7 +515,7 @@ const changeCurrentCount = (elem, sign) => {
     if (currentCount >= 2) {
       currentCountElem.textContent = +currentCount - 1;
     } else {
-      currentCountElem.textContent = '-';
+      currentCountElem.textContent = 0;
     }
     return currentCountElem.textContent;
   }
@@ -526,6 +542,12 @@ const changeTotalSum = () => {
   document.querySelector('.total__sumStart').textContent = commonFunction_formatPrice(priceStart) + ' ₽';
   document.querySelector('.total__sale').textContent = commonFunction_formatPrice(priceStart - priceFinal) + ' ₽';
 };
+const removeImgFromDelivery = id => {
+  const imagesNode = document.querySelectorAll('.delivery__box-img');
+  const imagesArr = Array.from(imagesNode);
+  const currentImg = imagesArr.find(img => img.dataset.img === id);
+  currentImg.closest('.delivery__box-img').remove();
+};
 const controlCountBtn = () => {
   CARTLIST.addEventListener('click', async ({
     target
@@ -535,6 +557,7 @@ const controlCountBtn = () => {
       count = changeCurrentCount(target, 'plus');
 
       //   =======  ДУБЛИРУЕТСЯ =================
+
       const currentRow = getCurrentRow(target);
       const id = getIdFromItem(currentRow);
       const data = await getDataItem(id);
@@ -552,22 +575,28 @@ const controlCountBtn = () => {
       const currentRow = getCurrentRow(target);
       const id = getIdFromItem(currentRow);
       const data = await getDataItem(id);
-      createCartListPrice(currentRow, data.price, data.discount, count);
       const localStorageCart = localStorageCart_getLocalStorage();
       const ind = commonFunction_getIndexGoodInLocalStorage(localStorageCart, id);
-      localStorageCart[ind].count = +count || 0;
+      if (count == 0) {
+        currentRow.remove();
+        localStorageCart.splice(ind, 1);
+        removeImgFromDelivery(id);
+      } else {
+        createCartListPrice(currentRow, data.price, data.discount, count);
+        localStorageCart[ind].count = +count;
+        // showCountGoodInCart('shop');
+        // changeTotalSum();
+      }
+
       localStorageCart_addInLocalStorage(localStorageCart);
       render_showCountGoodInCart('shop');
       changeTotalSum();
+
+      // const ind = getIndexGoodInLocalStorage(localStorageCart, id);
     }
   });
 };
-const removeImgFromDelivery = id => {
-  const imagesNode = document.querySelectorAll('.delivery__box-img');
-  const imagesArr = Array.from(imagesNode);
-  const currentImg = imagesArr.find(img => img.dataset.img === id);
-  currentImg.closest('.delivery__box-img').remove();
-};
+
 const controlDelOneItem = () => {
   CARTLIST.addEventListener('click', ({
     target
@@ -641,6 +670,7 @@ const init = () => {
   render_showCountGoodInCart('shop');
   renderShopPage();
   shopControl();
+  renderBenefit();
 };
 init();
 /******/ })()

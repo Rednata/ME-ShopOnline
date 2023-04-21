@@ -218,6 +218,7 @@
 }
 
 .header-nav {
+  display: block;  
   position: absolute;
   left: 0;
   transform: translateY(-200%);    
@@ -228,16 +229,19 @@
   padding-bottom: 92px;    
   transition: transform 0.5s ease-in-out;
   z-index: 10;    
+
+  &_active {  
+    transform: translateY(-10px);  
+  }
+
+  &_hidden {
+    display: none;
+  }
 }
 
 .header-sublist__item {
   font-weight: 400;
   font-size: 22px;
-}
-
-.header-nav_active {  
-  transform: translateY(-10px);  
-
 }
 
 .btn-cart {
@@ -252,7 +256,8 @@
     font-weight: bold;
     width: 14px;
     text-align: center;    
-    background-color: #fff;    
+    background-color:transparent;    
+    // background-color: #fff;    
     border-radius: 50%;
     color: $accent-color-text
   }
