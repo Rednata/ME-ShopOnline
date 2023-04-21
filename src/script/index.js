@@ -1,7 +1,7 @@
 import { getTimeInner } from './modules/createElements.js';
 import { getDeadline, timerStart } from './modules/functionTimer.js';
 import { onClickHeaderBtnMenu, showNavigation } from './modules/showNavigation.js';
-import { renderMenu } from './modules/render.js';
+import { renderBenefit, renderMenu } from './modules/render.js';
 import { showCountGoodInCart} from './modules/render.js';
 import { openCatalogPage } from './modules/openWindow.js';
 
@@ -21,6 +21,7 @@ const initTimer = () => {
   renderMenu();
   showCountGoodInCart();
   openCatalogPage();
+  renderBenefit();
 };
 
 initTimer();

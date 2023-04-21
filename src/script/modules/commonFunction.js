@@ -7,14 +7,6 @@ const getHashFromURL = (search1, search2) => {
   } else return url.searchParams.get(search1);
 };
 
-const createImageSRC = (image) => {
-  if (image === 'image/notimage.jpg') {
-    return 'assets/images/no-photo.jpg';
-  } else {
-    return `https://determined-painted-hawthorn.glitch.me/${image}`;
-  }
-};
-
 const getPriceFinal = (price, discount) =>
   Math.round((price * (100 - discount)) / 100);
 
@@ -39,4 +31,4 @@ const getIndexGoodInLocalStorage = (localStorageCart, id) =>
 
 const fromStrFormatToNumber = (str) => Number(str.match(/\d/g).join(''));  
 
-export {getHashFromURL, createImageSRC, getPriceFinal, formatPrice, getCountGoodInCart,  getIndexGoodInLocalStorage, fromStrFormatToNumber };
+export {getHashFromURL, getPriceFinal, formatPrice, getCountGoodInCart,  getIndexGoodInLocalStorage, fromStrFormatToNumber };

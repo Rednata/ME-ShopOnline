@@ -58,13 +58,6 @@ const commonFunction_getHashFromURL = (search1, search2) => {
     return [url.searchParams.get(search1), url.searchParams.get(search2)];
   } else return url.searchParams.get(search1);
 };
-const commonFunction_createImageSRC = image => {
-  if (image === 'image/notimage.jpg') {
-    return 'assets/images/no-photo.jpg';
-  } else {
-    return `https://determined-painted-hawthorn.glitch.me/${image}`;
-  }
-};
 const commonFunction_getPriceFinal = (price, discount) => Math.round(price * (100 - discount) / 100);
 const commonFunction_formatPrice = price => {
   if (String(price).length >= 4) {
@@ -108,21 +101,21 @@ const getTimeInner = timeDuration => {
     </div> `);
   return timeDuration;
 };
-const createElemWithClass = (elem, className) => {
+const createElements_createElemWithClass = (elem, className) => {
   const elemClass = document.createElement(elem);
   elemClass.className = className;
   return elemClass;
 };
 const createSaleIcon = (tegName, className, discount) => {
-  const spanSale = createElemWithClass(tegName, className);
+  const spanSale = createElements_createElemWithClass(tegName, className);
   spanSale.textContent = `-${discount}%`;
   return spanSale;
 };
 
 //  ==================  MENU ===========================
 const createMenuItem = item => {
-  const liItem = createElemWithClass('li', 'sublist__item');
-  const link = createElemWithClass('a', 'sublist__link');
+  const liItem = createElements_createElemWithClass('li', 'sublist__item');
+  const link = createElements_createElemWithClass('a', 'sublist__link');
   link.textContent = item;
   liItem.append(link);
   link.href = `catalog.html?category=${item}`;
@@ -139,41 +132,44 @@ const createCatalogItem = ({
   discount,
   category
 }) => {
-  const li = createElemWithClass('li', 'benefit__item card');
+  const li = createElements_createElemWithClass('li', 'benefit__item card');
   li.dataset.name = id;
-  const link = createElemWithClass('a', 'benefit__link');
+  const link = createElements_createElemWithClass('a', 'benefit__link');
   const href = `card.html?category=${category}&id=${id}`;
   // link.target = '_blank';
   link.href = href;
-  const wrapIMG = createElemWithClass('div', 'card-img__wrapper');
-  const img = createElemWithClass('img', 'card__img');
+  const wrapIMG = createElements_createElemWithClass('div', 'card-img__wrapper');
+  const img = createElements_createElemWithClass('img', 'card__img');
   img.loading = 'lazy';
   img.width = '420';
   img.height = '295';
-  img.src = commonFunction_createImageSRC(image);
+  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
+  img.addEventListener('error', () => {
+    img.src = 'assets/images/no-photo.jpg';
+  });
   wrapIMG.append(img);
-  const wrapPrice = createElemWithClass('div', 'card__price');
-  const priceFinal = createElemWithClass('span', 'card__sale-price');
+  const wrapPrice = createElements_createElemWithClass('div', 'card__price');
+  const priceFinal = createElements_createElemWithClass('span', 'card__sale-price');
   priceFinal.textContent = `${price} ₽`;
   if (discount) {
     const saleIcon = createSaleIcon('span', 'card__sale', discount);
     wrapIMG.append(saleIcon);
-    const priceStart = createElemWithClass('span', 'card__start-price');
+    const priceStart = createElements_createElemWithClass('span', 'card__start-price');
     priceStart.textContent = `${price} ₽`;
     priceFinal.textContent = commonFunction_getPriceFinal(price, discount) + ' ₽';
     wrapPrice.append(priceFinal, priceStart);
   } else {
     wrapPrice.append(priceFinal);
   }
-  const itemTitle = createElemWithClass('p', 'card__title');
+  const itemTitle = createElements_createElemWithClass('p', 'card__title');
   itemTitle.textContent = title;
-  link.append(wrapIMG, wrapPrice, title);
+  link.append(wrapIMG, wrapPrice, itemTitle);
   li.append(link);
   return li;
 };
-const createCatalog = (data, catalogName) => {
+const createElements_createCatalog = (data, catalogName) => {
   const catalogList = data.map(item => createCatalogItem(item));
-  const list = createElemWithClass('ul', 'benefit__list');
+  const list = createElements_createElemWithClass('ul', 'benefit__list');
   list.append(...catalogList);
   return list;
 };
@@ -184,11 +180,14 @@ const createImgCard = ({
   discount,
   image
 }) => {
-  const imgBox = createElemWithClass('div', 'good-card__img-box');
-  const img = createElemWithClass('img', 'good-card__img');
+  const imgBox = createElements_createElemWithClass('div', 'good-card__img-box');
+  const img = createElements_createElemWithClass('img', 'good-card__img');
   // img.width = '420';
   // img.height = '295';
-  img.src = createImageSRC(image);
+  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
+  img.addEventListener('error', () => {
+    img.src = 'assets/images/no-photo.jpg';
+  });
   imgBox.append(img);
   if (discount) {
     const saleIcon = createSaleIcon('div', 'sale good-card__sale', discount);
@@ -200,7 +199,7 @@ const createCart = ({
   price: priceStart,
   discount
 }) => {
-  const cart = createElemWithClass('div', 'good-card__price good-price');
+  const cart = createElements_createElemWithClass('div', 'good-card__price good-price');
   cart.insertAdjacentHTML('afterbegin', `     
         <p class="good-price__credit">В кредит от 5600 ₽ </p>
         <button class="button good-price__btn">Добавить в корзину</button>
@@ -240,11 +239,11 @@ const createCart = ({
   const priceFinal = getPriceFinal(priceStart, discount);
   const formatPriceFinal = formatPrice(priceFinal);
   const formatPriceStart = formatPrice(priceStart);
-  const priceFinalElem = createElemWithClass('span', 'good-price__title');
+  const priceFinalElem = createElements_createElemWithClass('span', 'good-price__title');
   priceFinalElem.textContent = `${formatPriceFinal} ₽`;
   cart.prepend(priceFinalElem);
   if (discount) {
-    const priceStartElem = createElemWithClass('span', 'good-price__old-title');
+    const priceStartElem = createElements_createElemWithClass('span', 'good-price__old-title');
     priceStartElem.textContent = `${formatPriceStart} ₽`;
     priceFinalElem.after(priceStartElem);
   }
@@ -253,9 +252,9 @@ const createCart = ({
 const createDescript = ({
   description
 }) => {
-  const title = createElemWithClass('h2', 'good-card__subtitle');
+  const title = createElements_createElemWithClass('h2', 'good-card__subtitle');
   title.textContent = 'Описание:';
-  const content = createElemWithClass('p', 'good-card__description');
+  const content = createElements_createElemWithClass('p', 'good-card__description');
   content.textContent = description;
   return {
     title,
@@ -263,11 +262,11 @@ const createDescript = ({
   };
 };
 const createElements_createCard = data => {
-  const titlePage = createElemWithClass('h1', 'good-card__title');
+  const titlePage = createElements_createElemWithClass('h1', 'good-card__title');
   titlePage.textContent = data.title;
   const cart = createCart(data);
   const img = createImgCard(data);
-  const wrapCard = createElemWithClass('div', 'good-card__wrap');
+  const wrapCard = createElements_createElemWithClass('div', 'good-card__wrap');
   wrapCard.append(img, cart);
   const {
     title: titleDescript,
@@ -281,10 +280,10 @@ const createElements_createCard = data => {
   };
 };
 const createElements_createRecommend = data => {
-  const titleRecommend = createElemWithClass('p', 'recommend__title');
+  const titleRecommend = createElements_createElemWithClass('p', 'recommend__title');
   titleRecommend.textContent = 'Рекомендуем также';
-  const wrapRecommend = createElemWithClass('div', 'recommend__wrap');
-  const listRecommend = createCatalog(data);
+  const wrapRecommend = createElements_createElemWithClass('div', 'recommend__wrap');
+  const listRecommend = createElements_createCatalog(data);
   wrapRecommend.append(listRecommend);
   return {
     titleRecommend,
@@ -320,7 +319,7 @@ const createElements_createCartListItem = ({
   category,
   id
 }, count) => {
-  const cartListItem = createElemWithClass('li', 'cart-list__item');
+  const cartListItem = createElements_createElemWithClass('li', 'cart-list__item');
   cartListItem.dataset.name = id;
   cartListItem.insertAdjacentHTML('afterbegin', `
       <div class="cart-list__wrap-input">
@@ -352,10 +351,13 @@ const createElements_createDeliveryImg = ({
   image,
   id
 }) => {
-  const wrapImg = createElemWithClass('div', 'delivery__box-img');
+  const wrapImg = createElements_createElemWithClass('div', 'delivery__box-img');
   wrapImg.dataset.img = id;
-  const img = createElemWithClass('img', 'delivery__img');
-  img.src = createImageSRC(image);
+  const img = createElements_createElemWithClass('img', 'delivery__img');
+  img.src = `https://determined-painted-hawthorn.glitch.me/${image}`;
+  img.addEventListener('error', () => {
+    img.src = 'assets/images/no-photo.jpg';
+  });
   wrapImg.append(img);
   return wrapImg;
 };
@@ -379,16 +381,18 @@ const renderCatalog = async () => {
   const catalogName = commonFunction_getHashFromURL('category');
   const urlParam = `/goods/category/${catalogName}`;
   const catalogDate = await fetchCard_fetchGoods(urlParam);
-  const title = createElemWithClass('h1', 'catalog__title');
+  const title = createElements_createElemWithClass('h1', 'catalog__title');
   title.textContent = catalogName;
-  const list = createCatalog(catalogDate, catalogName);
+  const list = createElements_createCatalog(catalogDate, catalogName);
   const sectionCatalog = document.querySelector('.catalog__container');
   sectionCatalog.innerHTML = '';
   sectionCatalog.append(title, list);
 };
 const renderBreadCrumb = category => {
   const breadCrumb = document.querySelector('.nav-breadcrumb');
-  breadCrumb.lastElementChild.querySelector('a').textContent = category;
+  const link = breadCrumb.lastElementChild.querySelector('a');
+  link.textContent = category;
+  link.href = `catalog.html?category=${category}`;
 };
 const render_renderPageCard = async () => {
   const [category, goodID] = getHashFromURL('category', 'id');
@@ -445,6 +449,20 @@ const renderShopPage = () => {
     console.log('В КОРЗИНЕ ПУСТО');
     // TODO: showMessage
   }
+};
+
+const renderBenefit = async () => {
+  const url = `/goods/`;
+  const data = await fetchGoods(url);
+  const sales = data.filter(item => item.discount);
+  const title = createElemWithClass('h1', 'catalog__title');
+  title.textContent = 'Это выгодно!';
+  const list = createCatalog(sales);
+  const sectionCatalog = document.querySelector('.benefit__container');
+  sectionCatalog.innerHTML = '';
+  sectionCatalog.append(title, list);
+
+  // console.log(sales);
 };
 
 
