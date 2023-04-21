@@ -51,7 +51,7 @@ const changeCurrentCount = (elem, sign) => {
     if (currentCount >= 2) {
       currentCountElem.textContent = +currentCount - 1;
     } else {
-      currentCountElem.textContent = '-';
+      currentCountElem.textContent = 0;
     }
     return currentCountElem.textContent;
   }
@@ -78,6 +78,13 @@ const changeTotalSum = () => {
   document.querySelector('.total__sale').textContent = formatPrice(priceStart - priceFinal) + ' ₽';
 };
 
+const removeImgFromDelivery = (id) => {
+  const imagesNode = document.querySelectorAll('.delivery__box-img');
+  const imagesArr = Array.from(imagesNode);
+  const currentImg = imagesArr.find(img => img.dataset.img === id);
+  currentImg.closest('.delivery__box-img').remove();
+}
+
 const controlCountBtn = () => {
   CARTLIST.addEventListener('click', async ({target}) => {
     let count;
@@ -85,10 +92,11 @@ const controlCountBtn = () => {
       count = changeCurrentCount(target, 'plus');
 
       //   =======  ДУБЛИРУЕТСЯ =================
+
       const currentRow = getCurrentRow(target);
       const id = getIdFromItem(currentRow);
       const data = await getDataItem(id);
-  
+
       createCartListPrice(currentRow, data.price, data.discount, count);
   
       const localStorageCart = getLocalStorage();
@@ -107,28 +115,35 @@ const controlCountBtn = () => {
       const currentRow = getCurrentRow(target);
       const id = getIdFromItem(currentRow);
       const data = await getDataItem(id);
-  
-      createCartListPrice(currentRow, data.price, data.discount, count);
-  
       const localStorageCart = getLocalStorage();
-  
       const ind = getIndexGoodInLocalStorage(localStorageCart, id);
+   
+      if (count == 0) {
+        currentRow.remove();
+        localStorageCart.splice(ind, 1);
+        removeImgFromDelivery(id);
+      } else {
+        createCartListPrice(currentRow, data.price, data.discount, count);
+        localStorageCart[ind].count = +count;
+        // showCountGoodInCart('shop');
+        // changeTotalSum();
+      }
 
-      localStorageCart[ind].count = +count || 0;
       addInLocalStorage(localStorageCart);
       showCountGoodInCart('shop');
-  
       changeTotalSum();
+      
+  
+      
+  
+      // const ind = getIndexGoodInLocalStorage(localStorageCart, id);
+
+      
     }
   });
 };
 
-const removeImgFromDelivery = (id) => {
-  const imagesNode = document.querySelectorAll('.delivery__box-img');
-  const imagesArr = Array.from(imagesNode);
-  const currentImg = imagesArr.find(img => img.dataset.img === id);
-  currentImg.closest('.delivery__box-img').remove();
-}
+
 
 const controlDelOneItem = () => {
   CARTLIST.addEventListener('click', ({target}) => {

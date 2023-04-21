@@ -33,7 +33,9 @@ const renderCatalog = async () => {
 
 const renderBreadCrumb = (category) => {
   const breadCrumb = document.querySelector('.nav-breadcrumb');
-  breadCrumb.lastElementChild.querySelector('a').textContent = category;
+  const link = breadCrumb.lastElementChild.querySelector('a');
+  link.textContent = category;
+  link.href = `catalog.html?category=${category}`;
 };
 
 const renderPageCard = async () => {
@@ -97,5 +99,22 @@ const renderShopPage = () => {
   }
 };
 
+const renderBenefit = async() => {
+  const url = `/goods/`;
+  const data = await fetchGoods(url);
+  const sales = data.filter(item => item.discount);
 
-export {renderMenu, renderCatalog, renderPageCard, showCountGoodInCart, renderShopPage};
+  const title = createElemWithClass('h1', 'catalog__title');
+  title.textContent = 'Это выгодно!';
+  const list = createCatalog(sales);
+
+  const sectionCatalog = document.querySelector('.benefit__container');
+  sectionCatalog.innerHTML = '';
+  sectionCatalog.append(title, list);
+
+  // console.log(sales);
+  
+  
+} 
+
+export {renderMenu, renderCatalog, renderPageCard, showCountGoodInCart, renderShopPage, renderBenefit};
